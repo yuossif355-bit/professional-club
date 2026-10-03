@@ -3,91 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نادي بروفيشنال الرياضي - إدارة الفرق والاشتراكات</title>
+    <title>أكاديمية بروفيشنال الرياضية - إدارة الفرق والاشتراكات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #131b2e;
+            --border-color: #1e293b;
+            --primary: #3b82f6;
+            --accent-handball: #f59e0b;
+            --accent-basketball: #ea580c;
+            --accent-volleyball: #06b6d4;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0d1117;
-            color: #ffffff;
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
             text-align: center;
         }
-        header {
-            background: linear-gradient(135deg, #161b22, #1f6feb);
-            padding: 25px 20px;
-            border-bottom: 3px solid #58a6ff;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-        }
-        header h1 {
-            margin: 0;
-            color: #58a6ff;
-            font-size: 28px;
-        }
-        .subtitle {
-            color: #8b949e;
-            font-size: 15px;
-            margin-top: 8px;
-        }
-        .container {
-            padding: 20px;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        .card {
-            background-color: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 6px 14px rgba(0,0,0,0.3);
-            text-align: right;
-        }
-        .card h3 {
-            color: #f0f6fc;
-            margin-top: 0;
-            border-bottom: 1px solid #30363d;
-            padding-bottom: 8px;
-            font-size: 18px;
-        }
-        .form-group {
-            margin-bottom: 12px;
-        }
-        .form-group label {
-            display: block;
-            color: #8b949e;
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-        .form-control {
-            width: 100%;
-            padding: 10px 12px;
-            background-color: #0d1117;
-            border: 1px solid #30363d;
-            border-radius: 6px;
-            color: #fff;
-            font-size: 15px;
-            box-sizing: border-box;
-        }
-        .form-control:focus {
-            outline: none;
-            border-color: #58a6ff;
-        }
-        .btn {
-            background-color: #238636;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
-            transition: background 0.2s;
-        }
-        .btn:hover {
-            background-color: #2ea043;
-        }
+
         /* شاشة تسجيل الدخول */
         #loginOverlay {
             position: fixed;
@@ -95,26 +36,139 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #0d1117;
+            background: rgba(11, 15, 25, 0.95);
+            backdrop-filter: blur(8px);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
         }
         .login-box {
-            background-color: #161b22;
-            border: 1px solid #30363d;
-            padding: 30px;
-            border-radius: 12px;
-            width: 320px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 35px;
+            border-radius: 20px;
+            width: 340px;
             text-align: center;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
         .login-box h2 {
-            color: #58a6ff;
-            margin-top: 0;
+            color: var(--primary);
+            margin-bottom: 5px;
+            font-weight: 900;
         }
-        /* جدول المشتركين */
+
+        header {
+            background: linear-gradient(135deg, #131b2e, #1e3a8a);
+            padding: 30px 20px;
+            border-bottom: 4px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        header h1 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+        .subtitle {
+            color: #93c5fd;
+            font-size: 15px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .container {
+            padding: 30px 15px;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            text-align: right;
+        }
+        .card h3 {
+            color: #ffffff;
+            margin-top: 0;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 12px;
+            font-size: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        @media (max-width: 600px) {
+            .form-grid { grid-template-columns: 1fr; }
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group.full {
+            grid-column: span 2;
+        }
+        @media (max-width: 600px) {
+            .form-group.full { grid-column: span 1; }
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: #0b0f19;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 15px;
+            font-family: 'Cairo', sans-serif;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Cairo', sans-serif;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s, opacity 0.2s;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* الجدول والتصميم الرياضي */
         .table-responsive {
             overflow-x: auto;
         }
@@ -126,108 +180,141 @@
             font-size: 14px;
         }
         th, td {
-            padding: 10px 12px;
-            border-bottom: 1px solid #30363d;
+            padding: 14px 15px;
+            border-bottom: 1px solid var(--border-color);
         }
         th {
-            background-color: #21262d;
-            color: #58a6ff;
+            background-color: #1a233a;
+            color: var(--primary);
+            font-weight: 700;
         }
         tr:hover {
-            background-color: #1f242c;
+            background-color: rgba(255,255,255,0.02);
         }
+
+        /* شارات الألعاب التخصصية */
         .badge {
-            padding: 4px 8px;
-            border-radius: 4px;
+            padding: 6px 12px;
+            border-radius: 20px;
             font-size: 12px;
-            font-weight: bold;
+            font-weight: 700;
+            display: inline-block;
         }
-        .badge-handball { background-color: #9e6a03; color: #fff; }
-        .badge-basketball { background-color: #bc4c00; color: #fff; }
-        .badge-volleyball { background-color: #1f6feb; color: #fff; }
-        
-        .search-box {
-            margin-bottom: 15px;
+        .badge-handball { background-color: rgba(245, 158, 11, 0.15); color: var(--accent-handball); border: 1px solid rgba(245, 158, 11, 0.3); }
+        .badge-basketball { background-color: rgba(234, 88, 12, 0.15); color: var(--accent-basketball); border: 1px solid rgba(234, 88, 12, 0.3); }
+        .badge-volleyball { background-color: rgba(6, 182, 212, 0.15); color: var(--accent-volleyball); border: 1px solid rgba(6, 182, 212, 0.3); }
+
+        .status-paid { color: var(--success); font-weight: 700; }
+        .status-unpaid { color: var(--danger); font-weight: 700; }
+
+        .date-text {
+            color: var(--text-muted);
+            font-size: 13px;
+            display: block;
+            margin-top: 3px;
         }
+
+        .delete-btn {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--danger);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .delete-btn:hover {
+            background: var(--danger);
+            color: white;
+        }
+
         .footer {
             margin-top: 40px;
-            padding: 15px;
-            color: #8b949e;
+            padding: 20px;
+            color: var(--text-muted);
             font-size: 13px;
-            border-top: 1px solid #21262d;
+            border-top: 1px solid var(--border-color);
         }
     </style>
 </head>
 <body>
 
-    <!-- شاشة إدخال الباسورد -->
+    <!-- شاشة تسجيل الدخول -->
     <div id="loginOverlay">
         <div class="login-box">
-            <h2>نادي بروفيشنال 🔒</h2>
-            <p style="color: #8b949e; font-size: 13px; margin-bottom: 15px;">الرجاء إدخال كلمة المرور للمرور لوحة التحكم</p>
+            <h2>أكاديمية بروفيشنال 🛡️</h2>
+            <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 20px;">أدخل كلمة المرور لإدارة الأكاديمية</p>
             <div class="form-group">
-                <input type="password" id="passInput" class="form-control" placeholder="كلمة المرور...">
+                <input type="password" id="passInput" class="form-control" placeholder="كلمة المرور..." style="text-align: center;">
             </div>
-            <button class="btn" onclick="checkPassword()">دخول 🚀</button>
-            <p id="errorMsg" style="color: #da3633; font-size: 13px; margin-top: 10px; display: none;">كلمة المرور غير صحيحة!</p>
+            <button class="btn" onclick="checkPassword()">دخول لوحة التحكم 🚀</button>
+            <p id="errorMsg" style="color: var(--danger); font-size: 13px; margin-top: 12px; display: none;">كلمة المرور غير صحيحة!</p>
         </div>
     </div>
 
     <header>
-        <h1>نادي بروفيشنال الرياضي 🏆</h1>
-        <div class="subtitle">نظام إدارة اشتراكات الفرق (كرة يد - كرة سلة - كرة طائرة)</div>
+        <h1>أكاديمية بروفيشنال الرياضية 🏆</h1>
+        <div class="subtitle">النظام الاحترافي لإدارة فرق: (كرة اليد 🤾‍♂️ - كرة السلة 🏀 - كرة الطائرة 🏐)</div>
     </header>
 
     <div class="container">
 
-        <!-- صندوق تسجيل لاعب أو مشترك جديد -->
+        <!-- صندوق تسجيل مشترك جديد -->
         <div class="card">
-            <h3>➕ تسجيل مشترك جديد</h3>
-            <div class="form-group">
-                <label>اسم اللاعب:</label>
-                <input type="text" id="playerName" class="form-control" placeholder="اكتب اسم اللاعب ثلاثي...">
+            <h3>➕ تسجيل لاعب وفريق جديد</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>اسم اللاعب:</label>
+                    <input type="text" id="playerName" class="form-control" placeholder="اكتب اسم اللاعب ثلاثي...">
+                </div>
+                <div class="form-group">
+                    <label>التخصص (اللعبة):</label>
+                    <select id="playerSport" class="form-control">
+                        <option value="كرة يد 🤾‍♂️">كرة يد 🤾‍♂️</option>
+                        <option value="كرة سلة 🏀">كرة سلة 🏀</option>
+                        <option value="كرة طائرة 🏐">كرة طائرة 🏐</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>رقم الهاتف:</label>
+                    <input type="text" id="playerPhone" class="form-control" placeholder="01xxxxxxxx0">
+                </div>
+                <div class="form-group">
+                    <label>حالة الاشتراك:</label>
+                    <select id="playerStatus" class="form-control">
+                        <option value="تم الدفع (مدفوع) ✅">تم الدفع (مدفوع) ✅</option>
+                        <option value="مستحق الدفع (غير مدفوع) ⏳">مستحق الدفع (غير مدفوع) ⏳</option>
+                    </select>
+                </div>
+                <div class="form-group full">
+                    <label>تاريخ دفع الاشتراك:</label>
+                    <input type="date" id="playerDate" class="form-control">
+                </div>
             </div>
-            <div class="form-group">
-                <label>التخصص (اللعبة):</label>
-                <select id="playerSport" class="form-control">
-                    <option value="كرة يد 🤾‍♂️">كرة يد 🤾‍♂️</option>
-                    <option value="كرة سلة 🏀">كرة سلة 🏀</option>
-                    <option value="كرة طائرة 🏐">كرة طائرة 🏐</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>رقم الهاتف:</label>
-                <input type="text" id="playerPhone" class="form-control" placeholder="01xxxxxxxx0">
-            </div>
-            <div class="form-group">
-                <label>حالة الاشتراك:</label>
-                <select id="playerStatus" class="form-control">
-                    <option value="تم الدفع (مدفوع) ✅">تم الدفع (مدفوع) ✅</option>
-                    <option value="مستحق الدفع (غير مدفوع) ⏳">مستحق الدفع (غير مدفوع) ⏳</option>
-                </select>
-            </div>
-            <button class="btn" onclick="addMember()">حفظ وتسجيل اللاعب 🚀</button>
+            <button class="btn" onclick="addMember()">حفظ وتسجيل اللاعب في الأكاديمية 🚀</button>
         </div>
 
-        <!-- صندوق البحث وعرض القائمة -->
+        <!-- سجل المشتركين -->
         <div class="card">
-            <h3>📋 سجل المشتركين في النادي</h3>
-            <div class="search-box">
-                <input type="text" id="searchInput" class="form-control" placeholder="🔍 ابحث باسم اللاعب هنا..." onkeyup="searchMember()">
+            <h3>📋 سجل المشتركين والفرق الرياضية</h3>
+            <div class="form-group" style="margin-bottom: 20px;">
+                <input type="text" id="searchInput" class="form-control" placeholder="🔍 ابحث باسم اللاعب أو اللعبة..." onkeyup="searchMember()">
             </div>
             <div class="table-responsive">
-                <table id="membersTable">
+                <table>
                     <thead>
                         <tr>
                             <th>اسم اللاعب</th>
                             <th>التخصص</th>
                             <th>الهاتف</th>
-                            <th>الاشتراك</th>
+                            <th>الاشتراك وتاريخه</th>
                             <th>إجراء</th>
                         </tr>
                     </thead>
                     <tbody id="tableBody">
-                        <!-- البيانات هتظهر هنا تلقائياً -->
+                        <!-- بيانات المشتركين -->
                     </tbody>
                 </table>
             </div>
@@ -236,61 +323,61 @@
     </div>
 
     <div class="footer">
-        جميع الحقوق محفوظة © 2026 - Professional Club System 🛡️️
+        جميع الحقوق محفوظة © 2026 - Professional Academy System ⚡
     </div>
 
     <script>
-        // دالة التحقق من الباسورد
+        // ضبط تاريخ اليوم افتراضياً في خانة التاريخ
+        document.getElementById('playerDate').valueAsDate = new Date();
+
         function checkPassword() {
             let enteredPass = document.getElementById("passInput").value;
             if (enteredPass === "201020") {
                 document.getElementById("loginOverlay").style.display = "none";
             } else {
-                let err = document.getElementById("errorMsg");
-                err.style.display = "block";
+                document.getElementById("errorMsg").style.display = "block";
             }
         }
 
-        // جلب البيانات المخزنة مسبقاً أو مصفوفة فارغة
-        let members = JSON.parse(localStorage.getItem("clubMembers")) || [];
+        // جلب البيانات من الذاكرة المحلية (تظل محفوظة دائماً)
+        let members = JSON.parse(localStorage.getItem("academyMembers")) || [];
 
         window.onload = function() {
             renderTable(members);
         };
 
-        // دالة إضافة عضو جديد وحفظه في الذاكرة المحلية
         function addMember() {
             let name = document.getElementById("playerName").value.trim();
             let sport = document.getElementById("playerSport").value;
             let phone = document.getElementById("playerPhone").value.trim();
             let status = document.getElementById("playerStatus").value;
+            let date = document.getElementById("playerDate").value;
 
-            if (name === "" || phone === "") {
-                alert("من فضلك اكتب اسم اللاعب ورقم الهاتف!");
+            if (name === "" || phone === "" || date === "") {
+                alert("من فضلك أكمل بيانات اللاعب (الاسم، الهاتف، وتاريخ الدفع)!");
                 return;
             }
 
-            let newMember = { name: name, sport: sport, phone: phone, status: status };
+            let newMember = { name: name, sport: sport, phone: phone, status: status, date: date };
             members.unshift(newMember);
 
-            // حفظ في الذاكرة عشان ميطيرش لو خرجت
-            localStorage.setItem("clubMembers", JSON.stringify(members));
-
+            localStorage.setItem("academyMembers", JSON.stringify(members));
             renderTable(members);
 
+            // تفريغ خانات الإدخال مع الحفاظ على تاريخ اليوم
             document.getElementById("playerName").value = "";
             document.getElementById("playerPhone").value = "";
+            document.getElementById('playerDate').valueAsDate = new Date();
 
-            alert("تم تسجيل اللاعب وحفظه بنجاح في نادي بروفيشنال! 🏆");
+            alert("تم حفظ وتسجيل بيانات اللاعب بنجاح في أكاديمية بروفيشنال! 🏆");
         }
 
-        // دالة رسم الجدول
         function renderTable(dataArray) {
             let tbody = document.getElementById("tableBody");
             tbody.innerHTML = "";
 
             if (dataArray.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#8b949e;">لا توجد مسجلات حالياً، ابدأ بإضافة لاعب جديد</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:var(--text-muted); padding:30px;">لا توجد سجلات حالياً، ابدأ بإضافة لاعب جديد 🏟️</td></tr>`;
                 return;
             }
 
@@ -300,31 +387,34 @@
                 else if (member.sport.includes("سلة")) badgeClass = "badge-basketball";
                 else badgeClass = "badge-volleyball";
 
+                let statusClass = member.status.includes("مدفوع") && !member.status.includes("غير") ? "status-paid" : "status-unpaid";
+
                 let row = `
                     <tr>
-                        <td><b>${member.name}</b></td>
+                        <td><b style="font-size: 15px;">${member.name}</b></td>
                         <td><span class="badge ${badgeClass}">${member.sport}</span></td>
                         <td>${member.phone}</td>
-                        <td>${member.status}</td>
-                        <td><button onclick="deleteMember(${index})" style="background:#da3633; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">حذف</button></td>
+                        <td>
+                            <span class="${statusClass}">${member.status}</span>
+                            <span class="date-text">📅 تاريخ الدفع: ${member.date}</span>
+                        </td>
+                        <td><button class="delete-btn" onclick="deleteMember(${index})">حذف</button></td>
                     </tr>
                 `;
                 tbody.innerHTML += row;
             });
         }
 
-        // دالة البحث بالاسم
         function searchMember() {
             let query = document.getElementById("searchInput").value.toLowerCase();
-            let filtered = members.items ? members : members.filter(m => m.name.toLowerCase().includes(query) || m.sport.toLowerCase().includes(query));
+            let filtered = members.filter(m => m.name.toLowerCase().includes(query) || m.sport.toLowerCase().includes(query));
             renderTable(filtered);
         }
 
-        // دالة حذف عضو وتحديث الذاكرة
         function deleteMember(index) {
-            if (confirm("هل أنت متأكد من حذف هذا المشترك من النادي؟")) {
+            if (confirm("هل أنت متأكد من حذف هذا المشترك من السجل؟")) {
                 members.splice(index, 1);
-                localStorage.setItem("clubMembers", JSON.stringify(members));
+                localStorage.setItem("academyMembers", JSON.stringify(members));
                 renderTable(members);
             }
         }
