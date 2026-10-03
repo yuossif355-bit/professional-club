@@ -88,6 +88,33 @@
         .btn:hover {
             background-color: #2ea043;
         }
+        /* شاشة تسجيل الدخول */
+        #loginOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0d1117;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .login-box {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            padding: 30px;
+            border-radius: 12px;
+            width: 320px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        }
+        .login-box h2 {
+            color: #58a6ff;
+            margin-top: 0;
+        }
+        /* جدول المشتركين */
         .table-responsive {
             overflow-x: auto;
         }
@@ -133,6 +160,19 @@
 </head>
 <body>
 
+    <!-- شاشة إدخال الباسورد -->
+    <div id="loginOverlay">
+        <div class="login-box">
+            <h2>نادي بروفيشنال 🔒</h2>
+            <p style="color: #8b949e; font-size: 13px; margin-bottom: 15px;">الرجاء إدخال كلمة المرور للمرور لوحة التحكم</p>
+            <div class="form-group">
+                <input type="password" id="passInput" class="form-control" placeholder="كلمة المرور...">
+            </div>
+            <button class="btn" onclick="checkPassword()">دخول 🚀</button>
+            <p id="errorMsg" style="color: #da3633; font-size: 13px; margin-top: 10px; display: none;">كلمة المرور غير صحيحة!</p>
+        </div>
+    </div>
+
     <header>
         <h1>نادي بروفيشنال الرياضي 🏆</h1>
         <div class="subtitle">نظام إدارة اشتراكات الفرق (كرة يد - كرة سلة - كرة طائرة)</div>
@@ -140,6 +180,7 @@
 
     <div class="container">
 
+        <!-- صندوق تسجيل لاعب أو مشترك جديد -->
         <div class="card">
             <h3>➕ تسجيل مشترك جديد</h3>
             <div class="form-group">
@@ -168,6 +209,7 @@
             <button class="btn" onclick="addMember()">حفظ وتسجيل اللاعب 🚀</button>
         </div>
 
+        <!-- صندوق البحث وعرض القائمة -->
         <div class="card">
             <h3>📋 سجل المشتركين في النادي</h3>
             <div class="search-box">
@@ -185,6 +227,7 @@
                         </tr>
                     </thead>
                     <tbody id="tableBody">
+                        <!-- البيانات هتظهر هنا تلقائياً -->
                     </tbody>
                 </table>
             </div>
@@ -193,20 +236,29 @@
     </div>
 
     <div class="footer">
-        جميع الحقوق محفوظة © 2026 - Professional Club System 🛡️
+        جميع الحقوق محفوظة © 2026 - Professional Club System 🛡️️
     </div>
 
     <script>
-        let members = [
-            { name: "أحمد إبراهيم", sport: "كرة يد 🤾‍♂️", phone: "01000000000", status: "تم الدفع (مدفوع) ✅" },
-            { name: "محمد محمود", sport: "كرة سلة 🏀", phone: "01111111111", status: "مستحق الدفع (غير مدفوع) ⏳" },
-            { name: "محمود حسن", sport: "كرة طائرة 🏐", phone: "01222222222", status: "تم الدفع (مدفوع) ✅" }
-        ];
+        // دالة التحقق من الباسورد
+        function checkPassword() {
+            let enteredPass = document.getElementById("passInput").value;
+            if (enteredPass === "201020") {
+                document.getElementById("loginOverlay").style.display = "none";
+            } else {
+                let err = document.getElementById("errorMsg");
+                err.style.display = "block";
+            }
+        }
+
+        // جلب البيانات المخزنة مسبقاً أو مصفوفة فارغة
+        let members = JSON.parse(localStorage.getItem("clubMembers")) || [];
 
         window.onload = function() {
             renderTable(members);
         };
 
+        // دالة إضافة عضو جديد وحفظه في الذاكرة المحلية
         function addMember() {
             let name = document.getElementById("playerName").value.trim();
             let sport = document.getElementById("playerSport").value;
@@ -221,20 +273,24 @@
             let newMember = { name: name, sport: sport, phone: phone, status: status };
             members.unshift(newMember);
 
+            // حفظ في الذاكرة عشان ميطيرش لو خرجت
+            localStorage.setItem("clubMembers", JSON.stringify(members));
+
             renderTable(members);
 
             document.getElementById("playerName").value = "";
             document.getElementById("playerPhone").value = "";
 
-            alert("تم تسجيل اللاعب بنجاح في نادي بروفيشنال! 🏆");
+            alert("تم تسجيل اللاعب وحفظه بنجاح في نادي بروفيشنال! 🏆");
         }
 
+        // دالة رسم الجدول
         function renderTable(dataArray) {
             let tbody = document.getElementById("tableBody");
             tbody.innerHTML = "";
 
             if (dataArray.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#8b949e;">لا توجد نتائج مطابقة</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#8b949e;">لا توجد مسجلات حالياً، ابدأ بإضافة لاعب جديد</td></tr>`;
                 return;
             }
 
@@ -257,15 +313,18 @@
             });
         }
 
+        // دالة البحث بالاسم
         function searchMember() {
             let query = document.getElementById("searchInput").value.toLowerCase();
-            let filtered = members.filter(m => m.name.toLowerCase().includes(query) || m.sport.toLowerCase().includes(query));
+            let filtered = members.items ? members : members.filter(m => m.name.toLowerCase().includes(query) || m.sport.toLowerCase().includes(query));
             renderTable(filtered);
         }
 
+        // دالة حذف عضو وتحديث الذاكرة
         function deleteMember(index) {
             if (confirm("هل أنت متأكد من حذف هذا المشترك من النادي؟")) {
                 members.splice(index, 1);
+                localStorage.setItem("clubMembers", JSON.stringify(members));
                 renderTable(members);
             }
         }
