@@ -7,398 +7,244 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
     <style>
 
-        :root {
-            --bg: #07111f;
-            --bg2: #0b1b2f;
-            --panel: rgba(15, 31, 51, .88);
-            --panel2: #10243b;
-            --line: rgba(148, 163, 184, .16);
-            --white: #f8fafc;
-            --muted: #91a4b8;
-            --blue: #38bdf8;
-            --blue2: #2563eb;
-            --orange: #fb923c;
-            --green: #22c55e;
-            --red: #ef4444;
-            --cyan: #22d3ee;
-        }
+:root{
+ --bg:#040b16;--panel:#09182b;--panel2:#0c2038;--line:#173653;
+ --blue:#1687ff;--cyan:#20d9ff;--orange:#ff7a18;--red:#ff4d4d;
+ --green:#20d98b;--text:#f5f9ff;--muted:#8fa8c2;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ margin:0;font-family:Cairo,sans-serif;color:var(--text);direction:rtl;
+ background:
+ radial-gradient(circle at 50% -10%,#12406b 0,transparent 38%),
+ linear-gradient(135deg,#030914,#071426 55%,#030914);
+ min-height:100vh;
+}
+body:before{
+ content:"";position:fixed;inset:0;pointer-events:none;opacity:.045;
+ background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);
+ background-size:40px 40px;
+}
+header{
+ height:355px;position:relative;overflow:hidden;
+ background:
+ radial-gradient(circle at 20% 55%,rgba(0,136,255,.42),transparent 30%),
+ radial-gradient(circle at 78% 55%,rgba(255,88,20,.35),transparent 27%),
+ linear-gradient(90deg,#061b34,#071326 48%,#35170e);
+ border-bottom:2px solid #138dff;
+ box-shadow:0 20px 70px #000b;
+}
+header:before,header:after{
+ content:"";position:absolute;border-radius:50%;border:2px solid rgba(255,255,255,.06);
+ width:370px;height:370px;top:-170px;
+}
+header:before{right:-110px}.header:after{left:-110px}
+.topbar{
+ position:absolute;z-index:5;top:0;left:0;right:0;height:72px;
+ display:flex;align-items:center;justify-content:space-between;
+ padding:0 42px;background:rgba(2,10,21,.76);border-bottom:1px solid #164064;
+ backdrop-filter:blur(12px);
+}
+.brand{display:flex;align-items:center;gap:12px;font-family:Montserrat,sans-serif}
+.brand-logo{
+ width:45px;height:45px;border-radius:13px;display:grid;place-items:center;
+ background:linear-gradient(135deg,#18c8ff,#1468ff);font-size:24px;
+ box-shadow:0 0 25px #1687ff77;
+}
+.brand strong{font-size:18px;letter-spacing:1px}
+.brand small{display:block;color:#5edfff;font-size:9px;letter-spacing:2px}
+.nav{display:flex;gap:30px;color:#b7c8db;font-weight:700;font-size:13px}
+.nav span.active{color:#fff;border-bottom:3px solid var(--blue);padding-bottom:23px}
+.hero-content{
+ position:absolute;z-index:3;inset:72px 0 0;display:flex;flex-direction:column;
+ align-items:center;justify-content:center;text-align:center;
+}
+.hero-badge{font-size:12px;color:#77dcff;border:1px solid #248ed855;padding:7px 16px;border-radius:50px;background:#0a294444}
+.hero-content h1{font-size:42px;margin:12px 0 2px;font-weight:900}
+.hero-content h1 span{color:#39d9ff}
+.hero-content p{margin:0;color:#b4c7db;font-weight:700}
+.sports-line{display:flex;gap:14px;margin-top:22px}
+.sports-line span{
+ padding:7px 15px;border-radius:50px;background:#071b30cc;border:1px solid #254966;
+ font-size:12px;font-weight:800;
+}
+.sports-line span:nth-child(1){color:#ff9b55}.sports-line span:nth-child(2){color:#ff7373}.sports-line span:nth-child(3){color:#42e5ff}
 
-        * { box-sizing: border-box; }
+.layout{
+ width:min(1450px,calc(100% - 40px));margin:-1px auto 0;position:relative;z-index:10;
+ display:grid;grid-template-columns:205px 1fr 205px;gap:18px;padding:18px 0 35px;
+}
+.sidebar,.stats{
+ background:rgba(7,22,39,.88);border:1px solid var(--line);border-radius:18px;
+ padding:12px;box-shadow:0 15px 40px #0007;align-self:start;position:sticky;top:15px;
+}
+.side-title{color:#67849f;font-size:11px;font-weight:900;padding:9px}
+.side-link{
+ display:flex;align-items:center;gap:10px;padding:12px 10px;margin:3px 0;
+ color:#a9bfd5;border-radius:11px;font-size:12px;font-weight:800;
+}
+.side-link.active{background:linear-gradient(90deg,#1168e9,#078ecb);color:#fff;box-shadow:0 8px 22px #087cff33}
+.side-link b{font-size:17px;width:22px;text-align:center}
+.side-banner{
+ margin-top:14px;padding:18px 10px;border-radius:14px;text-align:center;
+ background:linear-gradient(160deg,#092c50,#071323);border:1px solid #164b73;
+}
+.side-banner strong{display:block;font-size:20px;color:#45dfff}
+.side-banner small{color:#8fa9c1}
 
-        html { scroll-behavior: smooth; }
+.main{min-width:0}
+.sports{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:15px;
+}
+.sport-card{
+ min-height:120px;border-radius:16px;position:relative;overflow:hidden;padding:18px;
+ border:1px solid #244763;background:#0b1e33;
+}
+.sport-card:after{content:"";position:absolute;inset:auto -25px -50px auto;width:150px;height:150px;border-radius:50%;background:#fff1}
+.sport-card.hand{background:linear-gradient(135deg,#172a24,#8d3d0d)}
+.sport-card.basket{background:linear-gradient(135deg,#311718,#8d231c)}
+.sport-card.volley{background:linear-gradient(135deg,#082a3a,#075f8d)}
+.sport-icon{font-size:36px;position:absolute;left:16px;top:30px;opacity:.95}
+.sport-card h3{margin:4px 0;font-size:19px}
+.sport-card p{margin:0;color:#d0dce8;font-size:11px}
+.card{
+ background:linear-gradient(145deg,rgba(10,30,51,.96),rgba(5,18,31,.96));
+ border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:15px;
+ box-shadow:0 15px 40px #0005;overflow:hidden;
+}
+.card-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:17px}
+.card-title h2{font-size:19px;margin:0}
+.card-title h2 span{color:#38d9ff}
+.card-title small{color:#708da8}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.form-group{margin:0 0 4px}
+.form-group.full{grid-column:span 2}
+.form-group label{display:block;color:#a8bfd4;font-size:11px;font-weight:800;margin-bottom:6px}
+.form-control{
+ width:100%;padding:12px 13px;background:#061322;border:1px solid #183752;
+ border-radius:10px;color:#fff;font-family:Cairo;font-size:13px;outline:none;
+ transition:.2s;
+}
+.form-control:focus{border-color:#20bfff;box-shadow:0 0 0 3px #20bfff15}
+.btn{
+ width:100%;border:0;border-radius:10px;padding:13px;margin-top:8px;
+ background:linear-gradient(90deg,#0874ff,#08b7dc);color:white;
+ font-family:Cairo;font-weight:900;cursor:pointer;box-shadow:0 8px 25px #008cff33;
+}
+.btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.search-row{display:flex;gap:10px;margin-bottom:12px}
+.search-row .form-control{flex:1}
+.table-responsive{overflow:auto;border:1px solid #17344e;border-radius:12px}
+table{width:100%;min-width:700px;border-collapse:collapse;font-size:12px}
+th,td{padding:12px;border-bottom:1px solid #112d45;text-align:right}
+th{background:#0b2742;color:#62dfff;font-size:11px}
+tr:hover{background:#0e2940}
+.badge{padding:5px 9px;border-radius:30px;font-size:10px;font-weight:900}
+.badge-handball{background:#ff8a2420;color:#ff9a54;border:1px solid #ff8a2440}
+.badge-basketball{background:#ff3f3f20;color:#ff7676;border:1px solid #ff3f3f40}
+.badge-volleyball{background:#18d9ff20;color:#42ddff;border:1px solid #18d9ff40}
+.status-paid{color:#2be49b;font-weight:900}.status-unpaid{color:#ff6d76;font-weight:900}
+.date-text{display:block;color:#6e879f;font-size:10px;margin-top:3px}
+.delete-btn{background:#ff3e3e18;color:#ff6c73;border:1px solid #ff3e3e40;padding:6px 10px;border-radius:7px;font-family:Cairo;cursor:pointer}
+.delete-btn:hover{background:#ef4444;color:#fff}
+.stat{
+ padding:15px;margin-bottom:10px;border:1px solid #173b59;border-radius:13px;
+ background:linear-gradient(135deg,#0c2945,#071525);
+}
+.stat-icon{font-size:22px}.stat label{display:block;color:#7895af;font-size:10px;margin-top:4px}
+.stat strong{font-size:25px;display:block;margin-top:2px}
+.stat em{font-style:normal;color:#20db9a;font-size:10px}
+.mini-promo{
+ min-height:190px;margin-top:12px;border-radius:14px;padding:18px 12px;text-align:center;
+ background:linear-gradient(180deg,#06172a,#0a2b4b);border:1px solid #194c70;
+ display:flex;flex-direction:column;justify-content:end;
+}
+.mini-promo b{font-size:25px;color:#42dcff}.mini-promo span{font-size:12px;color:#a9c0d5}
+.footer{text-align:center;color:#627d98;padding:20px;border-top:1px solid #112d45;font-size:11px}
+@media(max-width:1050px){.layout{grid-template-columns:180px 1fr}.stats{display:none}}
+@media(max-width:760px){
+ header{height:300px}.topbar{padding:0 15px}.nav{display:none}
+ .layout{width:calc(100% - 20px);grid-template-columns:1fr}.sidebar{display:none}
+ .sports{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.form-group.full{grid-column:span 1}
+ .hero-content h1{font-size:29px}.sports-line{gap:5px}.sports-line span{padding:6px 8px;font-size:10px}
+}
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            font-family: 'Cairo', sans-serif;
-            color: var(--white);
-            text-align: center;
-            background:
-                radial-gradient(circle at 15% 10%, rgba(37,99,235,.20), transparent 30%),
-                radial-gradient(circle at 85% 15%, rgba(34,211,238,.12), transparent 25%),
-                linear-gradient(145deg, #050b14 0%, #071525 48%, #06101d 100%);
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            opacity: .06;
-            background-image:
-                linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px);
-            background-size: 42px 42px;
-            mask-image: linear-gradient(to bottom, black, transparent 75%);
-        }
-
-        header {
-            position: relative;
-            overflow: hidden;
-            padding: 28px 20px 34px;
-            border-bottom: 1px solid rgba(56,189,248,.35);
-            background:
-                linear-gradient(135deg, rgba(5,15,28,.96), rgba(8,34,59,.92)),
-                radial-gradient(circle at 50% 0%, rgba(56,189,248,.18), transparent 45%);
-            box-shadow: 0 25px 70px rgba(0,0,0,.45);
-        }
-
-        header::before, header::after {
-            content: "";
-            position: absolute;
-            width: 260px;
-            height: 260px;
-            border: 1px solid rgba(56,189,248,.12);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-        header::before { left: -130px; top: -120px; }
-        header::after { right: -130px; top: -120px; }
-
-        header h1 {
-            position: relative;
-            margin: 8px 0 4px;
-            font-size: clamp(26px, 5vw, 40px);
-            font-weight: 900;
-            letter-spacing: .5px;
-            background: linear-gradient(90deg, #fff, #7dd3fc, #38bdf8);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 10px 30px rgba(56,189,248,.18);
-        }
-
-        .subtitle {
-            position: relative;
-            color: #a9bfd3;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            width: min(1120px, calc(100% - 28px));
-            margin: 0 auto;
-            padding: 28px 0 10px;
-        }
-
-        .card {
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(145deg, rgba(16,36,59,.94), rgba(8,23,40,.94));
-            border: 1px solid var(--line);
-            border-radius: 22px;
-            padding: 24px;
-            margin-bottom: 22px;
-            box-shadow: 0 18px 50px rgba(0,0,0,.25);
-            text-align: right;
-            backdrop-filter: blur(12px);
-        }
-
-        .card::before {
-            content: "";
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 130px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--blue2), var(--cyan), transparent);
-        }
-
-        .card h3 {
-            margin: 0 0 22px;
-            padding-bottom: 14px;
-            color: #fff;
-            border-bottom: 1px solid var(--line);
-            font-size: 19px;
-            font-weight: 900;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 17px;
-        }
-
-        .form-group { margin-bottom: 8px; }
-
-        .form-group.full { grid-column: span 2; }
-
-        .form-group label {
-            display: block;
-            color: #a8b9c9;
-            font-size: 13px;
-            margin-bottom: 7px;
-            font-weight: 700;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 13px 15px;
-            background: rgba(3,12,23,.72);
-            border: 1px solid rgba(148,163,184,.17);
-            border-radius: 12px;
-            color: #fff;
-            font-size: 14px;
-            font-family: 'Cairo', sans-serif;
-            outline: none;
-            transition: .25s ease;
-        }
-
-        .form-control:hover { border-color: rgba(56,189,248,.35); }
-
-        .form-control:focus {
-            border-color: var(--blue);
-            box-shadow: 0 0 0 4px rgba(56,189,248,.10), 0 8px 25px rgba(0,0,0,.18);
-            transform: translateY(-1px);
-        }
-
-        .btn {
-            position: relative;
-            overflow: hidden;
-            margin-top: 8px;
-            background: linear-gradient(135deg, #2563eb, #0891b2);
-            color: white;
-            border: 0;
-            padding: 14px 20px;
-            font-size: 15px;
-            font-weight: 900;
-            font-family: 'Cairo', sans-serif;
-            border-radius: 12px;
-            cursor: pointer;
-            width: 100%;
-            transition: .25s ease;
-            box-shadow: 0 10px 25px rgba(37,99,235,.22);
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.08);
-            box-shadow: 0 14px 32px rgba(37,99,235,.30);
-        }
-
-        .btn:active { transform: translateY(0); }
-
-        .table-responsive {
-            overflow-x: auto;
-            border-radius: 14px;
-            border: 1px solid var(--line);
-        }
-
-        table {
-            width: 100%;
-            min-width: 680px;
-            border-collapse: collapse;
-            text-align: right;
-            font-size: 13px;
-            background: rgba(3,12,23,.28);
-        }
-
-        th, td {
-            padding: 15px 14px;
-            border-bottom: 1px solid rgba(148,163,184,.10);
-        }
-
-        th {
-            background: #102a44;
-            color: #7dd3fc;
-            font-weight: 900;
-            font-size: 12px;
-        }
-
-        tr { transition: .2s ease; }
-        tr:hover { background: rgba(56,189,248,.045); }
-
-        .badge {
-            padding: 6px 11px;
-            border-radius: 999px;
-            font-size: 11px;
-            font-weight: 900;
-            display: inline-block;
-            white-space: nowrap;
-        }
-
-        .badge-handball {
-            background: rgba(251,146,60,.12);
-            color: #fb923c;
-            border: 1px solid rgba(251,146,60,.25);
-        }
-
-        .badge-basketball {
-            background: rgba(239,68,68,.12);
-            color: #fb7185;
-            border: 1px solid rgba(239,68,68,.25);
-        }
-
-        .badge-volleyball {
-            background: rgba(34,211,238,.12);
-            color: #22d3ee;
-            border: 1px solid rgba(34,211,238,.25);
-        }
-
-        .status-paid {
-            color: #4ade80;
-            font-weight: 900;
-        }
-
-        .status-unpaid {
-            color: #fb7185;
-            font-weight: 900;
-        }
-
-        .date-text {
-            color: #8195aa;
-            font-size: 11px;
-            display: block;
-            margin-top: 4px;
-        }
-
-        .delete-btn {
-            background: rgba(239,68,68,.08);
-            color: #fb7185;
-            border: 1px solid rgba(239,68,68,.22);
-            padding: 7px 12px;
-            border-radius: 9px;
-            cursor: pointer;
-            font-family: 'Cairo', sans-serif;
-            font-weight: 800;
-            transition: .2s;
-        }
-
-        .delete-btn:hover {
-            background: #ef4444;
-            color: #fff;
-            transform: translateY(-1px);
-        }
-
-        .footer {
-            margin-top: 35px;
-            padding: 22px;
-            color: #70869b;
-            font-size: 12px;
-            border-top: 1px solid var(--line);
-            background: rgba(3,10,18,.35);
-        }
-
-        @media (max-width: 700px) {
-            .container { width: min(100% - 18px, 1120px); padding-top: 18px; }
-            .card { padding: 18px; border-radius: 17px; }
-            .form-grid { grid-template-columns: 1fr; }
-            .form-group.full { grid-column: span 1; }
-            header { padding: 22px 12px 28px; }
-        }
-
-    </style>
+</style>
 </head>
 <body>
 
-    <header>
-        <svg width="100%" height="105" viewBox="0 0 620 105" xmlns="http://www.w3.org/2000/svg" style="max-width:620px; margin-bottom:4px;">
-            <defs>
-                <linearGradient id="sportLogo" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#38bdf8"/>
-                    <stop offset="55%" stop-color="#2563eb"/>
-                    <stop offset="100%" stop-color="#22d3ee"/>
-                </linearGradient>
-            </defs>
-            <rect x="12" y="12" width="596" height="78" rx="20" fill="#0b1b2f" stroke="#214563"/>
-            <circle cx="75" cy="51" r="27" fill="none" stroke="url(#sportLogo)" stroke-width="3"/>
-            <path d="M58 51h34M75 34v34" stroke="#7dd3fc" stroke-width="2" opacity=".8"/>
-            <text x="325" y="62" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="31" font-weight="900" fill="url(#sportLogo)" letter-spacing="2">PROFESSIONAL ACADEMY</text>
-            <path d="M548 30l16 21-16 21-16-21z" fill="none" stroke="#fb923c" stroke-width="3"/>
-        </svg>
-        <h1>أكاديمية بروفيشنال الرياضية 🏆</h1>
-        <div class="subtitle">إدارة احترافية لفرق كرة اليد 🤾‍♂️ · كرة السلة 🏀 · كرة الطائرة 🏐</div>
-    </header>
-
-    <div class="container">
-
-        <!-- صندوق تسجيل مشترك جديد -->
-        <div class="card">
-            <h3>➕ تسجيل لاعب وفريق جديد</h3>
-            <div class="form-grid">
-                <div class="form-group">
-                    <label>اسم اللاعب:</label>
-                    <input type="text" id="playerName" class="form-control" placeholder="اكتب اسم اللاعب ثلاثي...">
-                </div>
-                <div class="form-group">
-                    <label>التخصص (اللعبة):</label>
-                    <select id="playerSport" class="form-control">
-                        <option value="كرة يد 🤾‍♂️">كرة يد 🤾‍♂️</option>
-                        <option value="كرة سلة 🏀">كرة سلة 🏀</option>
-                        <option value="كرة طائرة 🏐">كرة طائرة 🏐</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>رقم الهاتف:</label>
-                    <input type="text" id="playerPhone" class="form-control" placeholder="01xxxxxxxx0">
-                </div>
-                <div class="form-group">
-                    <label>حالة الاشتراك:</label>
-                    <select id="playerStatus" class="form-control">
-                        <option value="تم الدفع (مدفوع) ✅">تم الدفع (مدفوع) ✅</option>
-                        <option value="مستحق الدفع (غير مدفوع) ⏳">مستحق الدفع (غير مدفوع) ⏳</option>
-                    </select>
-                </div>
-                <div class="form-group full">
-                    <label>تاريخ دفع الاشتراك:</label>
-                    <input type="date" id="playerDate" class="form-control">
-                </div>
-            </div>
-            <button class="btn" onclick="addMember()">حفظ وتسجيل اللاعب في الأكاديمية 🚀</button>
-        </div>
-
-        <!-- سجل المشتركين -->
-        <div class="card">
-            <h3>📋 سجل المشتركين والفرق الرياضية</h3>
-            <div class="form-group" style="margin-bottom: 20px;">
-                <input type="text" id="searchInput" class="form-control" placeholder="🔍 ابحث باسم اللاعب أو اللعبة..." onkeyup="searchMember()">
-            </div>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>اسم اللاعب</th>
-                            <th>التخصص</th>
-                            <th>الهاتف</th>
-                            <th>الاشتراك وتاريخه</th>
-                            <th>إجراء</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody">
-                        <!-- بيانات المشتركين -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
+    
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-logo">♛</div>
+      <div><strong>PROFESSIONAL</strong><small>SPORTS ACADEMY</small></div>
     </div>
+    <div class="nav">
+      <span class="active">الرئيسية 🏠</span><span>إدارة الفرق 👥</span><span>الاشتراكات 💳</span><span>الإحصائيات 📊</span><span>حول الأكاديمية ℹ️</span>
+    </div>
+    <div style="font-size:12px;font-weight:800;color:#9eb5ca">نبني الأبطال<br><span style="color:#43ddff">لأننا حلمنا بهم أولاً</span></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">🏆 نظام إدارة الأكاديمية الاحترافي</div>
+    <h1>أكاديمية <span>بروفيشنال</span> الرياضية</h1>
+    <p>إدارة اللاعبين والفرق والاشتراكات في مكان واحد</p>
+    <div class="sports-line"><span>🤾 كرة اليد</span><span>🏀 كرة السلة</span><span>🏐 كرة الطائرة</span></div>
+  </div>
+</header>
 
-    <div class="footer">
+
+    
+<div class="layout">
+  <aside class="sidebar">
+    <div class="side-title">لوحة التحكم</div>
+    <div class="side-link active"><b>⌂</b> الرئيسية</div>
+    <div class="side-link"><b>♟</b> تسجيل اللاعبين</div>
+    <div class="side-link"><b>♟</b> قوائم الفرق</div>
+    <div class="side-link"><b>▣</b> الاشتراكات</div>
+    <div class="side-link"><b>⌕</b> البحث عن لاعب</div>
+    <div class="side-link"><b>⚙</b> إدارة الأكاديمية</div>
+    <div class="side-banner"><strong>🏆</strong><div>اصنع فريقك</div><small>وابني أبطال المستقبل</small></div>
+  </aside>
+
+  <main class="main">
+    <section class="sports">
+      <div class="sport-card hand"><div class="sport-icon">🤾</div><h3>كرة اليد</h3><p>قوة · سرعة · مهارة</p></div>
+      <div class="sport-card basket"><div class="sport-icon">🏀</div><h3>كرة السلة</h3><p>دقة · إصرار · إنجاز</p></div>
+      <div class="sport-card volley"><div class="sport-icon">🏐</div><h3>كرة الطائرة</h3><p>فريق · تواصل · نجاح</p></div>
+    </section>
+
+    <section class="card">
+      <div class="card-title"><h2>👤 تسجيل <span>لاعب جديد</span></h2><small>أضف بيانات اللاعب للأكاديمية</small></div>
+      <div class="form-grid">
+        <div class="form-group"><label>اسم اللاعب</label><input type="text" id="playerName" class="form-control" placeholder="أدخل اسم اللاعب ثلاثي..."></div>
+        <div class="form-group"><label>التخصص الرياضي</label><select id="playerSport" class="form-control"><option value="كرة يد 🤾‍♂️">كرة يد 🤾‍♂️</option><option value="كرة سلة 🏀">كرة سلة 🏀</option><option value="كرة طائرة 🏐">كرة طائرة 🏐</option></select></div>
+        <div class="form-group"><label>رقم الهاتف</label><input type="text" id="playerPhone" class="form-control" placeholder="01xxxxxxxxx"></div>
+        <div class="form-group"><label>حالة الاشتراك</label><select id="playerStatus" class="form-control"><option value="تم الدفع (مدفوع) ✅">تم الدفع (مدفوع) ✅</option><option value="مستحق الدفع (غير مدفوع) ⏳">مستحق الدفع (غير مدفوع) ⏳</option></select></div>
+        <div class="form-group full"><label>تاريخ دفع الاشتراك</label><input type="date" id="playerDate" class="form-control"></div>
+      </div>
+      <button class="btn" onclick="addMember()">＋ إضافة اللاعب للأكاديمية</button>
+    </section>
+
+    <section class="card">
+      <div class="card-title"><h2>👥 قائمة <span>اللاعبين</span></h2><small>سجل المشتركين والفرق الرياضية</small></div>
+      <div class="search-row"><input type="text" id="searchInput" class="form-control" placeholder="🔍 ابحث باسم اللاعب أو اللعبة..." onkeyup="searchMember()"></div>
+      <div class="table-responsive">
+        <table><thead><tr><th>اسم اللاعب</th><th>التخصص</th><th>الهاتف</th><th>الاشتراك وتاريخه</th><th>إجراء</th></tr></thead><tbody id="tableBody"></tbody></table>
+      </div>
+    </section>
+  </main>
+
+  <aside class="stats">
+    <div class="stat"><div class="stat-icon">👥</div><label>إجمالي اللاعبين</label><strong>124</strong><em>↗ هذا الشهر</em></div>
+    <div class="stat"><div class="stat-icon">🏆</div><label>عدد الفرق</label><strong>3</strong><em>● مستمر</em></div>
+    <div class="stat"><div class="stat-icon">💳</div><label>الاشتراكات النشطة</label><strong>87</strong><em>↗ هذا الشهر</em></div>
+    <div class="mini-promo"><b>♛</b><span>معًا نصنع<br><strong style="font-size:20px">أبطال المستقبل</strong></span></div>
+  </aside>
+</div>
+
+<div class="footer">
         جميع الحقوق محفوظة © 2026 - Professional Academy System ⚡
     </div>
 
