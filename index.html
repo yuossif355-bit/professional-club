@@ -1,2093 +1,2167 @@
 <!DOCTYPE html>
-
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Professional Academy | Dashboard</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#04101f;
-  --bg2:#071a2e;
-  --panel:#08213a;
-  --panel2:#0b2a49;
-  --line:rgba(139,190,255,.16);
-  --text:#f7fbff;
-  --muted:#8da6bf;
-  --yellow:#ffc21a;
-  --yellow2:#ff9d00;
-  --blue:#1687ff;
-  --blue2:#005be8;
-  --green:#2ee7a1;
-  --red:#ff4d5e;
-  --shadow:0 20px 55px rgba(0,0,0,.35);
+    --bg:#020914;
+    --bg2:#061426;
+    --panel:#091d33;
+    --panel2:#0d2743;
+    --line:rgba(255,255,255,.09);
+
+    --text:#f8fbff;
+    --muted:#91a7bc;
+
+    --gold:#ffc21a;
+    --gold2:#ff8c00;
+
+    --blue:#1687ff;
+    --blue2:#005be8;
+
+    --green:#27e7a0;
+    --red:#ff5366;
+
+    --shadow:0 25px 70px rgba(0,0,0,.45);
 }
 
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
 
 body{
-  margin:0;
-  color:var(--text);
-  font-family:Cairo,Arial,sans-serif;
-  background:
-    radial-gradient(circle at 20% 10%,rgba(0,120,255,.16),transparent 28%),
-    radial-gradient(circle at 85% 35%,rgba(255,184,0,.09),transparent 24%),
-    linear-gradient(135deg,#020a14,#06182b 55%,#03101e);
-  min-height:100vh;
+    font-family:"Cairo",sans-serif;
+    background:
+        radial-gradient(circle at 85% 5%,rgba(0,119,255,.14),transparent 28%),
+        radial-gradient(circle at 10% 80%,rgba(255,194,26,.06),transparent 25%),
+        var(--bg);
+    color:var(--text);
+    min-height:100vh;
 }
 
-button,input,select{font:inherit}
-button{cursor:pointer}
-
-.app{
-  display:grid;
-  grid-template-columns:270px 1fr;
-  min-height:100vh
+button,
+input,
+select{
+    font-family:inherit;
 }
+
+button{
+    cursor:pointer;
+}
+
+/* ================= SIDEBAR ================= */
 
 .sidebar{
-  position:sticky;
-  top:0;
-  height:100vh;
-  padding:24px 18px;
-  background:linear-gradient(180deg,#03101f,#061c32 70%,#04101d);
-  border-left:1px solid var(--line);
-  z-index:20;
+    position:fixed;
+    right:0;
+    top:0;
+    width:280px;
+    height:100vh;
+    padding:22px 18px;
+    background:
+        linear-gradient(180deg,rgba(8,31,55,.98),rgba(3,15,28,.98));
+    border-left:1px solid var(--line);
+    z-index:1000;
+    overflow-y:auto;
 }
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:8px 8px 25px
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px;
+    margin-bottom:25px;
 }
 
-.brand-mark{
-  width:62px;
-  height:62px;
-  border-radius:20px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(145deg,var(--yellow),#ff8d00);
-  color:#06111e;
-  font-weight:900;
-  font-family:Montserrat;
-  font-size:24px;
-  box-shadow:0 10px 30px rgba(255,183,0,.24);
-  transform:skew(-4deg);
+.logo-box{
+    width:58px;
+    height:58px;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:Montserrat,sans-serif;
+    font-size:20px;
+    font-weight:900;
+    color:#06101d;
+    background:linear-gradient(135deg,var(--gold),var(--gold2));
+    box-shadow:0 10px 35px rgba(255,174,0,.25);
 }
 
-.brand strong{
-  display:block;
-  font-family:Montserrat;
-  font-size:19px;
-  letter-spacing:.2px
+.logo-text strong{
+    display:block;
+    font-family:Montserrat,sans-serif;
+    font-size:17px;
+    letter-spacing:1px;
 }
 
-.brand span{
-  display:block;
-  color:var(--yellow);
-  font-size:11px;
-  font-weight:800;
-  margin-top:2px
+.logo-text span{
+    color:var(--muted);
+    font-size:11px;
 }
 
 .nav-title{
-  color:#617d99;
-  font-size:11px;
-  font-weight:800;
-  padding:12px 12px 7px
+    color:#607b95;
+    font-size:11px;
+    font-weight:800;
+    margin:18px 10px 8px;
+    letter-spacing:1px;
 }
 
 .nav a{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  color:#b8cce0;
-  text-decoration:none;
-  padding:13px 14px;
-  border-radius:13px;
-  margin:5px 0;
-  font-weight:700;
-  transition:.2s;
-  border:1px solid transparent
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color:#9db1c4;
+    padding:13px 14px;
+    border-radius:13px;
+    margin:5px 0;
+    transition:.25s;
+    font-size:14px;
+    font-weight:700;
 }
 
-.nav a:hover{
-  background:rgba(255,255,255,.05);
-  color:#fff
-}
-
+.nav a:hover,
 .nav a.active{
-  background:linear-gradient(90deg,#ffbd13,#ff9b00);
-  color:#06111e;
-  box-shadow:0 10px 25px rgba(255,174,0,.2)
+    color:#fff;
+    background:linear-gradient(90deg,rgba(22,135,255,.20),rgba(22,135,255,.05));
+    box-shadow:inset 3px 0 var(--blue);
 }
 
-.nav .ico{
-  width:27px;
-  text-align:center;
-  font-size:20px
+.nav-icon{
+    width:25px;
+    text-align:center;
+    font-size:18px;
 }
 
-.side-sports{
-  margin-top:10px;
-  border-top:1px solid var(--line);
-  padding-top:10px
+.sidebar-bottom{
+    margin-top:25px;
+    padding:16px;
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:rgba(255,255,255,.025);
 }
 
-.sport-mini{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:10px 12px;
-  color:#c5d6e6;
-  text-decoration:none
+.sidebar-bottom-title{
+    font-weight:800;
+    font-size:13px;
 }
 
-.dot{
-  width:12px;
-  height:12px;
-  border-radius:50%;
-  box-shadow:0 0 14px currentColor
+.sidebar-bottom p{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:5px;
+    line-height:1.7;
 }
 
-.dot.hand{
-  color:var(--yellow);
-  background:var(--yellow)
-}
-
-.dot.basket{
-  color:var(--blue);
-  background:var(--blue)
-}
-
-.dot.volley{
-  color:var(--green);
-  background:var(--green)
-}
-
-.quote{
-  margin-top:30px;
-  padding:20px 15px;
-  border:1px solid var(--line);
-  border-radius:20px;
-  background:linear-gradient(145deg,rgba(255,194,26,.08),rgba(0,104,255,.06));
-  text-align:center
-}
-
-.quote b{
-  display:block;
-  color:var(--yellow);
-  font-size:20px;
-  line-height:1.5
-}
-
-.quote span{
-  color:#a6bad0;
-  font-size:12px
-}
+/* ================= MAIN ================= */
 
 .main{
-  min-width:0;
-  padding:20px 25px 30px
+    margin-right:280px;
+    padding:25px;
+    max-width:1800px;
 }
 
 .topbar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-  height:72px;
-  margin-bottom:16px
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:22px;
 }
 
-.topbar-center{
-  text-align:center;
-  flex:1
+.mobile-menu{
+    display:none;
+    border:1px solid var(--line);
+    background:var(--panel);
+    color:#fff;
+    width:45px;
+    height:45px;
+    border-radius:13px;
+    font-size:20px;
 }
 
-.topbar-center small{
-  color:#8ca7c1;
-  font-size:11px
+.top-title small{
+    color:var(--gold);
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1px;
 }
 
-.topbar-center h2{
-  margin:0;
-  font-size:22px
+.top-title h2{
+    font-size:21px;
+    margin-top:2px;
 }
 
-.user{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:8px 12px
+.top-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
 
-.avatar{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:#123452;
-  font-size:20px
+.status{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 13px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:rgba(255,255,255,.035);
+    color:#b7c7d6;
+    font-size:12px;
 }
 
-.user b{font-size:13px}
-.user small{
-  display:block;
-  color:#7f99b1;
-  font-size:10px
+.status-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 12px var(--green);
 }
+
+/* ================= HERO ================= */
 
 .hero{
-  min-height:300px;
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:28px;
-  overflow:hidden;
-  position:relative;
-  display:flex;
-  align-items:center;
-  padding:35px 42px;
-  margin-bottom:22px;
-  background:
-    radial-gradient(circle at 12% 60%,rgba(255,185,0,.5),transparent 26%),
-    radial-gradient(circle at 55% 35%,rgba(0,102,255,.48),transparent 35%),
-    radial-gradient(circle at 92% 60%,rgba(0,232,160,.43),transparent 27%),
-    linear-gradient(110deg,#14253a,#06224a 48%,#073b3b);
-  box-shadow:var(--shadow);
-  isolation:isolate
+    position:relative;
+    overflow:hidden;
+    min-height:330px;
+    padding:48px;
+    border-radius:30px;
+    border:1px solid rgba(255,255,255,.09);
+    background:
+        radial-gradient(circle at 80% 30%,rgba(0,119,255,.22),transparent 30%),
+        radial-gradient(circle at 20% 100%,rgba(255,194,26,.10),transparent 32%),
+        linear-gradient(135deg,#092744,#04101e 65%);
+    box-shadow:var(--shadow);
 }
 
-.hero:before,
-.hero:after{
-  content:"";
-  position:absolute;
-  inset:auto -5% -45%;
-  height:220px;
-  transform:rotate(-7deg);
-  background:linear-gradient(90deg,transparent,rgba(255,194,26,.12),transparent);
-  z-index:-1
+.hero::before{
+    content:"";
+    position:absolute;
+    width:300px;
+    height:300px;
+    border:1px solid rgba(255,194,26,.13);
+    border-radius:50%;
+    left:-100px;
+    bottom:-160px;
 }
 
-.hero:after{
-  transform:rotate(7deg);
-  background:linear-gradient(90deg,transparent,rgba(0,137,255,.14),transparent)
+.hero::after{
+    content:"";
+    position:absolute;
+    width:420px;
+    height:420px;
+    border:1px solid rgba(22,135,255,.10);
+    border-radius:50%;
+    right:-180px;
+    top:-200px;
 }
 
-.hero-copy{
-  max-width:610px;
-  z-index:2
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:700px;
 }
 
-.hero-kicker{
-  display:inline-flex;
-  padding:7px 13px;
-  border-radius:999px;
-  border:1px solid rgba(255,194,26,.45);
-  color:var(--yellow);
-  font-weight:800;
-  font-size:12px;
-  background:rgba(0,0,0,.18)
+.hero-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 13px;
+    border-radius:50px;
+    background:rgba(255,194,26,.09);
+    border:1px solid rgba(255,194,26,.20);
+    color:var(--gold);
+    font-size:11px;
+    font-weight:800;
+    margin-bottom:17px;
 }
 
 .hero h1{
-  font-family:Montserrat,Cairo,sans-serif;
-  font-size:52px;
-  line-height:.98;
-  margin:14px 0 8px;
-  letter-spacing:-1.5px
+    font-family:Montserrat,"Cairo",sans-serif;
+    font-size:clamp(35px,5vw,65px);
+    line-height:1;
+    letter-spacing:-2px;
+    margin-bottom:18px;
 }
 
-.hero h1 span{color:#fff}
-.hero h1 em{
-  font-style:normal;
-  color:var(--yellow)
+.hero h1 span{
+    color:var(--gold);
+    text-shadow:0 0 30px rgba(255,194,26,.20);
 }
 
 .hero p{
-  margin:0;
-  color:#d2dfeb;
-  font-size:15px;
-  max-width:520px
+    color:#a9bed1;
+    font-size:14px;
+    line-height:2;
+    max-width:650px;
 }
 
-.hero-actions{
-  display:flex;
-  gap:10px;
-  margin-top:23px;
-  flex-wrap:wrap
+.hero-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:25px;
 }
 
 .btn{
-  border:0;
-  border-radius:12px;
-  padding:11px 18px;
-  font-weight:900
+    border:0;
+    border-radius:13px;
+    padding:12px 18px;
+    font-weight:800;
+    font-size:13px;
+    transition:.25s;
 }
 
-.btn.primary{
-  background:var(--yellow);
-  color:#071321;
-  box-shadow:0 10px 22px rgba(255,186,0,.2)
+.btn:hover{
+    transform:translateY(-2px);
 }
 
-.btn.ghost{
-  background:rgba(255,255,255,.07);
-  color:#fff;
-  border:1px solid rgba(255,255,255,.13)
+.btn-primary{
+    color:#03101e;
+    background:linear-gradient(135deg,var(--gold),var(--gold2));
+    box-shadow:0 10px 30px rgba(255,166,0,.20);
 }
 
-.hero-ball{
-  position:absolute;
-  right:7%;
-  bottom:-55px;
-  font-size:190px;
-  opacity:.1;
-  filter:blur(.2px);
-  transform:rotate(-18deg)
+.btn-secondary{
+    color:#fff;
+    background:rgba(255,255,255,.06);
+    border:1px solid var(--line);
 }
 
-.section-head{
-  display:flex;
-  align-items:end;
-  justify-content:space-between;
-  gap:15px;
-  margin:24px 0 13px
-}
-
-.section-head h3{
-  margin:0;
-  font-size:20px
-}
-
-.section-head p{
-  margin:2px 0 0;
-  color:var(--muted);
-  font-size:12px
-}
-
-/* فلترة الشهر */
-.month-filter{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  margin:0 0 15px;
-  padding:15px 18px;
-  border:1px solid var(--line);
-  border-radius:17px;
-  background:linear-gradient(145deg,rgba(11,42,73,.9),rgba(5,23,41,.9))
-}
-
-.month-filter-info{
-  display:flex;
-  align-items:center;
-  gap:10px
-}
-
-.month-filter-icon{
-  width:40px;
-  height:40px;
-  border-radius:12px;
-  display:grid;
-  place-items:center;
-  background:rgba(255,194,26,.13);
-  font-size:21px
-}
-
-.month-filter-info b{
-  display:block;
-  font-size:13px
-}
-
-.month-filter-info small{
-  display:block;
-  color:#7893ab;
-  font-size:10px;
-  margin-top:2px
-}
-
-#monthFilter{
-  min-width:190px;
-  padding:11px 14px;
-  border-radius:11px;
-  border:1px solid var(--line);
-  outline:0;
-  background:#041526;
-  color:#fff;
-  font-weight:700
-}
-
-#monthFilter:focus{
-  border-color:var(--yellow)
-}
-
-.filter-result{
-  color:var(--yellow);
-  font-size:11px;
-  font-weight:800;
-  margin-top:4px
-}
+/* ================= STATS ================= */
 
 .stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:13px
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin:20px 0;
 }
 
 .stat{
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:18px;
-  background:linear-gradient(145deg,rgba(11,42,73,.9),rgba(5,23,41,.9));
-  position:relative;
-  overflow:hidden
+    position:relative;
+    overflow:hidden;
+    padding:21px;
+    min-height:130px;
+    border-radius:20px;
+    background:linear-gradient(145deg,rgba(12,42,70,.95),rgba(5,21,37,.95));
+    border:1px solid var(--line);
+    box-shadow:0 15px 40px rgba(0,0,0,.20);
 }
 
-.stat:after{
-  content:"";
-  position:absolute;
-  width:80px;
-  height:80px;
-  border-radius:50%;
-  background:var(--accent);
-  filter:blur(35px);
-  opacity:.15;
-  left:-25px;
-  bottom:-25px
+.stat::after{
+    content:"";
+    position:absolute;
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    right:-45px;
+    top:-45px;
+    background:rgba(22,135,255,.08);
 }
 
-.stat .label{
-  color:#8ca6bf;
-  font-size:11px;
-  font-weight:700
+.stat-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
-.stat .value{
-  font-size:29px;
-  font-weight:900;
-  margin-top:5px
+.stat-icon{
+    width:43px;
+    height:43px;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(22,135,255,.12);
+    font-size:21px;
 }
 
-.stat .mini{
-  font-size:10px;
-  color:#6e8aa5
+.stat-label{
+    color:var(--muted);
+    font-size:12px;
+    font-weight:700;
 }
 
-.stat i{
-  font-style:normal;
-  float:left;
-  font-size:25px
+.stat-number{
+    font-family:Montserrat,sans-serif;
+    font-size:32px;
+    font-weight:900;
+    margin-top:14px;
 }
+
+.stat-number.gold{color:var(--gold);}
+.stat-number.blue{color:#5bb1ff;}
+.stat-number.green{color:var(--green);}
+
+/* ================= SECTION ================= */
+
+.section{
+    margin-top:20px;
+    padding:22px;
+    border-radius:22px;
+    border:1px solid var(--line);
+    background:rgba(7,28,48,.78);
+    box-shadow:0 15px 45px rgba(0,0,0,.18);
+}
+
+.section-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:17px;
+}
+
+.section-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.section-title h3{
+    font-size:17px;
+}
+
+.section-title p{
+    color:var(--muted);
+    font-size:11px;
+}
+
+.section-icon{
+    width:42px;
+    height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:13px;
+    background:rgba(255,194,26,.09);
+    border:1px solid rgba(255,194,26,.13);
+    font-size:19px;
+}
+
+/* ================= FILTER ================= */
+
+.filter-box{
+    display:grid;
+    grid-template-columns:1fr 240px;
+    gap:14px;
+}
+
+.filter-info{
+    padding:17px 20px;
+    border-radius:15px;
+    background:rgba(22,135,255,.06);
+    border:1px solid rgba(22,135,255,.12);
+}
+
+.filter-info strong{
+    color:#fff;
+}
+
+.filter-info span{
+    color:var(--gold);
+    font-weight:800;
+}
+
+.select{
+    width:100%;
+    border:1px solid var(--line);
+    background:#071a2e;
+    color:#fff;
+    border-radius:13px;
+    padding:13px;
+    outline:none;
+}
+
+.select:focus{
+    border-color:var(--blue);
+}
+
+/* ================= SPORTS ================= */
 
 .sports-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
 }
 
 .sport-card{
-  border-radius:23px;
-  overflow:hidden;
-  position:relative;
-  border:1px solid var(--accent);
-  background:linear-gradient(160deg,rgba(9,35,61,.98),rgba(3,17,30,.98));
-  box-shadow:var(--shadow)
+    overflow:hidden;
+    border-radius:22px;
+    background:linear-gradient(145deg,#0a2743,#06182a);
+    border:1px solid var(--line);
+    box-shadow:0 15px 45px rgba(0,0,0,.20);
 }
 
-.sport-card.hand{
-  --accent:var(--yellow);
-  --accent2:#ff9200
+.sport-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px;
+    border-bottom:1px solid var(--line);
 }
 
-.sport-card.basket{
-  --accent:var(--blue);
-  --accent2:#005de8
-}
-
-.sport-card.volley{
-  --accent:var(--green);
-  --accent2:#05b98a
-}
-
-.sport-top{
-  padding:20px;
-  min-height:150px;
-  position:relative;
-  overflow:hidden
-}
-
-.sport-top:before{
-  content:"";
-  position:absolute;
-  width:210px;
-  height:210px;
-  border-radius:50%;
-  background:var(--accent);
-  right:-80px;
-  top:-95px;
-  opacity:.13
+.sport-info{
+    display:flex;
+    align-items:center;
+    gap:11px;
 }
 
 .sport-icon{
-  width:55px;
-  height:55px;
-  border-radius:17px;
-  display:grid;
-  place-items:center;
-  font-size:28px;
-  background:var(--accent);
-  color:#06111d;
-  box-shadow:0 8px 25px color-mix(in srgb,var(--accent) 25%,transparent)
+    width:45px;
+    height:45px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    background:rgba(255,255,255,.05);
 }
 
-.sport-card h4{
-  margin:12px 0 0;
-  font-size:22px
-}
-
-.sport-card h4 span{
-  display:block;
-  font:800 10px Montserrat;
-  color:var(--accent);
-  letter-spacing:1.5px
+.sport-name{
+    font-size:15px;
+    font-weight:900;
 }
 
 .sport-count{
-  position:absolute;
-  left:18px;
-  bottom:18px;
-  text-align:left
-}
-
-.sport-count b{
-  font-size:27px;
-  display:block
-}
-
-.sport-count small{
-  color:#8fa9c1;
-  font-size:10px
-}
-
-.sport-body{
-  padding:13px
+    color:var(--muted);
+    font-size:11px;
 }
 
 .search{
-  position:relative;
-  margin-bottom:10px
+    margin:15px;
+    position:relative;
 }
 
 .search input{
-  width:100%;
-  border:1px solid var(--line);
-  background:#06182a;
-  color:#fff;
-  border-radius:11px;
-  padding:10px 38px 10px 10px;
-  outline:none;
-  font-size:11px
+    width:100%;
+    border:1px solid var(--line);
+    background:#06182a;
+    color:#fff;
+    outline:none;
+    border-radius:12px;
+    padding:11px 40px 11px 12px;
+    font-size:12px;
+}
+
+.search input:focus{
+    border-color:var(--blue);
 }
 
 .search span{
-  position:absolute;
-  right:13px;
-  top:8px
+    position:absolute;
+    right:13px;
+    top:8px;
+    font-size:16px;
 }
 
 .table-wrap{
-  overflow:auto;
-  max-height:245px;
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:12px
+    overflow:auto;
+    max-height:430px;
 }
 
 table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:360px;
-  font-size:11px
+    width:100%;
+    border-collapse:collapse;
+    min-width:550px;
 }
 
 th{
-  background:rgba(255,255,255,.055);
-  color:#8fa9c1;
-  padding:10px;
-  text-align:right;
-  position:sticky;
-  top:0
+    text-align:right;
+    color:#66829b;
+    font-size:10px;
+    font-weight:800;
+    padding:11px 15px;
+    border-bottom:1px solid var(--line);
 }
 
 td{
-  padding:9px 10px;
-  border-top:1px solid rgba(255,255,255,.05);
-  color:#dbe8f4
+    padding:13px 15px;
+    font-size:11px;
+    color:#cbd8e4;
+    border-bottom:1px solid rgba(255,255,255,.045);
 }
 
-.player-name{
-  font-weight:800;
-  color:#fff
+tr:hover td{
+    background:rgba(255,255,255,.025);
+}
+
+.player{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    color:#fff;
+    font-weight:800;
+}
+
+.avatar{
+    width:34px;
+    height:34px;
+    border-radius:11px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#146fc4,#0a3158);
+    color:#fff;
+    font-weight:900;
+}
+
+.badge{
+    display:inline-flex;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:9px;
+    font-weight:800;
+}
+
+.badge-active{
+    color:var(--green);
+    background:rgba(39,231,160,.08);
+    border:1px solid rgba(39,231,160,.12);
+}
+
+.badge-paused{
+    color:var(--gold);
+    background:rgba(255,194,26,.08);
+    border:1px solid rgba(255,194,26,.12);
 }
 
 .actions{
-  display:flex;
-  gap:5px
+    display:flex;
+    gap:5px;
 }
 
 .action{
-  border:0;
-  border-radius:7px;
-  width:27px;
-  height:27px;
-  color:#fff
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.035);
+    color:#b7c8d7;
+    width:31px;
+    height:31px;
+    border-radius:9px;
+    transition:.2s;
 }
 
-.del{background:var(--red)}
-.edit{background:#1577dc}
+.action:hover{
+    color:#fff;
+    background:rgba(22,135,255,.13);
+}
+
+.action.delete:hover{
+    color:var(--red);
+    background:rgba(255,83,102,.10);
+}
 
 .empty{
-  text-align:center;
-  color:#6e89a4;
-  padding:25px
+    padding:35px 15px;
+    text-align:center;
+    color:#66829b;
+    font-size:12px;
 }
 
-.registration{
-  margin-top:22px;
-  border:1px solid var(--line);
-  border-radius:23px;
-  padding:20px;
-  background:linear-gradient(145deg,#092744,#06172a)
-}
+/* ================= FORM ================= */
 
 .form-grid{
-  display:grid;
-  grid-template-columns:1.2fr 1fr 1fr 1fr auto;
-  gap:10px;
-  align-items:end
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:12px;
 }
 
 .field label{
-  display:block;
-  color:#91aac1;
-  font-size:10px;
-  margin:0 0 6px 3px;
-  font-weight:700
+    display:block;
+    color:#8299ad;
+    font-size:11px;
+    margin-bottom:7px;
+    font-weight:700;
 }
 
 .field input,
 .field select{
-  width:100%;
-  padding:11px 12px;
-  border-radius:11px;
-  border:1px solid var(--line);
-  outline:0;
-  background:#041526;
-  color:#fff
+    width:100%;
+    padding:12px;
+    color:#fff;
+    border:1px solid var(--line);
+    outline:none;
+    border-radius:12px;
+    background:#06182a;
+    font-size:12px;
 }
 
 .field input:focus,
 .field select:focus{
-  border-color:var(--yellow)
+    border-color:var(--blue);
+    box-shadow:0 0 0 3px rgba(22,135,255,.07);
 }
 
-.submit{
-  height:44px;
-  padding:0 19px;
-  border:0;
-  border-radius:11px;
-  background:linear-gradient(135deg,var(--yellow),var(--yellow2));
-  font-weight:900;
-  color:#07111c
+.form-submit{
+    display:flex;
+    align-items:end;
 }
+
+.form-submit button{
+    width:100%;
+}
+
+/* ================= ACTIVITY ================= */
 
 .activity{
-  margin-top:22px;
-  display:grid;
-  grid-template-columns:1.4fr .6fr;
-  gap:15px
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
 }
 
-.box{
-  border:1px solid var(--line);
-  border-radius:20px;
-  background:#071c31;
-  padding:18px
-}
-
-.activity-row{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:11px 0;
-  border-bottom:1px solid rgba(255,255,255,.06)
-}
-
-.activity-row:last-child{
-  border-bottom:0
+.activity-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:13px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    background:rgba(255,255,255,.025);
 }
 
 .activity-icon{
-  width:35px;
-  height:35px;
-  border-radius:11px;
-  display:grid;
-  place-items:center;
-  background:#123b5f
+    width:38px;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:11px;
+    background:rgba(39,231,160,.08);
 }
 
-.activity-row b{
-  font-size:12px
+.activity-text{
+    min-width:0;
 }
 
-.activity-row small{
-  display:block;
-  color:#7893ab;
-  font-size:10px
+.activity-text strong{
+    display:block;
+    font-size:12px;
 }
 
-.note{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  text-align:center;
-  min-height:180px
+.activity-text span{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+    margin-top:2px;
 }
 
-.note strong{
-  font-size:25px;
-  color:var(--yellow)
-}
-
-.note p{
-  color:#91a9c0;
-  font-size:12px
-}
+/* ================= MODAL ================= */
 
 .modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.72);
-  display:none;
-  place-items:center;
-  z-index:100;
-  padding:20px
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(8px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:2000;
 }
 
 .modal.show{
-  display:grid
+    display:flex;
 }
 
 .modal-box{
-  width:min(520px,100%);
-  background:#08213a;
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:22px;
-  box-shadow:var(--shadow)
+    width:min(500px,100%);
+    padding:24px;
+    border-radius:22px;
+    background:linear-gradient(145deg,#0b2947,#041426);
+    border:1px solid var(--line);
+    box-shadow:0 30px 100px rgba(0,0,0,.55);
 }
 
 .modal-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.modal-head h3{
+    font-size:18px;
 }
 
 .close{
-  border:0;
-  background:#17334f;
-  color:#fff;
-  border-radius:10px;
-  width:35px;
-  height:35px
-}
-
-.mobile-menu{
-  display:none
-}
-
-@media(max-width:1150px){
-  .sports-grid{
-    grid-template-columns:1fr
-  }
-
-  .sport-card .table-wrap{
-    max-height:300px
-  }
-
-  .form-grid{
-    grid-template-columns:repeat(2,1fr)
-  }
-
-  .submit{
-    width:100%
-  }
-}
-
-@media(max-width:900px){
-  .app{
-    grid-template-columns:1fr
-  }
-
-  .sidebar{
-    position:fixed;
-    right:-290px;
-    width:270px;
-    transition:.25s
-  }
-
-  .sidebar.open{
-    right:0
-  }
-
-  .mobile-menu{
-    display:block;
-    border:0;
-    background:#102b46;
+    width:35px;
+    height:35px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.04);
     color:#fff;
-    border-radius:11px;
-    padding:10px 13px
-  }
+    border-radius:10px;
+}
 
-  .topbar-center{
-    display:none
-  }
+.modal-fields{
+    display:grid;
+    gap:13px;
+}
 
-  .main{
-    padding:15px
-  }
+.modal-actions{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
 
-  .hero{
-    padding:28px 22px;
-    min-height:280px
-  }
+.modal-actions button{
+    flex:1;
+}
 
-  .hero h1{
-    font-size:38px
-  }
+/* ================= FOOTER ================= */
 
-  .stats{
-    grid-template-columns:repeat(2,1fr)
-  }
+.footer{
+    text-align:center;
+    color:#506a80;
+    font-size:10px;
+    padding:30px 0 10px;
+}
 
-  .activity{
-    grid-template-columns:1fr
-  }
+/* ================= RESPONSIVE ================= */
 
-  .month-filter{
-    align-items:stretch;
-    flex-direction:column
-  }
+@media(max-width:1200px){
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
 
-  #monthFilter{
-    width:100%
-  }
+    .sports-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:850px){
+    .sidebar{
+        transform:translateX(100%);
+        transition:.3s;
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        margin-right:0;
+        padding:15px;
+    }
+
+    .mobile-menu{
+        display:block;
+    }
+
+    .topbar{
+        justify-content:flex-start;
+    }
+
+    .top-actions{
+        margin-right:auto;
+    }
+
+    .status{
+        display:none;
+    }
+
+    .hero{
+        padding:30px 22px;
+    }
+
+    .filter-box{
+        grid-template-columns:1fr;
+    }
+
+    .activity{
+        grid-template-columns:1fr;
+    }
 }
 
 @media(max-width:600px){
-  .stats{
-    grid-template-columns:1fr 1fr
-  }
+    .stats{
+        grid-template-columns:1fr 1fr;
+        gap:9px;
+    }
 
-  .form-grid{
-    grid-template-columns:1fr
-  }
+    .stat{
+        padding:15px;
+        min-height:110px;
+    }
 
-  .hero h1{
-    font-size:32px
-  }
+    .stat-number{
+        font-size:25px;
+    }
 
-  .user div:not(.avatar){
-    display:none
-  }
+    .form-grid{
+        grid-template-columns:1fr;
+    }
 
-  .sport-top{
-    min-height:140px
-  }
+    .section{
+        padding:15px;
+    }
+
+    .section-head{
+        align-items:flex-start;
+    }
+
+    .hero h1{
+        font-size:36px;
+    }
+
+    .hero p{
+        font-size:12px;
+    }
 }
 </style>
-
 </head>
 
 <body>
 
-<div class="app">
+<!-- ================= SIDEBAR ================= -->
 
 <aside class="sidebar" id="sidebar">
 
-  <div class="brand">
-    <div class="brand-mark">PA</div>
-    <div>
-      <strong>PROFESSIONAL</strong>
-      <span>ACADEMY</span>
+    <div class="logo">
+        <div class="logo-box">PA</div>
+
+        <div class="logo-text">
+            <strong>PROFESSIONAL</strong>
+            <span>SPORTS ACADEMY</span>
+        </div>
     </div>
-  </div>
 
-  <div class="nav-title">القائمة الرئيسية</div>
+    <div class="nav-title">MAIN MENU</div>
 
-  <nav class="nav">
-    <a class="active" href="#home" onclick="closeSide()">
-      <span class="ico">⌂</span>الرئيسية
-    </a>
+    <nav class="nav">
 
-```
-<a href="#register" onclick="closeSide()">
-  <span class="ico">👤+</span>تسجيل لاعب جديد
-</a>
+        <a href="#home" class="active">
+            <span class="nav-icon">🏠</span>
+            الرئيسية
+        </a>
 
-<a href="#players" onclick="closeSide()">
-  <span class="ico">👥</span>إدارة اللاعبين
-</a>
-```
+        <a href="#register">
+            <span class="nav-icon">➕</span>
+            تسجيل لاعب جديد
+        </a>
 
-  </nav>
+        <a href="#players">
+            <span class="nav-icon">👥</span>
+            إدارة اللاعبين
+        </a>
 
-  <div class="nav-title">الرياضات</div>
+    </nav>
 
-  <div class="side-sports">
+    <div class="nav-title">SPORTS</div>
 
-```
-<a class="sport-mini" href="#handball">
-  <span class="dot hand"></span> كرة اليد
-</a>
+    <nav class="nav">
 
-<a class="sport-mini" href="#basketball">
-  <span class="dot basket"></span> كرة السلة
-</a>
+        <a href="#hand">
+            <span class="nav-icon">🤾</span>
+            كرة اليد
+        </a>
 
-<a class="sport-mini" href="#volleyball">
-  <span class="dot volley"></span> كرة الطائرة
-</a>
-```
+        <a href="#basket">
+            <span class="nav-icon">🏀</span>
+            كرة السلة
+        </a>
 
-  </div>
+        <a href="#volley">
+            <span class="nav-icon">🏐</span>
+            كرة الطائرة
+        </a>
 
-  <div class="nav-title">الأدوات</div>
+    </nav>
 
-  <nav class="nav">
+    <div class="nav-title">TOOLS</div>
 
-```
-<a href="#players">
-  <span class="ico">⌕</span>بحث عن لاعب
-</a>
+    <nav class="nav">
 
-<a href="#" onclick="exportData();return false">
-  <span class="ico">⬇</span>حفظ البيانات
-</a>
+        <a href="#players">
+            <span class="nav-icon">🔎</span>
+            بحث عن لاعب
+        </a>
 
-<a href="#" onclick="clearAll();return false">
-  <span class="ico">♜</span>حذف البيانات
-</a>
-```
+        <a href="#" onclick="exportData();return false;">
+            <span class="nav-icon">💾</span>
+            حفظ البيانات
+        </a>
 
-  </nav>
+        <a href="#" onclick="clearAll();return false;">
+            <span class="nav-icon">🗑️</span>
+            حذف البيانات
+        </a>
 
-  <div class="quote">
-    <b>معًا نصنع الأبطال</b>
-    <span>كل لاعب.. حكاية نجاح</span>
-  </div>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <div class="sidebar-bottom-title">🏆 Professional Academy</div>
+        <p>
+            نظام احترافي لإدارة لاعبي الأكاديمية
+            ومتابعة الاشتراكات والرياضات.
+        </p>
+    </div>
 
 </aside>
 
-<main class="main" id="home">
 
-  <div class="topbar">
+<!-- ================= MAIN ================= -->
 
-```
-<button class="mobile-menu" onclick="toggleSide()">☰</button>
+<main class="main">
 
-<div class="topbar-center">
-  <small>لوحة التحكم الرياضية</small>
-  <h2>أهلاً بك في Professional Academy 👋</h2>
-</div>
+    <div class="topbar">
 
-<div class="user">
-  <div class="avatar">🏆</div>
-  <div>
-    <b>إدارة الأكاديمية</b>
-    <small>Admin Dashboard</small>
-  </div>
-</div>
-```
+        <button class="mobile-menu" onclick="toggleSide()">☰</button>
 
-  </div>
+        <div class="top-title">
+            <small>PROFESSIONAL ACADEMY</small>
+            <h2>لوحة التحكم</h2>
+        </div>
 
-  <section class="hero">
-
-```
-<div class="hero-copy">
-
-  <span class="hero-kicker">
-    🏆 ACADEMY MANAGEMENT SYSTEM
-  </span>
-
-  <h1>
-    <span>PROFESSIONAL</span><br>
-    <em>ACADEMY</em>
-  </h1>
-
-  <p>
-    أكاديمية رياضية احترافية لصناعة الأبطال وإدارة لاعبي كرة اليد والسلة والطائرة في مكان واحد.
-  </p>
-
-  <div class="hero-actions">
-
-    <button
-      class="btn primary"
-      onclick="document.getElementById('register').scrollIntoView()">
-      + تسجيل لاعب جديد
-    </button>
-
-    <button
-      class="btn ghost"
-      onclick="document.getElementById('players').scrollIntoView()">
-      عرض اللاعبين
-    </button>
-
-  </div>
-
-</div>
-
-<div class="hero-ball">🏀</div>
-```
-
-  </section>
-
-  <!-- فلترة الشهر -->
-
-  <div class="section-head">
-
-```
-<div>
-  <h3>فلترة اللاعبين حسب الشهر</h3>
-  <p>اختر شهرًا لعرض اللاعبين الذين تم تسجيلهم خلاله</p>
-</div>
-```
-
-  </div>
-
-  <div class="month-filter">
-
-```
-<div class="month-filter-info">
-
-  <div class="month-filter-icon">📅</div>
-
-  <div>
-    <b>الشهر المحدد</b>
-
-    <small id="filterText">
-      يتم عرض جميع الشهور
-    </small>
-  </div>
-
-</div>
-
-<select id="monthFilter" onchange="changeMonthFilter()">
-
-  <option value="all">كل الشهور</option>
-
-  <option value="01">يناير</option>
-  <option value="02">فبراير</option>
-  <option value="03">مارس</option>
-  <option value="04">أبريل</option>
-  <option value="05">مايو</option>
-  <option value="06">يونيو</option>
-  <option value="07">يوليو</option>
-  <option value="08">أغسطس</option>
-  <option value="09">سبتمبر</option>
-  <option value="10">أكتوبر</option>
-  <option value="11">نوفمبر</option>
-  <option value="12">ديسمبر</option>
-
-</select>
-```
-
-  </div>
-
-  <div class="section-head">
-
-```
-<div>
-  <h3>إحصائيات الأكاديمية</h3>
-  <p>ملخص سريع للاعبين حسب الشهر المحدد</p>
-</div>
-```
-
-  </div>
-
-  <section class="stats">
-
-```
-<div class="stat" style="--accent:var(--yellow)">
-  <i>🏆</i>
-  <div class="label">إجمالي اللاعبين</div>
-  <div class="value" id="total">0</div>
-  <div class="mini">لاعب مسجل</div>
-</div>
-
-<div class="stat" style="--accent:var(--yellow)">
-  <i>🤾</i>
-  <div class="label">كرة اليد</div>
-  <div class="value" id="handTotal">0</div>
-  <div class="mini">لاعب</div>
-</div>
-
-<div class="stat" style="--accent:var(--blue)">
-  <i>🏀</i>
-  <div class="label">كرة السلة</div>
-  <div class="value" id="basketTotal">0</div>
-  <div class="mini">لاعب</div>
-</div>
-
-<div class="stat" style="--accent:var(--green)">
-  <i>🏐</i>
-  <div class="label">كرة الطائرة</div>
-  <div class="value" id="volleyTotal">0</div>
-  <div class="mini">لاعب</div>
-</div>
-```
-
-  </section>
-
-  <div class="section-head" id="players">
-
-```
-<div>
-  <h3>قوائم اللاعبين</h3>
-  <p>النتائج حسب الشهر المختار</p>
-</div>
-```
-
-  </div>
-
-  <section class="sports-grid">
-
-```
-<!-- كرة اليد -->
-
-<article class="sport-card hand" id="handball">
-
-  <div class="sport-top">
-
-    <div class="sport-icon">🤾</div>
-
-    <h4>
-      كرة اليد
-      <span>HANDBALL</span>
-    </h4>
-
-    <div class="sport-count">
-      <b id="handCard">0</b>
-      <small>اللاعبين</small>
-    </div>
-
-  </div>
-
-  <div class="sport-body">
-
-    <div class="search">
-      <span>🔎</span>
-      <input
-        id="searchHand"
-        placeholder="ابحث عن لاعب..."
-        oninput="renderSport('hand')">
-    </div>
-
-    <div class="table-wrap">
-
-      <table>
-
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>اسم اللاعب</th>
-            <th>الهاتف</th>
-            <th>الحالة</th>
-            <th>إجراء</th>
-          </tr>
-        </thead>
-
-        <tbody id="bodyHand"></tbody>
-
-      </table>
+        <div class="top-actions">
+            <div class="status">
+                <span class="status-dot"></span>
+                النظام يعمل
+            </div>
+        </div>
 
     </div>
 
-  </div>
 
-</article>
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                🏆 ACADEMY MANAGEMENT SYSTEM
+            </div>
+
+            <h1>
+                PROFESSIONAL
+                <span>ACADEMY</span>
+            </h1>
+
+            <p>
+                أكاديمية رياضية احترافية لصناعة الأبطال وإدارة
+                لاعبي كرة اليد والسلة والطائرة في مكان واحد.
+            </p>
+
+            <div class="hero-buttons">
+
+                <button class="btn btn-primary"
+                        onclick="document.getElementById('register').scrollIntoView()">
+                    ➕ تسجيل لاعب جديد
+                </button>
+
+                <button class="btn btn-secondary"
+                        onclick="document.getElementById('players').scrollIntoView()">
+                    👥 مشاهدة اللاعبين
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
 
 
-<!-- كرة السلة -->
+    <!-- STATS -->
 
-<article class="sport-card basket" id="basketball">
+    <section class="stats">
 
-  <div class="sport-top">
+        <div class="stat">
 
-    <div class="sport-icon">🏀</div>
+            <div class="stat-top">
+                <div class="stat-label">إجمالي اللاعبين</div>
+                <div class="stat-icon">👥</div>
+            </div>
 
-    <h4>
-      كرة السلة
-      <span>BASKETBALL</span>
-    </h4>
+            <div class="stat-number gold" id="total">0</div>
 
-    <div class="sport-count">
-      <b id="basketCard">0</b>
-      <small>اللاعبين</small>
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+                <div class="stat-label">كرة اليد</div>
+                <div class="stat-icon">🤾</div>
+            </div>
+
+            <div class="stat-number blue" id="handTotal">0</div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+                <div class="stat-label">كرة السلة</div>
+                <div class="stat-icon">🏀</div>
+            </div>
+
+            <div class="stat-number blue" id="basketTotal">0</div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+                <div class="stat-label">كرة الطائرة</div>
+                <div class="stat-icon">🏐</div>
+            </div>
+
+            <div class="stat-number green" id="volleyTotal">0</div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MONTH FILTER -->
+
+    <section class="section">
+
+        <div class="section-head">
+
+            <div class="section-title">
+
+                <div class="section-icon">📅</div>
+
+                <div>
+                    <h3>فلترة اللاعبين حسب الشهر</h3>
+                    <p>اعرض اللاعبين المسجلين في شهر معين</p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="filter-box">
+
+            <div class="filter-info">
+                👁️ يتم عرض:
+                <span id="filterText">كل اللاعبين</span>
+            </div>
+
+            <select class="select"
+                    id="monthFilter"
+                    onchange="changeMonthFilter()">
+
+                <option value="all">كل الشهور</option>
+                <option value="01">يناير</option>
+                <option value="02">فبراير</option>
+                <option value="03">مارس</option>
+                <option value="04">أبريل</option>
+                <option value="05">مايو</option>
+                <option value="06">يونيو</option>
+                <option value="07">يوليو</option>
+                <option value="08">أغسطس</option>
+                <option value="09">سبتمبر</option>
+                <option value="10">أكتوبر</option>
+                <option value="11">نوفمبر</option>
+                <option value="12">ديسمبر</option>
+
+            </select>
+
+        </div>
+
+    </section>
+
+
+    <!-- REGISTER -->
+
+    <section class="section" id="register">
+
+        <div class="section-head">
+
+            <div class="section-title">
+
+                <div class="section-icon">➕</div>
+
+                <div>
+                    <h3>تسجيل لاعب جديد</h3>
+                    <p>أضف لاعب جديد إلى قاعدة بيانات الأكاديمية</p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-grid">
+
+            <div class="field">
+
+                <label>اسم اللاعب</label>
+
+                <input
+                    id="playerName"
+                    type="text"
+                    placeholder="اكتب اسم اللاعب">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>الرياضة</label>
+
+                <select id="playerSport">
+
+                    <option value="hand">🤾 كرة اليد</option>
+                    <option value="basket">🏀 كرة السلة</option>
+                    <option value="volley">🏐 كرة الطائرة</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>رقم الهاتف</label>
+
+                <input
+                    id="playerPhone"
+                    type="text"
+                    placeholder="01xxxxxxxxx">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>حالة الاشتراك</label>
+
+                <select id="playerStatus">
+
+                    <option value="active">نشط</option>
+                    <option value="paused">متوقف</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>تاريخ التسجيل</label>
+
+                <input
+                    id="playerDate"
+                    type="date">
+
+            </div>
+
+
+            <div class="form-submit">
+
+                <button
+                    class="btn btn-primary"
+                    onclick="addPlayer()">
+
+                    🚀 إضافة اللاعب
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PLAYERS -->
+
+    <section class="section" id="players">
+
+        <div class="section-head">
+
+            <div class="section-title">
+
+                <div class="section-icon">👥</div>
+
+                <div>
+                    <h3>إدارة اللاعبين</h3>
+                    <p id="playersSubtitle">
+                        جميع لاعبي الأكاديمية
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="sports-grid">
+
+
+            <!-- HAND -->
+
+            <div class="sport-card" id="hand">
+
+                <div class="sport-head">
+
+                    <div class="sport-info">
+
+                        <div class="sport-icon">🤾</div>
+
+                        <div>
+                            <div class="sport-name">كرة اليد</div>
+                            <div class="sport-count">
+                                <span id="handCard">0</span> لاعب
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="search">
+
+                    <span>🔎</span>
+
+                    <input
+                        id="searchHand"
+                        type="text"
+                        placeholder="ابحث عن لاعب..."
+                        oninput="render()">
+
+                </div>
+
+
+                <div class="table-wrap">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>اللاعب</th>
+                                <th>الهاتف</th>
+                                <th>التاريخ</th>
+                                <th>الحالة</th>
+                                <th>إجراء</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="bodyHand"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- BASKET -->
+
+            <div class="sport-card" id="basket">
+
+                <div class="sport-head">
+
+                    <div class="sport-info">
+
+                        <div class="sport-icon">🏀</div>
+
+                        <div>
+                            <div class="sport-name">كرة السلة</div>
+                            <div class="sport-count">
+                                <span id="basketCard">0</span> لاعب
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="search">
+
+                    <span>🔎</span>
+
+                    <input
+                        id="searchBasket"
+                        type="text"
+                        placeholder="ابحث عن لاعب..."
+                        oninput="render()">
+
+                </div>
+
+
+                <div class="table-wrap">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>اللاعب</th>
+                                <th>الهاتف</th>
+                                <th>التاريخ</th>
+                                <th>الحالة</th>
+                                <th>إجراء</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="bodyBasket"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- VOLLEY -->
+
+            <div class="sport-card" id="volley">
+
+                <div class="sport-head">
+
+                    <div class="sport-info">
+
+                        <div class="sport-icon">🏐</div>
+
+                        <div>
+                            <div class="sport-name">كرة الطائرة</div>
+                            <div class="sport-count">
+                                <span id="volleyCard">0</span> لاعب
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="search">
+
+                    <span>🔎</span>
+
+                    <input
+                        id="searchVolley"
+                        type="text"
+                        placeholder="ابحث عن لاعب..."
+                        oninput="render()">
+
+                </div>
+
+
+                <div class="table-wrap">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>اللاعب</th>
+                                <th>الهاتف</th>
+                                <th>التاريخ</th>
+                                <th>الحالة</th>
+                                <th>إجراء</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="bodyVolley"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ACTIVITY -->
+
+    <section class="section">
+
+        <div class="section-head">
+
+            <div class="section-title">
+
+                <div class="section-icon">⚡</div>
+
+                <div>
+                    <h3>آخر النشاطات</h3>
+                    <p>آخر اللاعبين المسجلين</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="activity" id="activityList"></div>
+
+    </section>
+
+
+    <div class="footer">
+        © 2026 Professional Academy — All Rights Reserved 🏆
     </div>
-
-  </div>
-
-  <div class="sport-body">
-
-    <div class="search">
-      <span>🔎</span>
-      <input
-        id="searchBasket"
-        placeholder="ابحث عن لاعب..."
-        oninput="renderSport('basket')">
-    </div>
-
-    <div class="table-wrap">
-
-      <table>
-
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>اسم اللاعب</th>
-            <th>الهاتف</th>
-            <th>الحالة</th>
-            <th>إجراء</th>
-          </tr>
-        </thead>
-
-        <tbody id="bodyBasket"></tbody>
-
-      </table>
-
-    </div>
-
-  </div>
-
-</article>
-
-
-<!-- كرة الطائرة -->
-
-<article class="sport-card volley" id="volleyball">
-
-  <div class="sport-top">
-
-    <div class="sport-icon">🏐</div>
-
-    <h4>
-      كرة الطائرة
-      <span>VOLLEYBALL</span>
-    </h4>
-
-    <div class="sport-count">
-      <b id="volleyCard">0</b>
-      <small>اللاعبين</small>
-    </div>
-
-  </div>
-
-  <div class="sport-body">
-
-    <div class="search">
-      <span>🔎</span>
-      <input
-        id="searchVolley"
-        placeholder="ابحث عن لاعب..."
-        oninput="renderSport('volley')">
-    </div>
-
-    <div class="table-wrap">
-
-      <table>
-
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>اسم اللاعب</th>
-            <th>الهاتف</th>
-            <th>الحالة</th>
-            <th>إجراء</th>
-          </tr>
-        </thead>
-
-        <tbody id="bodyVolley"></tbody>
-
-      </table>
-
-    </div>
-
-  </div>
-
-</article>
-```
-
-  </section>
-
-  <!-- تسجيل لاعب -->
-
-  <section class="registration" id="register">
-
-```
-<div class="section-head" style="margin-top:0">
-
-  <div>
-    <h3>تسجيل لاعب جديد</h3>
-    <p>
-      أضف اللاعب وسيظهر تلقائيًا في قائمة الرياضة والشهر المختار
-    </p>
-  </div>
-
-</div>
-
-<form onsubmit="addPlayer(event)">
-
-  <div class="form-grid">
-
-    <div class="field">
-      <label>اسم اللاعب</label>
-      <input
-        id="playerName"
-        required
-        placeholder="مثال: أحمد محمد">
-    </div>
-
-    <div class="field">
-      <label>الرياضة</label>
-
-      <select id="playerSport" required>
-
-        <option value="">اختر الرياضة</option>
-
-        <option value="hand">
-          كرة اليد 🤾
-        </option>
-
-        <option value="basket">
-          كرة السلة 🏀
-        </option>
-
-        <option value="volley">
-          كرة الطائرة 🏐
-        </option>
-
-      </select>
-
-    </div>
-
-    <div class="field">
-      <label>رقم الهاتف</label>
-
-      <input
-        id="playerPhone"
-        required
-        placeholder="01xxxxxxxxx">
-    </div>
-
-    <div class="field">
-
-      <label>حالة الاشتراك</label>
-
-      <select id="playerStatus">
-
-        <option value="مدفوع">
-          تم الدفع ✅
-        </option>
-
-        <option value="غير مدفوع">
-          مستحق الدفع ⏳
-        </option>
-
-      </select>
-
-    </div>
-
-    <div class="field">
-
-      <label>التاريخ</label>
-
-      <input
-        id="playerDate"
-        type="date"
-        required>
-
-    </div>
-
-    <button class="submit">
-      إضافة اللاعب +
-    </button>
-
-  </div>
-
-</form>
-```
-
-  </section>
-
-  <!-- آخر اللاعبين -->
-
-  <section class="activity">
-
-```
-<div class="box">
-
-  <div class="section-head" style="margin-top:0">
-
-    <div>
-      <h3>آخر اللاعبين</h3>
-      <p>آخر عمليات التسجيل حسب الشهر المختار</p>
-    </div>
-
-  </div>
-
-  <div id="activityList">
-    <div class="empty">
-      لا توجد بيانات حتى الآن
-    </div>
-  </div>
-
-</div>
-
-
-<div class="box note">
-
-  <strong>كل لاعب.. حكاية نجاح</strong>
-
-  <p>
-    نحن لا ندرب لاعبين فقط، بل نصنع أبطال المستقبل.
-  </p>
-
-  <div>⭐ ⭐ ⭐</div>
-
-</div>
-```
-
-  </section>
 
 </main>
 
-</div>
 
-<!-- نافذة تعديل اللاعب -->
+<!-- ================= EDIT MODAL ================= -->
 
 <div class="modal" id="editModal">
 
-  <div class="modal-box">
+    <div class="modal-box">
 
-```
-<div class="modal-head">
+        <div class="modal-head">
 
-  <h3>تعديل بيانات اللاعب</h3>
+            <h3>✏️ تعديل بيانات اللاعب</h3>
 
-  <button
-    class="close"
-    onclick="closeModal()">
-    ×
-  </button>
+            <button
+                class="close"
+                onclick="closeModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <input
+            id="editIndex"
+            type="hidden">
+
+
+        <div class="modal-fields">
+
+            <div class="field">
+
+                <label>اسم اللاعب</label>
+
+                <input id="editName">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>رقم الهاتف</label>
+
+                <input id="editPhone">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>حالة الاشتراك</label>
+
+                <select id="editStatus">
+
+                    <option value="active">نشط</option>
+                    <option value="paused">متوقف</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="btn btn-primary"
+                onclick="saveEdit()">
+                💾 حفظ التعديل
+            </button>
+
+            <button
+                class="btn btn-secondary"
+                onclick="closeModal()">
+                إلغاء
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
-<input type="hidden" id="editIndex">
-
-<div
-  class="field"
-  style="margin-top:15px">
-
-  <label>اسم اللاعب</label>
-
-  <input id="editName">
-
-</div>
-
-<div
-  class="field"
-  style="margin-top:12px">
-
-  <label>رقم الهاتف</label>
-
-  <input id="editPhone">
-
-</div>
-
-<div
-  class="field"
-  style="margin-top:12px">
-
-  <label>حالة الاشتراك</label>
-
-  <select id="editStatus">
-
-    <option>مدفوع</option>
-
-    <option>غير مدفوع</option>
-
-  </select>
-
-</div>
-
-<button
-  class="submit"
-  style="width:100%;margin-top:16px"
-  onclick="saveEdit()">
-
-  حفظ التعديل
-
-</button>
-```
-
-  </div>
-
-</div>
 
 <script>
 
-const KEY = 'professionalAcademyPlayers';
+/* ================= DATA ================= */
+
+const KEY = "professionalAcademyPlayers";
 
 let players =
-  JSON.parse(
-    localStorage.getItem(KEY) || '[]'
-  );
+    JSON.parse(localStorage.getItem(KEY) || "[]");
+
+let selectedMonth = "all";
 
 
-/* الشهر المحدد */
+/* ================= HELPERS ================= */
 
-let selectedMonth = 'all';
+function sportName(sport){
 
+    if(sport === "hand") return "كرة اليد";
 
-function sportName(k){
+    if(sport === "basket") return "كرة السلة";
 
-  return k === 'hand'
-    ? 'كرة اليد'
-    : k === 'basket'
-    ? 'كرة السلة'
-    : 'كرة الطائرة';
+    if(sport === "volley") return "كرة الطائرة";
 
+    return sport;
 }
 
 
-/* حماية النص */
+function esc(value){
 
-function esc(v){
-
-  return String(v ?? '').replace(
-    /[&<>"']/g,
-    m => ({
-      '&':'&amp;',
-      '<':'&lt;',
-      '>':'&gt;',
-      '"':'&quot;',
-      "'":'&#039;'
-    }[m])
-  );
-
+    return String(value ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
 }
 
-
-/* حفظ البيانات */
 
 function save(){
 
-  localStorage.setItem(
-    KEY,
-    JSON.stringify(players)
-  );
+    localStorage.setItem(
+        KEY,
+        JSON.stringify(players)
+    );
 
 }
 
 
-/* فلترة اللاعبين حسب الشهر */
+/* ================= MONTH FILTER ================= */
 
 function getFilteredPlayers(){
 
-  if(selectedMonth === 'all'){
-    return players;
-  }
+    if(selectedMonth === "all"){
+        return players;
+    }
 
-  return players.filter(p => {
+    return players.filter(player => {
 
-    if(!p.date) return false;
+        if(!player.date) return false;
 
-    const month =
-      String(p.date).split('-')[1];
+        const month =
+            String(player.date).split("-")[1];
 
-    return month === selectedMonth;
+        return month === selectedMonth;
 
-  });
-
-}
-
-
-/* تغيير الشهر */
-
-function changeMonthFilter(){
-
-  selectedMonth =
-    document.getElementById('monthFilter').value;
-
-  const select =
-    document.getElementById('monthFilter');
-
-  const filterText =
-    document.getElementById('filterText');
-
-  if(selectedMonth === 'all'){
-
-    filterText.textContent =
-      'يتم عرض جميع الشهور';
-
-  }else{
-
-    filterText.textContent =
-      'يتم عرض اللاعبين المسجلين في ' +
-      select.options[select.selectedIndex].text;
-
-  }
-
-  render();
-
-}
-
-
-/* عرض رياضة معينة */
-
-function renderSport(key){
-
-  const body =
-    document.getElementById(
-      key === 'hand'
-        ? 'bodyHand'
-        : key === 'basket'
-        ? 'bodyBasket'
-        : 'bodyVolley'
-    );
-
-  const input =
-    document.getElementById(
-      key === 'hand'
-        ? 'searchHand'
-        : key === 'basket'
-        ? 'searchBasket'
-        : 'searchVolley'
-    );
-
-  const q =
-    (input?.value || '')
-      .trim()
-      .toLowerCase();
-
-
-  const filtered =
-    getFilteredPlayers();
-
-
-  const list =
-    filtered
-      .map(p => ({
-        ...p,
-        index: players.indexOf(p)
-      }))
-      .filter(
-        p =>
-          p.sport === key &&
-          (
-            !q ||
-            p.name.toLowerCase().includes(q) ||
-            p.phone.includes(q)
-          )
-      );
-
-
-  body.innerHTML =
-    list.length
-
-    ? list.map((p,n) => `
-
-      <tr>
-
-        <td>${n + 1}</td>
-
-        <td class="player-name">
-          ${esc(p.name)}
-        </td>
-
-        <td>
-          ${esc(p.phone)}
-        </td>
-
-        <td>
-          ${
-            p.status === 'مدفوع'
-              ? '🟢 مدفوع'
-              : '🟠 مستحق'
-          }
-        </td>
-
-        <td>
-
-          <div class="actions">
-
-            <button
-              class="action edit"
-              onclick="editPlayer(${p.index})">
-              ✎
-            </button>
-
-            <button
-              class="action del"
-              onclick="deletePlayer(${p.index})">
-              ×
-            </button>
-
-          </div>
-
-        </td>
-
-      </tr>
-
-    `).join('')
-
-    : `
-
-      <tr>
-
-        <td
-          colspan="5"
-          class="empty">
-
-          لا يوجد لاعبين في هذه القائمة
-
-        </td>
-
-      </tr>
-
-    `;
-
-}
-
-
-/* تحديث كل الصفحة */
-
-function render(){
-
-  const filtered =
-    getFilteredPlayers();
-
-
-  const h =
-    filtered.filter(
-      p => p.sport === 'hand'
-    ).length;
-
-  const b =
-    filtered.filter(
-      p => p.sport === 'basket'
-    ).length;
-
-  const v =
-    filtered.filter(
-      p => p.sport === 'volley'
-    ).length;
-
-
-  document.getElementById('total').textContent =
-    filtered.length;
-
-  document.getElementById('handTotal').textContent =
-    h;
-
-  document.getElementById('basketTotal').textContent =
-    b;
-
-  document.getElementById('volleyTotal').textContent =
-    v;
-
-
-  document.getElementById('handCard').textContent =
-    h;
-
-  document.getElementById('basketCard').textContent =
-    b;
-
-  document.getElementById('volleyCard').textContent =
-    v;
-
-
-  [
-    'hand',
-    'basket',
-    'volley'
-  ].forEach(renderSport);
-
-
-  const last =
-    [...filtered]
-      .slice(-5)
-      .reverse();
-
-
-  document.getElementById(
-    'activityList'
-  ).innerHTML =
-
-    last.length
-
-    ? last.map(p => `
-
-      <div class="activity-row">
-
-        <div class="activity-icon">
-
-          ${
-            p.sport === 'hand'
-              ? '🤾'
-              : p.sport === 'basket'
-              ? '🏀'
-              : '🏐'
-          }
-
-        </div>
-
-        <div>
-
-          <b>
-            تم تسجيل اللاعب
-            ${esc(p.name)}
-          </b>
-
-          <small>
-
-            ${sportName(p.sport)}
-            •
-            ${esc(p.status)}
-            •
-            ${esc(p.date)}
-
-          </small>
-
-        </div>
-
-      </div>
-
-    `).join('')
-
-    : `
-
-      <div class="empty">
-
-        لا توجد بيانات في هذا الشهر
-
-      </div>
-
-    `;
-
-}
-
-
-/* إضافة لاعب */
-
-function addPlayer(e){
-
-  e.preventDefault();
-
-
-  const p = {
-
-    name:
-      document.getElementById(
-        'playerName'
-      ).value.trim(),
-
-    sport:
-      document.getElementById(
-        'playerSport'
-      ).value,
-
-    phone:
-      document.getElementById(
-        'playerPhone'
-      ).value.trim(),
-
-    status:
-      document.getElementById(
-        'playerStatus'
-      ).value,
-
-    date:
-      document.getElementById(
-        'playerDate'
-      ).value
-
-  };
-
-
-  players.push(p);
-
-  save();
-
-  render();
-
-  e.target.reset();
-
-
-  document.getElementById(
-    'playerDate'
-  ).valueAsDate = new Date();
-
-
-  alert(
-    'تم تسجيل اللاعب بنجاح ✅'
-  );
-
-
-  document
-    .getElementById(
-      p.sport === 'hand'
-        ? 'handball'
-        : p.sport === 'basket'
-        ? 'basketball'
-        : 'volleyball'
-    )
-    .scrollIntoView({
-      behavior:'smooth',
-      block:'center'
     });
 
 }
 
 
-/* حذف لاعب */
+function changeMonthFilter(){
 
-function deletePlayer(i){
+    selectedMonth =
+        document.getElementById("monthFilter").value;
 
-  if(
-    confirm(
-      'هل تريد حذف هذا اللاعب؟'
-    )
-  ){
+    const names = {
+        "01":"يناير",
+        "02":"فبراير",
+        "03":"مارس",
+        "04":"أبريل",
+        "05":"مايو",
+        "06":"يونيو",
+        "07":"يوليو",
+        "08":"أغسطس",
+        "09":"سبتمبر",
+        "10":"أكتوبر",
+        "11":"نوفمبر",
+        "12":"ديسمبر"
+    };
 
-    players.splice(i,1);
+    document.getElementById("filterText").textContent =
+        selectedMonth === "all"
+        ? "كل اللاعبين"
+        : "لاعبي شهر " + names[selectedMonth];
+
+    render();
+
+}
+
+
+/* ================= RENDER SPORT ================= */
+
+function renderSport(
+    sport,
+    bodyId,
+    searchId,
+    cardId
+){
+
+    const body =
+        document.getElementById(bodyId);
+
+    const search =
+        document.getElementById(searchId)
+        .value
+        .trim()
+        .toLowerCase();
+
+    let data =
+        getFilteredPlayers()
+        .filter(p => p.sport === sport);
+
+    if(search){
+
+        data = data.filter(p =>
+            String(p.name)
+                .toLowerCase()
+                .includes(search)
+            ||
+            String(p.phone)
+                .toLowerCase()
+                .includes(search)
+        );
+
+    }
+
+    document.getElementById(cardId).textContent =
+        data.length;
+
+    if(!data.length){
+
+        body.innerHTML = `
+            <tr>
+                <td colspan="5">
+                    <div class="empty">
+                        لا يوجد لاعبين لعرضهم
+                    </div>
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+
+    body.innerHTML = data.map(player => {
+
+        const originalIndex =
+            players.indexOf(player);
+
+        const initials =
+            esc(
+                String(player.name || "لاعب")
+                .trim()
+                .charAt(0)
+            );
+
+        return `
+
+        <tr>
+
+            <td>
+
+                <div class="player">
+
+                    <div class="avatar">
+                        ${initials}
+                    </div>
+
+                    ${esc(player.name)}
+
+                </div>
+
+            </td>
+
+            <td>
+                ${esc(player.phone || "-")}
+            </td>
+
+            <td>
+                ${esc(player.date || "-")}
+            </td>
+
+            <td>
+
+                <span class="badge ${
+                    player.status === "active"
+                    ? "badge-active"
+                    : "badge-paused"
+                }">
+
+                    ${
+                        player.status === "active"
+                        ? "● نشط"
+                        : "● متوقف"
+                    }
+
+                </span>
+
+            </td>
+
+            <td>
+
+                <div class="actions">
+
+                    <button
+                        class="action"
+                        title="تعديل"
+                        onclick="editPlayer(${originalIndex})">
+
+                        ✏️
+
+                    </button>
+
+                    <button
+                        class="action delete"
+                        title="حذف"
+                        onclick="deletePlayer(${originalIndex})">
+
+                        🗑️
+
+                    </button>
+
+                </div>
+
+            </td>
+
+        </tr>
+
+        `;
+
+    }).join("");
+
+}
+
+
+/* ================= RENDER ================= */
+
+function render(){
+
+    const filtered =
+        getFilteredPlayers();
+
+    document.getElementById("total").textContent =
+        filtered.length;
+
+    document.getElementById("handTotal").textContent =
+        filtered.filter(p => p.sport === "hand").length;
+
+    document.getElementById("basketTotal").textContent =
+        filtered.filter(p => p.sport === "basket").length;
+
+    document.getElementById("volleyTotal").textContent =
+        filtered.filter(p => p.sport === "volley").length;
+
+
+    renderSport(
+        "hand",
+        "bodyHand",
+        "searchHand",
+        "handCard"
+    );
+
+    renderSport(
+        "basket",
+        "bodyBasket",
+        "searchBasket",
+        "basketCard"
+    );
+
+    renderSport(
+        "volley",
+        "bodyVolley",
+        "searchVolley",
+        "volleyCard"
+    );
+
+
+    renderActivity(filtered);
+
+}
+
+
+/* ================= ADD PLAYER ================= */
+
+function addPlayer(){
+
+    const name =
+        document.getElementById("playerName")
+        .value
+        .trim();
+
+    const sport =
+        document.getElementById("playerSport")
+        .value;
+
+    const phone =
+        document.getElementById("playerPhone")
+        .value
+        .trim();
+
+    const status =
+        document.getElementById("playerStatus")
+        .value;
+
+    const date =
+        document.getElementById("playerDate")
+        .value;
+
+
+    if(!name){
+
+        alert("اكتب اسم اللاعب أولاً");
+
+        return;
+    }
+
+
+    if(!date){
+
+        alert("اختار تاريخ التسجيل");
+
+        return;
+    }
+
+
+    players.push({
+
+        id:Date.now(),
+
+        name,
+
+        sport,
+
+        phone,
+
+        status,
+
+        date
+
+    });
+
+
+    save();
+
+    document.getElementById("playerName").value = "";
+
+    document.getElementById("playerPhone").value = "";
+
+    document.getElementById("playerDate").valueAsDate =
+        new Date();
+
+
+    render();
+
+
+    alert("✅ تم تسجيل اللاعب بنجاح");
+
+}
+
+
+/* ================= DELETE ================= */
+
+function deletePlayer(index){
+
+    const player =
+        players[index];
+
+    if(!player) return;
+
+
+    const confirmDelete =
+        confirm(
+            `هل تريد حذف اللاعب "${player.name}"؟`
+        );
+
+    if(!confirmDelete) return;
+
+
+    players.splice(index,1);
 
     save();
 
     render();
 
-  }
-
 }
 
 
-/* تعديل لاعب */
+/* ================= EDIT ================= */
 
-function editPlayer(i){
+function editPlayer(index){
 
-  const p = players[i];
+    const player =
+        players[index];
 
-
-  document.getElementById(
-    'editIndex'
-  ).value = i;
+    if(!player) return;
 
 
-  document.getElementById(
-    'editName'
-  ).value = p.name;
+    document.getElementById("editIndex").value =
+        index;
+
+    document.getElementById("editName").value =
+        player.name || "";
+
+    document.getElementById("editPhone").value =
+        player.phone || "";
+
+    document.getElementById("editStatus").value =
+        player.status || "active";
 
 
-  document.getElementById(
-    'editPhone'
-  ).value = p.phone;
-
-
-  document.getElementById(
-    'editStatus'
-  ).value = p.status;
-
-
-  document
-    .getElementById(
-      'editModal'
-    )
-    .classList.add('show');
+    document.getElementById("editModal")
+        .classList.add("show");
 
 }
 
-
-/* حفظ التعديل */
 
 function saveEdit(){
 
-  const i =
-    +document.getElementById(
-      'editIndex'
-    ).value;
+    const index =
+        Number(
+            document.getElementById("editIndex").value
+        );
+
+    if(!players[index]) return;
 
 
-  players[i].name =
-    document.getElementById(
-      'editName'
-    ).value.trim();
+    players[index].name =
+        document.getElementById("editName").value.trim();
+
+    players[index].phone =
+        document.getElementById("editPhone").value.trim();
+
+    players[index].status =
+        document.getElementById("editStatus").value;
 
 
-  players[i].phone =
-    document.getElementById(
-      'editPhone'
-    ).value.trim();
+    save();
 
+    closeModal();
 
-  players[i].status =
-    document.getElementById(
-      'editStatus'
-    ).value;
-
-
-  save();
-
-  render();
-
-  closeModal();
+    render();
 
 }
 
-
-/* إغلاق التعديل */
 
 function closeModal(){
 
-  document
-    .getElementById(
-      'editModal'
-    )
-    .classList.remove('show');
+    document.getElementById("editModal")
+        .classList.remove("show");
 
 }
 
 
-/* حذف الكل */
+/* ================= ACTIVITY ================= */
+
+function renderActivity(data){
+
+    const list =
+        document.getElementById("activityList");
+
+    const recent =
+        [...data]
+        .sort(
+            (a,b) =>
+                new Date(b.date || 0) -
+                new Date(a.date || 0)
+        )
+        .slice(0,8);
+
+
+    if(!recent.length){
+
+        list.innerHTML = `
+            <div class="activity-item">
+                <div class="activity-icon">📭</div>
+                <div class="activity-text">
+                    <strong>لا توجد نشاطات بعد</strong>
+                    <span>ابدأ بتسجيل أول لاعب</span>
+                </div>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    list.innerHTML =
+        recent.map(player => `
+
+        <div class="activity-item">
+
+            <div class="activity-icon">
+                ${
+                    player.sport === "hand"
+                    ? "🤾"
+                    : player.sport === "basket"
+                    ? "🏀"
+                    : "🏐"
+                }
+            </div>
+
+            <div class="activity-text">
+
+                <strong>
+                    تم تسجيل ${esc(player.name)}
+                </strong>
+
+                <span>
+                    ${sportName(player.sport)}
+                    • ${esc(player.date || "-")}
+                </span>
+
+            </div>
+
+        </div>
+
+        `).join("");
+
+}
+
+
+/* ================= CLEAR ================= */
 
 function clearAll(){
 
-  if(
-    confirm(
-      'سيتم حذف جميع اللاعبين من الجهاز. هل أنت متأكد؟'
-    )
-  ){
+    if(!players.length){
+
+        alert("لا توجد بيانات لحذفها");
+
+        return;
+    }
+
+
+    const ok =
+        confirm(
+            "⚠️ هل أنت متأكد من حذف جميع اللاعبين؟"
+        );
+
+    if(!ok) return;
+
 
     players = [];
 
@@ -2095,82 +2169,85 @@ function clearAll(){
 
     render();
 
-  }
-
 }
 
 
-/* تصدير البيانات */
+/* ================= EXPORT ================= */
 
 function exportData(){
 
-  const blob =
-    new Blob(
-      [
-        JSON.stringify(
-          players,
-          null,
-          2
-        )
-      ],
-      {
-        type:'application/json'
-      }
-    );
+    if(!players.length){
+
+        alert("لا توجد بيانات لتصديرها");
+
+        return;
+    }
 
 
-  const a =
-    document.createElement('a');
+    const data =
+        JSON.stringify(players,null,2);
 
+    const blob =
+        new Blob(
+            [data],
+            {type:"application/json"}
+        );
 
-  a.href =
-    URL.createObjectURL(blob);
+    const url =
+        URL.createObjectURL(blob);
 
+    const a =
+        document.createElement("a");
 
-  a.download =
-    'professional-academy-players.json';
+    a.href = url;
 
+    a.download =
+        "professional-academy-players.json";
 
-  a.click();
+    a.click();
 
-
-  URL.revokeObjectURL(a.href);
+    URL.revokeObjectURL(url);
 
 }
 
 
-/* القائمة في الهاتف */
+/* ================= MOBILE ================= */
 
 function toggleSide(){
 
-  document
-    .getElementById('sidebar')
-    .classList.toggle('open');
+    document
+        .getElementById("sidebar")
+        .classList.toggle("open");
 
 }
 
 
 function closeSide(){
 
-  if(innerWidth <= 900){
-
     document
-      .getElementById('sidebar')
-      .classList.remove('open');
-
-  }
+        .getElementById("sidebar")
+        .classList.remove("open");
 
 }
 
 
-/* تاريخ اليوم تلقائيًا */
+/* ================= INIT ================= */
 
-document.getElementById(
-  'playerDate'
-).valueAsDate = new Date();
+document
+    .getElementById("playerDate")
+    .valueAsDate = new Date();
 
 
-/* تشغيل الموقع */
+document
+    .getElementById("editModal")
+    .addEventListener("click",function(e){
+
+        if(e.target === this){
+            closeModal();
+        }
+
+    });
+
 
 render();
 
