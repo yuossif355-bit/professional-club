@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Professional Academy | Dashboard</title>
+<title>Professional Academy | Sports Management</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,10 +16,13 @@
     --bg2:#061426;
     --panel:#091d33;
     --panel2:#0d2743;
-    --line:rgba(255,255,255,.09);
+    --panel3:#102f50;
+
+    --line:rgba(255,255,255,.08);
+    --line2:rgba(255,255,255,.13);
 
     --text:#f8fbff;
-    --muted:#91a7bc;
+    --muted:#8da6bc;
 
     --gold:#ffc21a;
     --gold2:#ff8c00;
@@ -29,6 +32,7 @@
 
     --green:#27e7a0;
     --red:#ff5366;
+    --purple:#a879ff;
 
     --shadow:0 25px 70px rgba(0,0,0,.45);
 }
@@ -46,21 +50,33 @@ html{
 body{
     font-family:"Cairo",sans-serif;
     background:
-        radial-gradient(circle at 85% 5%,rgba(0,119,255,.14),transparent 28%),
-        radial-gradient(circle at 10% 80%,rgba(255,194,26,.06),transparent 25%),
+        radial-gradient(circle at 85% 0%,rgba(0,119,255,.13),transparent 25%),
+        radial-gradient(circle at 5% 80%,rgba(255,194,26,.06),transparent 24%),
         var(--bg);
     color:var(--text);
     min-height:100vh;
 }
 
-button,
-input,
-select{
+button,input,select{
     font-family:inherit;
 }
 
 button{
     cursor:pointer;
+}
+
+::-webkit-scrollbar{
+    width:7px;
+    height:7px;
+}
+
+::-webkit-scrollbar-track{
+    background:#04101f;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#173d60;
+    border-radius:20px;
 }
 
 /* ================= SIDEBAR ================= */
@@ -71,110 +87,133 @@ button{
     top:0;
     width:280px;
     height:100vh;
-    padding:22px 18px;
+    padding:20px 17px;
     background:
-        linear-gradient(180deg,rgba(8,31,55,.98),rgba(3,15,28,.98));
+        linear-gradient(180deg,rgba(7,29,51,.98),rgba(2,12,23,.99));
     border-left:1px solid var(--line);
-    z-index:1000;
+    z-index:3000;
     overflow-y:auto;
+    transition:.3s;
 }
 
 .logo{
     display:flex;
     align-items:center;
     gap:12px;
-    padding:10px;
+    padding:9px;
     margin-bottom:25px;
 }
 
 .logo-box{
-    width:58px;
-    height:58px;
-    border-radius:18px;
+    width:57px;
+    height:57px;
+    border-radius:17px;
     display:flex;
     align-items:center;
     justify-content:center;
+
     font-family:Montserrat,sans-serif;
-    font-size:20px;
     font-weight:900;
+    font-size:19px;
+
     color:#06101d;
-    background:linear-gradient(135deg,var(--gold),var(--gold2));
-    box-shadow:0 10px 35px rgba(255,174,0,.25);
+
+    background:
+        linear-gradient(135deg,var(--gold),var(--gold2));
+
+    box-shadow:
+        0 10px 35px rgba(255,174,0,.24);
 }
 
 .logo-text strong{
     display:block;
     font-family:Montserrat,sans-serif;
-    font-size:17px;
-    letter-spacing:1px;
+    font-size:16px;
+    letter-spacing:.8px;
 }
 
 .logo-text span{
+    display:block;
     color:var(--muted);
-    font-size:11px;
+    font-size:10px;
+    margin-top:2px;
 }
 
 .nav-title{
-    color:#607b95;
-    font-size:11px;
-    font-weight:800;
-    margin:18px 10px 8px;
-    letter-spacing:1px;
+    color:#56738e;
+    font-size:10px;
+    font-weight:900;
+    margin:19px 10px 8px;
+    letter-spacing:1.5px;
 }
 
 .nav a{
     display:flex;
     align-items:center;
     gap:12px;
+
     text-decoration:none;
     color:#9db1c4;
-    padding:13px 14px;
+
+    padding:12px 13px;
     border-radius:13px;
-    margin:5px 0;
+    margin:4px 0;
+
     transition:.25s;
-    font-size:14px;
+
+    font-size:13px;
     font-weight:700;
 }
 
 .nav a:hover,
 .nav a.active{
     color:#fff;
-    background:linear-gradient(90deg,rgba(22,135,255,.20),rgba(22,135,255,.05));
-    box-shadow:inset 3px 0 var(--blue);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(22,135,255,.20),
+            rgba(22,135,255,.035)
+        );
+
+    box-shadow:
+        inset -3px 0 var(--blue);
 }
 
 .nav-icon{
-    width:25px;
+    width:26px;
     text-align:center;
-    font-size:18px;
+    font-size:17px;
 }
 
 .sidebar-bottom{
-    margin-top:25px;
-    padding:16px;
+    margin-top:24px;
+    padding:15px;
+
     border:1px solid var(--line);
-    border-radius:18px;
+    border-radius:17px;
+
     background:rgba(255,255,255,.025);
 }
 
 .sidebar-bottom-title{
-    font-weight:800;
-    font-size:13px;
+    font-size:12px;
+    font-weight:900;
 }
 
 .sidebar-bottom p{
     color:var(--muted);
-    font-size:11px;
+    font-size:10px;
+    line-height:1.8;
     margin-top:5px;
-    line-height:1.7;
 }
 
 /* ================= MAIN ================= */
 
 .main{
     margin-right:280px;
-    padding:25px;
-    max-width:1800px;
+    padding:24px;
+    max-width:1900px;
 }
 
 .topbar{
@@ -182,48 +221,56 @@ button{
     justify-content:space-between;
     align-items:center;
     gap:15px;
-    margin-bottom:22px;
+    margin-bottom:20px;
 }
 
 .mobile-menu{
     display:none;
+
+    width:44px;
+    height:44px;
+
+    border-radius:12px;
+
     border:1px solid var(--line);
     background:var(--panel);
     color:#fff;
-    width:45px;
-    height:45px;
-    border-radius:13px;
-    font-size:20px;
+
+    font-size:19px;
 }
 
 .top-title small{
     color:var(--gold);
-    font-size:11px;
-    font-weight:800;
-    letter-spacing:1px;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:1.2px;
 }
 
 .top-title h2{
-    font-size:21px;
+    font-size:20px;
     margin-top:2px;
 }
 
 .top-actions{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:8px;
 }
 
 .status{
     display:flex;
     align-items:center;
     gap:8px;
+
     padding:9px 13px;
+
     border:1px solid var(--line);
     border-radius:12px;
-    background:rgba(255,255,255,.035);
+
+    background:rgba(255,255,255,.03);
+
     color:#b7c7d6;
-    font-size:12px;
+    font-size:11px;
 }
 
 .status-dot{
@@ -239,92 +286,166 @@ button{
 .hero{
     position:relative;
     overflow:hidden;
-    min-height:330px;
+
+    min-height:345px;
     padding:48px;
+
     border-radius:30px;
-    border:1px solid rgba(255,255,255,.09);
+
+    border:1px solid rgba(255,255,255,.08);
+
     background:
-        radial-gradient(circle at 80% 30%,rgba(0,119,255,.22),transparent 30%),
-        radial-gradient(circle at 20% 100%,rgba(255,194,26,.10),transparent 32%),
-        linear-gradient(135deg,#092744,#04101e 65%);
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(0,119,255,.23),
+            transparent 29%
+        ),
+        radial-gradient(
+            circle at 15% 100%,
+            rgba(255,194,26,.10),
+            transparent 31%
+        ),
+        linear-gradient(
+            135deg,
+            #092744,
+            #04101e 65%
+        );
+
     box-shadow:var(--shadow);
 }
 
 .hero::before{
     content:"";
+
     position:absolute;
-    width:300px;
-    height:300px;
-    border:1px solid rgba(255,194,26,.13);
+
+    width:350px;
+    height:350px;
+
+    border:1px solid rgba(255,194,26,.11);
     border-radius:50%;
-    left:-100px;
-    bottom:-160px;
+
+    left:-150px;
+    bottom:-190px;
 }
 
 .hero::after{
     content:"";
+
     position:absolute;
-    width:420px;
-    height:420px;
+
+    width:450px;
+    height:450px;
+
     border:1px solid rgba(22,135,255,.10);
     border-radius:50%;
-    right:-180px;
-    top:-200px;
+
+    right:-210px;
+    top:-230px;
+}
+
+.hero-ball{
+    position:absolute;
+
+    right:10%;
+    bottom:-60px;
+
+    width:240px;
+    height:240px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(255,255,255,.20),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(22,135,255,.32),
+            rgba(3,20,37,.08)
+        );
+
+    border:1px solid rgba(255,255,255,.10);
+
+    box-shadow:
+        0 0 90px rgba(22,135,255,.12);
+
+    opacity:.65;
 }
 
 .hero-content{
     position:relative;
     z-index:2;
-    max-width:700px;
+    max-width:720px;
 }
 
 .hero-badge{
     display:inline-flex;
     align-items:center;
     gap:8px;
+
     padding:8px 13px;
+
     border-radius:50px;
-    background:rgba(255,194,26,.09);
-    border:1px solid rgba(255,194,26,.20);
+
+    background:rgba(255,194,26,.08);
+    border:1px solid rgba(255,194,26,.18);
+
     color:var(--gold);
-    font-size:11px;
-    font-weight:800;
-    margin-bottom:17px;
+
+    font-size:10px;
+    font-weight:900;
+
+    margin-bottom:18px;
 }
 
 .hero h1{
     font-family:Montserrat,"Cairo",sans-serif;
-    font-size:clamp(35px,5vw,65px);
-    line-height:1;
-    letter-spacing:-2px;
+
+    font-size:clamp(38px,5vw,68px);
+
+    line-height:.98;
+    letter-spacing:-2.5px;
+
     margin-bottom:18px;
 }
 
 .hero h1 span{
     color:var(--gold);
-    text-shadow:0 0 30px rgba(255,194,26,.20);
+
+    text-shadow:
+        0 0 35px rgba(255,194,26,.18);
 }
 
 .hero p{
     color:#a9bed1;
-    font-size:14px;
+
+    font-size:13px;
     line-height:2;
-    max-width:650px;
+
+    max-width:670px;
 }
 
 .hero-buttons{
     display:flex;
     flex-wrap:wrap;
-    gap:10px;
+    gap:9px;
+
     margin-top:25px;
 }
 
 .btn{
     border:0;
+
     border-radius:13px;
+
     padding:12px 18px;
-    font-weight:800;
-    font-size:13px;
+
+    font-weight:900;
+    font-size:12px;
+
     transition:.25s;
 }
 
@@ -334,13 +455,23 @@ button{
 
 .btn-primary{
     color:#03101e;
-    background:linear-gradient(135deg,var(--gold),var(--gold2));
-    box-shadow:0 10px 30px rgba(255,166,0,.20);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold),
+            var(--gold2)
+        );
+
+    box-shadow:
+        0 10px 30px rgba(255,166,0,.20);
 }
 
 .btn-secondary{
     color:#fff;
-    background:rgba(255,255,255,.06);
+
+    background:rgba(255,255,255,.055);
+
     border:1px solid var(--line);
 }
 
@@ -349,30 +480,59 @@ button{
 .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    margin:20px 0;
+
+    gap:14px;
+
+    margin:19px 0;
 }
 
 .stat{
     position:relative;
     overflow:hidden;
-    padding:21px;
-    min-height:130px;
+
+    padding:20px;
+
+    min-height:135px;
+
     border-radius:20px;
-    background:linear-gradient(145deg,rgba(12,42,70,.95),rgba(5,21,37,.95));
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(12,42,70,.96),
+            rgba(5,21,37,.96)
+        );
+
     border:1px solid var(--line);
-    box-shadow:0 15px 40px rgba(0,0,0,.20);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.20);
+
+    transition:.25s;
+}
+
+.stat:hover{
+    transform:translateY(-3px);
+
+    border-color:
+        rgba(22,135,255,.23);
 }
 
 .stat::after{
     content:"";
+
     position:absolute;
-    width:100px;
-    height:100px;
+
+    width:110px;
+    height:110px;
+
     border-radius:50%;
-    right:-45px;
-    top:-45px;
-    background:rgba(22,135,255,.08);
+
+    right:-48px;
+    top:-48px;
+
+    background:
+        rgba(22,135,255,.07);
 }
 
 .stat-top{
@@ -384,47 +544,132 @@ button{
 .stat-icon{
     width:43px;
     height:43px;
+
     border-radius:13px;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    background:rgba(22,135,255,.12);
-    font-size:21px;
+
+    background:rgba(22,135,255,.11);
+
+    font-size:20px;
 }
 
 .stat-label{
     color:var(--muted);
-    font-size:12px;
-    font-weight:700;
+
+    font-size:11px;
+    font-weight:800;
 }
 
 .stat-number{
     font-family:Montserrat,sans-serif;
-    font-size:32px;
+
+    font-size:31px;
     font-weight:900;
+
     margin-top:14px;
 }
 
 .stat-number.gold{color:var(--gold);}
 .stat-number.blue{color:#5bb1ff;}
 .stat-number.green{color:var(--green);}
+.stat-number.red{color:var(--red);}
+
+/* ================= QUICK STATS ================= */
+
+.quick-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:13px;
+    margin-bottom:20px;
+}
+
+.quick-card{
+    padding:17px;
+
+    border-radius:17px;
+
+    background:
+        rgba(255,255,255,.025);
+
+    border:1px solid var(--line);
+}
+
+.quick-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.quick-title{
+    color:var(--muted);
+    font-size:10px;
+    font-weight:800;
+}
+
+.quick-value{
+    font-size:20px;
+    font-weight:900;
+    margin-top:8px;
+}
+
+.progress{
+    height:6px;
+
+    background:#06182a;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-top:11px;
+}
+
+.progress span{
+    display:block;
+    height:100%;
+
+    width:0%;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            #62c1ff
+        );
+
+    transition:width .5s;
+}
 
 /* ================= SECTION ================= */
 
 .section{
     margin-top:20px;
-    padding:22px;
+
+    padding:21px;
+
     border-radius:22px;
+
     border:1px solid var(--line);
-    background:rgba(7,28,48,.78);
-    box-shadow:0 15px 45px rgba(0,0,0,.18);
+
+    background:
+        rgba(7,28,48,.78);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.18);
 }
 
 .section-head{
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     gap:15px;
+
     margin-bottom:17px;
 }
 
@@ -435,39 +680,54 @@ button{
 }
 
 .section-title h3{
-    font-size:17px;
+    font-size:16px;
 }
 
 .section-title p{
     color:var(--muted);
-    font-size:11px;
+    font-size:10px;
+    margin-top:2px;
 }
 
 .section-icon{
     width:42px;
     height:42px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     border-radius:13px;
-    background:rgba(255,194,26,.09);
-    border:1px solid rgba(255,194,26,.13);
-    font-size:19px;
+
+    background:
+        rgba(255,194,26,.08);
+
+    border:1px solid rgba(255,194,26,.12);
+
+    font-size:18px;
 }
 
 /* ================= FILTER ================= */
 
 .filter-box{
     display:grid;
-    grid-template-columns:1fr 240px;
-    gap:14px;
+
+    grid-template-columns:1fr 190px 190px;
+
+    gap:10px;
 }
 
 .filter-info{
-    padding:17px 20px;
-    border-radius:15px;
-    background:rgba(22,135,255,.06);
-    border:1px solid rgba(22,135,255,.12);
+    padding:15px 18px;
+
+    border-radius:14px;
+
+    background:
+        rgba(22,135,255,.055);
+
+    border:1px solid rgba(22,135,255,.11);
+
+    font-size:12px;
 }
 
 .filter-info strong{
@@ -476,236 +736,435 @@ button{
 
 .filter-info span{
     color:var(--gold);
-    font-weight:800;
+    font-weight:900;
 }
 
 .select{
     width:100%;
+
     border:1px solid var(--line);
+
     background:#071a2e;
+
     color:#fff;
-    border-radius:13px;
-    padding:13px;
+
+    border-radius:12px;
+
+    padding:12px;
+
     outline:none;
+
+    font-size:11px;
 }
 
 .select:focus{
     border-color:var(--blue);
 }
 
-/* ================= SPORTS ================= */
+/* ================= ANALYTICS ================= */
 
-.sports-grid{
+.analytics{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
+
+    grid-template-columns:1.2fr .8fr;
+
+    gap:15px;
+
+    margin-top:20px;
 }
 
-.sport-card{
-    overflow:hidden;
-    border-radius:22px;
-    background:linear-gradient(145deg,#0a2743,#06182a);
+.chart-card{
+    padding:20px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(9,36,61,.92),
+            rgba(4,18,32,.92)
+        );
+
     border:1px solid var(--line);
-    box-shadow:0 15px 45px rgba(0,0,0,.20);
 }
 
-.sport-head{
+.chart-head{
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    padding:18px;
-    border-bottom:1px solid var(--line);
-}
-
-.sport-info{
-    display:flex;
     align-items:center;
-    gap:11px;
+
+    margin-bottom:20px;
 }
 
-.sport-icon{
-    width:45px;
-    height:45px;
-    border-radius:14px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
-    background:rgba(255,255,255,.05);
-}
-
-.sport-name{
+.chart-head h3{
     font-size:15px;
+}
+
+.chart-head span{
+    color:var(--muted);
+    font-size:10px;
+}
+
+.sport-progress{
+    margin-bottom:18px;
+}
+
+.sport-progress:last-child{
+    margin-bottom:0;
+}
+
+.sport-progress-head{
+    display:flex;
+    justify-content:space-between;
+
+    font-size:11px;
+
+    margin-bottom:7px;
+}
+
+.sport-progress-head span:last-child{
+    color:var(--gold);
     font-weight:900;
 }
 
-.sport-count{
-    color:var(--muted);
-    font-size:11px;
+.big-progress{
+    height:10px;
+
+    border-radius:30px;
+
+    background:#06172a;
+
+    overflow:hidden;
 }
 
-.search{
-    margin:15px;
+.big-progress span{
+    display:block;
+
+    height:100%;
+
+    width:0%;
+
+    border-radius:30px;
+
+    transition:.6s;
+}
+
+.hand-bar{
+    background:
+        linear-gradient(90deg,#1687ff,#56b4ff);
+}
+
+.basket-bar{
+    background:
+        linear-gradient(90deg,#ff8c00,#ffc21a);
+}
+
+.volley-bar{
+    background:
+        linear-gradient(90deg,#27e7a0,#75ffd0);
+}
+
+.revenue-box{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    min-height:230px;
+
+    text-align:center;
+}
+
+.revenue-circle{
+    width:155px;
+    height:155px;
+
+    border-radius:50%;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        radial-gradient(
+            circle,
+            #0d2c4a 50%,
+            #07182b 51%
+        );
+
+    border:
+        7px solid rgba(255,194,26,.14);
+
+    box-shadow:
+        0 0 45px rgba(255,194,26,.06);
+}
+
+.revenue-circle strong{
+    font-family:Montserrat,sans-serif;
+
+    color:var(--gold);
+
+    font-size:27px;
+}
+
+.revenue-circle span{
+    color:var(--muted);
+    font-size:10px;
+}
+
+/* ================= SEARCH ================= */
+
+.global-search{
     position:relative;
 }
 
-.search input{
+.global-search input{
     width:100%;
+
     border:1px solid var(--line);
+
     background:#06182a;
+
     color:#fff;
+
     outline:none;
-    border-radius:12px;
-    padding:11px 40px 11px 12px;
+
+    border-radius:13px;
+
+    padding:13px 43px 13px 13px;
+
     font-size:12px;
 }
 
-.search input:focus{
+.global-search input:focus{
     border-color:var(--blue);
+
+    box-shadow:
+        0 0 0 3px rgba(22,135,255,.06);
 }
 
-.search span{
+.global-search span{
     position:absolute;
-    right:13px;
-    top:8px;
-    font-size:16px;
+
+    right:14px;
+    top:9px;
+
+    font-size:17px;
 }
 
-.table-wrap{
-    overflow:auto;
-    max-height:430px;
+/* ================= PLAYER CARDS ================= */
+
+.players-cards{
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fill,minmax(260px,1fr));
+
+    gap:13px;
+
+    margin-top:15px;
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    min-width:550px;
+.player-card{
+    position:relative;
+
+    overflow:hidden;
+
+    padding:17px;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0a2743,
+            #06182a
+        );
+
+    border:1px solid var(--line);
+
+    transition:.25s;
 }
 
-th{
-    text-align:right;
-    color:#66829b;
-    font-size:10px;
-    font-weight:800;
-    padding:11px 15px;
-    border-bottom:1px solid var(--line);
+.player-card:hover{
+    transform:translateY(-3px);
+
+    border-color:
+        rgba(22,135,255,.25);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.25);
 }
 
-td{
-    padding:13px 15px;
-    font-size:11px;
-    color:#cbd8e4;
-    border-bottom:1px solid rgba(255,255,255,.045);
-}
-
-tr:hover td{
-    background:rgba(255,255,255,.025);
-}
-
-.player{
+.player-card-top{
     display:flex;
     align-items:center;
-    gap:9px;
-    color:#fff;
-    font-weight:800;
+    justify-content:space-between;
+
+    gap:10px;
 }
 
-.avatar{
-    width:34px;
-    height:34px;
-    border-radius:11px;
+.player-profile{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.player-avatar{
+    width:43px;
+    height:43px;
+
+    border-radius:14px;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    background:linear-gradient(135deg,#146fc4,#0a3158);
+
     color:#fff;
+
+    font-weight:900;
+
+    background:
+        linear-gradient(
+            135deg,
+            #146fc4,
+            #092a4a
+        );
+}
+
+.player-name{
+    font-size:13px;
     font-weight:900;
 }
 
-.badge{
-    display:inline-flex;
-    padding:5px 9px;
-    border-radius:20px;
+.player-sport{
+    color:var(--muted);
     font-size:9px;
+    margin-top:2px;
+}
+
+.player-details{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:8px;
+
+    margin-top:15px;
+}
+
+.detail{
+    padding:9px;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.025);
+
+    border:1px solid rgba(255,255,255,.045);
+}
+
+.detail span{
+    display:block;
+
+    color:#5f7b94;
+
+    font-size:8px;
+}
+
+.detail strong{
+    display:block;
+
+    color:#dce7f0;
+
+    font-size:10px;
+
+    margin-top:2px;
+}
+
+.card-actions{
+    display:flex;
+
+    gap:7px;
+
+    margin-top:12px;
+}
+
+.card-actions button{
+    flex:1;
+
+    border:1px solid var(--line);
+
+    background:rgba(255,255,255,.04);
+
+    color:#fff;
+
+    border-radius:10px;
+
+    padding:8px;
+
+    font-size:10px;
+
     font-weight:800;
 }
 
-.badge-active{
-    color:var(--green);
-    background:rgba(39,231,160,.08);
-    border:1px solid rgba(39,231,160,.12);
-}
-
-.badge-paused{
-    color:var(--gold);
-    background:rgba(255,194,26,.08);
-    border:1px solid rgba(255,194,26,.12);
-}
-
-.actions{
-    display:flex;
-    gap:5px;
-}
-
-.action{
-    border:1px solid var(--line);
-    background:rgba(255,255,255,.035);
-    color:#b7c8d7;
-    width:31px;
-    height:31px;
-    border-radius:9px;
-    transition:.2s;
-}
-
-.action:hover{
-    color:#fff;
+.card-actions button:hover{
     background:rgba(22,135,255,.13);
 }
 
-.action.delete:hover{
+.card-actions .delete-btn:hover{
     color:var(--red);
-    background:rgba(255,83,102,.10);
+
+    background:rgba(255,83,102,.09);
 }
 
-.empty{
-    padding:35px 15px;
-    text-align:center;
-    color:#66829b;
-    font-size:12px;
-}
-
-/* ================= FORM ================= */
+/* ================= REGISTER ================= */
 
 .form-grid{
     display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:12px;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap:11px;
 }
 
 .field label{
     display:block;
+
     color:#8299ad;
-    font-size:11px;
-    margin-bottom:7px;
-    font-weight:700;
+
+    font-size:10px;
+
+    margin-bottom:6px;
+
+    font-weight:800;
 }
 
 .field input,
 .field select{
     width:100%;
-    padding:12px;
+
+    padding:11px;
+
     color:#fff;
+
     border:1px solid var(--line);
+
     outline:none;
-    border-radius:12px;
+
+    border-radius:11px;
+
     background:#06182a;
-    font-size:12px;
+
+    font-size:11px;
 }
 
 .field input:focus,
 .field select:focus{
     border-color:var(--blue);
-    box-shadow:0 0 0 3px rgba(22,135,255,.07);
+
+    box-shadow:
+        0 0 0 3px rgba(22,135,255,.06);
 }
 
 .form-submit{
@@ -721,28 +1180,42 @@ tr:hover td{
 
 .activity{
     display:grid;
+
     grid-template-columns:1fr 1fr;
-    gap:10px;
+
+    gap:9px;
 }
 
 .activity-item{
     display:flex;
+
     align-items:center;
-    gap:12px;
-    padding:13px;
+
+    gap:11px;
+
+    padding:12px;
+
     border:1px solid var(--line);
-    border-radius:14px;
+
+    border-radius:13px;
+
     background:rgba(255,255,255,.025);
 }
 
 .activity-icon{
-    width:38px;
-    height:38px;
+    width:37px;
+    height:37px;
+
+    flex-shrink:0;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     border-radius:11px;
-    background:rgba(39,231,160,.08);
+
+    background:
+        rgba(39,231,160,.07);
 }
 
 .activity-text{
@@ -751,28 +1224,118 @@ tr:hover td{
 
 .activity-text strong{
     display:block;
-    font-size:12px;
+
+    font-size:11px;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .activity-text span{
     display:block;
+
     color:var(--muted);
-    font-size:10px;
+
+    font-size:9px;
+
     margin-top:2px;
+}
+
+/* ================= NOTIFICATION ================= */
+
+.notifications{
+    position:fixed;
+
+    left:20px;
+    bottom:20px;
+
+    z-index:5000;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:9px;
+
+    width:min(360px,calc(100% - 40px));
+}
+
+.notification{
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:13px 14px;
+
+    border-radius:14px;
+
+    background:
+        rgba(8,30,51,.96);
+
+    border:1px solid var(--line2);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.35);
+
+    animation:
+        notificationIn .3s ease;
+}
+
+.notification.success{
+    border-right:3px solid var(--green);
+}
+
+.notification.error{
+    border-right:3px solid var(--red);
+}
+
+.notification.info{
+    border-right:3px solid var(--blue);
+}
+
+.notification-icon{
+    font-size:18px;
+}
+
+.notification-text{
+    font-size:11px;
+    font-weight:700;
+}
+
+@keyframes notificationIn{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 /* ================= MODAL ================= */
 
 .modal{
     position:fixed;
+
     inset:0;
-    background:rgba(0,0,0,.72);
-    backdrop-filter:blur(8px);
+
+    background:
+        rgba(0,0,0,.72);
+
+    backdrop-filter:blur(9px);
+
     display:none;
+
     align-items:center;
     justify-content:center;
+
     padding:20px;
-    z-index:2000;
+
+    z-index:4000;
 }
 
 .modal.show{
@@ -780,43 +1343,80 @@ tr:hover td{
 }
 
 .modal-box{
-    width:min(500px,100%);
+    width:min(520px,100%);
+
     padding:24px;
+
     border-radius:22px;
-    background:linear-gradient(145deg,#0b2947,#041426);
+
+    background:
+        linear-gradient(
+            145deg,
+            #0b2947,
+            #041426
+        );
+
     border:1px solid var(--line);
-    box-shadow:0 30px 100px rgba(0,0,0,.55);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.55);
+
+    animation:
+        modalIn .2s ease;
+}
+
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:scale(.96);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
 }
 
 .modal-head{
     display:flex;
+
     justify-content:space-between;
     align-items:center;
-    margin-bottom:20px;
+
+    margin-bottom:19px;
 }
 
 .modal-head h3{
-    font-size:18px;
+    font-size:17px;
 }
 
 .close{
-    width:35px;
-    height:35px;
+    width:34px;
+    height:34px;
+
     border:1px solid var(--line);
+
     background:rgba(255,255,255,.04);
+
     color:#fff;
+
     border-radius:10px;
+
+    font-size:18px;
 }
 
 .modal-fields{
     display:grid;
-    gap:13px;
+
+    gap:12px;
 }
 
 .modal-actions{
     display:flex;
-    gap:10px;
-    margin-top:20px;
+
+    gap:9px;
+
+    margin-top:19px;
 }
 
 .modal-actions button{
@@ -827,31 +1427,39 @@ tr:hover td{
 
 .footer{
     text-align:center;
+
     color:#506a80;
-    font-size:10px;
+
+    font-size:9px;
+
     padding:30px 0 10px;
 }
 
 /* ================= RESPONSIVE ================= */
 
-@media(max-width:1200px){
+@media(max-width:1250px){
+
     .stats{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .sports-grid{
-        grid-template-columns:1fr;
+    .quick-grid{
+        grid-template-columns:repeat(2,1fr);
     }
 
     .form-grid{
         grid-template-columns:repeat(2,1fr);
     }
+
+    .analytics{
+        grid-template-columns:1fr;
+    }
 }
 
-@media(max-width:850px){
+@media(max-width:900px){
+
     .sidebar{
         transform:translateX(100%);
-        transition:.3s;
     }
 
     .sidebar.open{
@@ -880,34 +1488,43 @@ tr:hover td{
     }
 
     .hero{
-        padding:30px 22px;
+        padding:32px 23px;
+    }
+
+    .hero-ball{
+        opacity:.25;
     }
 
     .filter-box{
         grid-template-columns:1fr;
     }
-
-    .activity{
-        grid-template-columns:1fr;
-    }
 }
 
-@media(max-width:600px){
+@media(max-width:650px){
+
     .stats{
         grid-template-columns:1fr 1fr;
-        gap:9px;
+        gap:8px;
     }
 
     .stat{
-        padding:15px;
-        min-height:110px;
+        padding:14px;
+        min-height:105px;
     }
 
     .stat-number{
-        font-size:25px;
+        font-size:24px;
+    }
+
+    .quick-grid{
+        grid-template-columns:1fr 1fr;
     }
 
     .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .activity{
         grid-template-columns:1fr;
     }
 
@@ -915,16 +1532,16 @@ tr:hover td{
         padding:15px;
     }
 
-    .section-head{
-        align-items:flex-start;
-    }
-
     .hero h1{
         font-size:36px;
     }
 
     .hero p{
-        font-size:12px;
+        font-size:11px;
+    }
+
+    .players-cards{
+        grid-template-columns:1fr;
     }
 }
 </style>
@@ -964,6 +1581,11 @@ tr:hover td{
             إدارة اللاعبين
         </a>
 
+        <a href="#analytics">
+            <span class="nav-icon">📊</span>
+            الإحصائيات
+        </a>
+
     </nav>
 
     <div class="nav-title">SPORTS</div>
@@ -993,12 +1615,12 @@ tr:hover td{
 
         <a href="#players">
             <span class="nav-icon">🔎</span>
-            بحث عن لاعب
+            البحث عن لاعب
         </a>
 
         <a href="#" onclick="exportData();return false;">
-            <span class="nav-icon">💾</span>
-            حفظ البيانات
+            <span class="nav-icon">📥</span>
+            تصدير البيانات
         </a>
 
         <a href="#" onclick="clearAll();return false;">
@@ -1009,11 +1631,16 @@ tr:hover td{
     </nav>
 
     <div class="sidebar-bottom">
-        <div class="sidebar-bottom-title">🏆 Professional Academy</div>
+
+        <div class="sidebar-bottom-title">
+            🏆 Professional Academy
+        </div>
+
         <p>
             نظام احترافي لإدارة لاعبي الأكاديمية
-            ومتابعة الاشتراكات والرياضات.
+            ومتابعة الرياضات والاشتراكات.
         </p>
+
     </div>
 
 </aside>
@@ -1025,26 +1652,44 @@ tr:hover td{
 
     <div class="topbar">
 
-        <button class="mobile-menu" onclick="toggleSide()">☰</button>
+        <button
+            class="mobile-menu"
+            onclick="toggleSide()">
+            ☰
+        </button>
 
         <div class="top-title">
-            <small>PROFESSIONAL ACADEMY</small>
-            <h2>لوحة التحكم</h2>
+
+            <small>
+                PROFESSIONAL ACADEMY
+            </small>
+
+            <h2>
+                لوحة التحكم
+            </h2>
+
         </div>
 
         <div class="top-actions">
+
             <div class="status">
+
                 <span class="status-dot"></span>
+
                 النظام يعمل
+
             </div>
+
         </div>
 
     </div>
 
 
-    <!-- HERO -->
+    <!-- ================= HERO ================= -->
 
     <section class="hero" id="home">
+
+        <div class="hero-ball"></div>
 
         <div class="hero-content">
 
@@ -1058,20 +1703,27 @@ tr:hover td{
             </h1>
 
             <p>
-                أكاديمية رياضية احترافية لصناعة الأبطال وإدارة
-                لاعبي كرة اليد والسلة والطائرة في مكان واحد.
+                نظام إدارة رياضي احترافي لإدارة لاعبي الأكاديمية
+                في كرة اليد وكرة السلة والكرة الطائرة،
+                ومتابعة التسجيلات والاشتراكات والإحصائيات من مكان واحد.
             </p>
 
             <div class="hero-buttons">
 
-                <button class="btn btn-primary"
-                        onclick="document.getElementById('register').scrollIntoView()">
+                <button
+                    class="btn btn-primary"
+                    onclick="scrollToSection('register')">
+
                     ➕ تسجيل لاعب جديد
+
                 </button>
 
-                <button class="btn btn-secondary"
-                        onclick="document.getElementById('players').scrollIntoView()">
+                <button
+                    class="btn btn-secondary"
+                    onclick="scrollToSection('players')">
+
                     👥 مشاهدة اللاعبين
+
                 </button>
 
             </div>
@@ -1081,18 +1733,29 @@ tr:hover td{
     </section>
 
 
-    <!-- STATS -->
+    <!-- ================= MAIN STATS ================= -->
 
     <section class="stats">
 
         <div class="stat">
 
             <div class="stat-top">
-                <div class="stat-label">إجمالي اللاعبين</div>
-                <div class="stat-icon">👥</div>
+
+                <div class="stat-label">
+                    إجمالي اللاعبين
+                </div>
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
             </div>
 
-            <div class="stat-number gold" id="total">0</div>
+            <div
+                class="stat-number gold"
+                id="total">
+                0
+            </div>
 
         </div>
 
@@ -1100,11 +1763,22 @@ tr:hover td{
         <div class="stat">
 
             <div class="stat-top">
-                <div class="stat-label">كرة اليد</div>
-                <div class="stat-icon">🤾</div>
+
+                <div class="stat-label">
+                    اللاعبين النشطين
+                </div>
+
+                <div class="stat-icon">
+                    🟢
+                </div>
+
             </div>
 
-            <div class="stat-number blue" id="handTotal">0</div>
+            <div
+                class="stat-number green"
+                id="activeTotal">
+                0
+            </div>
 
         </div>
 
@@ -1112,11 +1786,22 @@ tr:hover td{
         <div class="stat">
 
             <div class="stat-top">
-                <div class="stat-label">كرة السلة</div>
-                <div class="stat-icon">🏀</div>
+
+                <div class="stat-label">
+                    الاشتراكات المتوقفة
+                </div>
+
+                <div class="stat-icon">
+                    ⏸️
+                </div>
+
             </div>
 
-            <div class="stat-number blue" id="basketTotal">0</div>
+            <div
+                class="stat-number red"
+                id="pausedTotal">
+                0
+            </div>
 
         </div>
 
@@ -1124,18 +1809,135 @@ tr:hover td{
         <div class="stat">
 
             <div class="stat-top">
-                <div class="stat-label">كرة الطائرة</div>
-                <div class="stat-icon">🏐</div>
+
+                <div class="stat-label">
+                    هذا الشهر
+                </div>
+
+                <div class="stat-icon">
+                    📅
+                </div>
+
             </div>
 
-            <div class="stat-number green" id="volleyTotal">0</div>
+            <div
+                class="stat-number blue"
+                id="monthTotal">
+                0
+            </div>
 
         </div>
 
     </section>
 
 
-    <!-- MONTH FILTER -->
+    <!-- ================= QUICK STATS ================= -->
+
+    <section class="quick-grid">
+
+        <div class="quick-card">
+
+            <div class="quick-top">
+
+                <div class="quick-title">
+                    نشاط اللاعبين
+                </div>
+
+                <span>🟢</span>
+
+            </div>
+
+            <div
+                class="quick-value"
+                id="activePercent">
+                0%
+            </div>
+
+            <div class="progress">
+                <span id="activeProgress"></span>
+            </div>
+
+        </div>
+
+
+        <div class="quick-card">
+
+            <div class="quick-top">
+
+                <div class="quick-title">
+                    كرة اليد
+                </div>
+
+                <span>🤾</span>
+
+            </div>
+
+            <div
+                class="quick-value"
+                id="handPercent">
+                0%
+            </div>
+
+            <div class="progress">
+                <span id="handProgress"></span>
+            </div>
+
+        </div>
+
+
+        <div class="quick-card">
+
+            <div class="quick-top">
+
+                <div class="quick-title">
+                    كرة السلة
+                </div>
+
+                <span>🏀</span>
+
+            </div>
+
+            <div
+                class="quick-value"
+                id="basketPercent">
+                0%
+            </div>
+
+            <div class="progress">
+                <span id="basketProgress"></span>
+            </div>
+
+        </div>
+
+
+        <div class="quick-card">
+
+            <div class="quick-top">
+
+                <div class="quick-title">
+                    كرة الطائرة
+                </div>
+
+                <span>🏐</span>
+
+            </div>
+
+            <div
+                class="quick-value"
+                id="volleyPercent">
+                0%
+            </div>
+
+            <div class="progress">
+                <span id="volleyProgress"></span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FILTER ================= -->
 
     <section class="section">
 
@@ -1143,11 +1945,20 @@ tr:hover td{
 
             <div class="section-title">
 
-                <div class="section-icon">📅</div>
+                <div class="section-icon">
+                    📅
+                </div>
 
                 <div>
-                    <h3>فلترة اللاعبين حسب الشهر</h3>
-                    <p>اعرض اللاعبين المسجلين في شهر معين</p>
+
+                    <h3>
+                        فلترة اللاعبين
+                    </h3>
+
+                    <p>
+                        اختار الشهر والسنة لعرض اللاعبين
+                    </p>
+
                 </div>
 
             </div>
@@ -1158,15 +1969,37 @@ tr:hover td{
         <div class="filter-box">
 
             <div class="filter-info">
+
                 👁️ يتم عرض:
-                <span id="filterText">كل اللاعبين</span>
+
+                <span id="filterText">
+                    كل اللاعبين
+                </span>
+
             </div>
 
-            <select class="select"
-                    id="monthFilter"
-                    onchange="changeMonthFilter()">
 
-                <option value="all">كل الشهور</option>
+            <select
+                class="select"
+                id="yearFilter"
+                onchange="changeFilters()">
+
+                <option value="all">
+                    كل السنوات
+                </option>
+
+            </select>
+
+
+            <select
+                class="select"
+                id="monthFilter"
+                onchange="changeFilters()">
+
+                <option value="all">
+                    كل الشهور
+                </option>
+
                 <option value="01">يناير</option>
                 <option value="02">فبراير</option>
                 <option value="03">مارس</option>
@@ -1187,19 +2020,160 @@ tr:hover td{
     </section>
 
 
-    <!-- REGISTER -->
+    <!-- ================= ANALYTICS ================= -->
 
-    <section class="section" id="register">
+    <section
+        class="analytics"
+        id="analytics">
+
+        <div class="chart-card">
+
+            <div class="chart-head">
+
+                <h3>
+                    📊 توزيع لاعبي الأكاديمية
+                </h3>
+
+                <span>
+                    حسب الرياضة
+                </span>
+
+            </div>
+
+
+            <div class="sport-progress">
+
+                <div class="sport-progress-head">
+
+                    <span>
+                        🤾 كرة اليد
+                    </span>
+
+                    <span id="handDistribution">
+                        0%
+                    </span>
+
+                </div>
+
+                <div class="big-progress">
+                    <span
+                        class="hand-bar"
+                        id="handBar">
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="sport-progress">
+
+                <div class="sport-progress-head">
+
+                    <span>
+                        🏀 كرة السلة
+                    </span>
+
+                    <span id="basketDistribution">
+                        0%
+                    </span>
+
+                </div>
+
+                <div class="big-progress">
+                    <span
+                        class="basket-bar"
+                        id="basketBar">
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="sport-progress">
+
+                <div class="sport-progress-head">
+
+                    <span>
+                        🏐 كرة الطائرة
+                    </span>
+
+                    <span id="volleyDistribution">
+                        0%
+                    </span>
+
+                </div>
+
+                <div class="big-progress">
+                    <span
+                        class="volley-bar"
+                        id="volleyBar">
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="chart-card">
+
+            <div class="chart-head">
+
+                <h3>
+                    💰 الاشتراكات
+                </h3>
+
+                <span>
+                    حالة اللاعبين
+                </span>
+
+            </div>
+
+            <div class="revenue-box">
+
+                <div class="revenue-circle">
+
+                    <strong id="subscriptionPercent">
+                        0%
+                    </strong>
+
+                    <span>
+                        اشتراكات نشطة
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= REGISTER ================= -->
+
+    <section
+        class="section"
+        id="register">
 
         <div class="section-head">
 
             <div class="section-title">
 
-                <div class="section-icon">➕</div>
+                <div class="section-icon">
+                    ➕
+                </div>
 
                 <div>
-                    <h3>تسجيل لاعب جديد</h3>
-                    <p>أضف لاعب جديد إلى قاعدة بيانات الأكاديمية</p>
+
+                    <h3>
+                        تسجيل لاعب جديد
+                    </h3>
+
+                    <p>
+                        أضف لاعب إلى قاعدة بيانات الأكاديمية
+                    </p>
+
                 </div>
 
             </div>
@@ -1211,7 +2185,9 @@ tr:hover td{
 
             <div class="field">
 
-                <label>اسم اللاعب</label>
+                <label>
+                    اسم اللاعب
+                </label>
 
                 <input
                     id="playerName"
@@ -1223,13 +2199,23 @@ tr:hover td{
 
             <div class="field">
 
-                <label>الرياضة</label>
+                <label>
+                    الرياضة
+                </label>
 
                 <select id="playerSport">
 
-                    <option value="hand">🤾 كرة اليد</option>
-                    <option value="basket">🏀 كرة السلة</option>
-                    <option value="volley">🏐 كرة الطائرة</option>
+                    <option value="hand">
+                        🤾 كرة اليد
+                    </option>
+
+                    <option value="basket">
+                        🏀 كرة السلة
+                    </option>
+
+                    <option value="volley">
+                        🏐 كرة الطائرة
+                    </option>
 
                 </select>
 
@@ -1238,11 +2224,14 @@ tr:hover td{
 
             <div class="field">
 
-                <label>رقم الهاتف</label>
+                <label>
+                    رقم الهاتف
+                </label>
 
                 <input
                     id="playerPhone"
                     type="text"
+                    maxlength="15"
                     placeholder="01xxxxxxxxx">
 
             </div>
@@ -1250,12 +2239,19 @@ tr:hover td{
 
             <div class="field">
 
-                <label>حالة الاشتراك</label>
+                <label>
+                    حالة الاشتراك
+                </label>
 
                 <select id="playerStatus">
 
-                    <option value="active">نشط</option>
-                    <option value="paused">متوقف</option>
+                    <option value="active">
+                        نشط
+                    </option>
+
+                    <option value="paused">
+                        متوقف
+                    </option>
 
                 </select>
 
@@ -1264,7 +2260,9 @@ tr:hover td{
 
             <div class="field">
 
-                <label>تاريخ التسجيل</label>
+                <label>
+                    تاريخ التسجيل
+                </label>
 
                 <input
                     id="playerDate"
@@ -1290,21 +2288,30 @@ tr:hover td{
     </section>
 
 
-    <!-- PLAYERS -->
+    <!-- ================= PLAYERS ================= -->
 
-    <section class="section" id="players">
+    <section
+        class="section"
+        id="players">
 
         <div class="section-head">
 
             <div class="section-title">
 
-                <div class="section-icon">👥</div>
+                <div class="section-icon">
+                    👥
+                </div>
 
                 <div>
-                    <h3>إدارة اللاعبين</h3>
+
+                    <h3>
+                        لاعبي الأكاديمية
+                    </h3>
+
                     <p id="playersSubtitle">
-                        جميع لاعبي الأكاديمية
+                        جميع اللاعبين
                     </p>
+
                 </div>
 
             </div>
@@ -1312,195 +2319,30 @@ tr:hover td{
         </div>
 
 
-        <div class="sports-grid">
+        <div class="global-search">
 
+            <span>
+                🔎
+            </span>
 
-            <!-- HAND -->
+            <input
+                id="globalSearch"
+                type="text"
+                placeholder="ابحث عن اسم اللاعب أو رقم الهاتف..."
+                oninput="render()">
 
-            <div class="sport-card" id="hand">
+        </div>
 
-                <div class="sport-head">
 
-                    <div class="sport-info">
-
-                        <div class="sport-icon">🤾</div>
-
-                        <div>
-                            <div class="sport-name">كرة اليد</div>
-                            <div class="sport-count">
-                                <span id="handCard">0</span> لاعب
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="search">
-
-                    <span>🔎</span>
-
-                    <input
-                        id="searchHand"
-                        type="text"
-                        placeholder="ابحث عن لاعب..."
-                        oninput="render()">
-
-                </div>
-
-
-                <div class="table-wrap">
-
-                    <table>
-
-                        <thead>
-
-                            <tr>
-                                <th>اللاعب</th>
-                                <th>الهاتف</th>
-                                <th>التاريخ</th>
-                                <th>الحالة</th>
-                                <th>إجراء</th>
-                            </tr>
-
-                        </thead>
-
-                        <tbody id="bodyHand"></tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-
-            <!-- BASKET -->
-
-            <div class="sport-card" id="basket">
-
-                <div class="sport-head">
-
-                    <div class="sport-info">
-
-                        <div class="sport-icon">🏀</div>
-
-                        <div>
-                            <div class="sport-name">كرة السلة</div>
-                            <div class="sport-count">
-                                <span id="basketCard">0</span> لاعب
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="search">
-
-                    <span>🔎</span>
-
-                    <input
-                        id="searchBasket"
-                        type="text"
-                        placeholder="ابحث عن لاعب..."
-                        oninput="render()">
-
-                </div>
-
-
-                <div class="table-wrap">
-
-                    <table>
-
-                        <thead>
-
-                            <tr>
-                                <th>اللاعب</th>
-                                <th>الهاتف</th>
-                                <th>التاريخ</th>
-                                <th>الحالة</th>
-                                <th>إجراء</th>
-                            </tr>
-
-                        </thead>
-
-                        <tbody id="bodyBasket"></tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-
-            <!-- VOLLEY -->
-
-            <div class="sport-card" id="volley">
-
-                <div class="sport-head">
-
-                    <div class="sport-info">
-
-                        <div class="sport-icon">🏐</div>
-
-                        <div>
-                            <div class="sport-name">كرة الطائرة</div>
-                            <div class="sport-count">
-                                <span id="volleyCard">0</span> لاعب
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="search">
-
-                    <span>🔎</span>
-
-                    <input
-                        id="searchVolley"
-                        type="text"
-                        placeholder="ابحث عن لاعب..."
-                        oninput="render()">
-
-                </div>
-
-
-                <div class="table-wrap">
-
-                    <table>
-
-                        <thead>
-
-                            <tr>
-                                <th>اللاعب</th>
-                                <th>الهاتف</th>
-                                <th>التاريخ</th>
-                                <th>الحالة</th>
-                                <th>إجراء</th>
-                            </tr>
-
-                        </thead>
-
-                        <tbody id="bodyVolley"></tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-
+        <div
+            class="players-cards"
+            id="playersCards">
         </div>
 
     </section>
 
 
-    <!-- ACTIVITY -->
+    <!-- ================= ACTIVITY ================= -->
 
     <section class="section">
 
@@ -1508,24 +2350,39 @@ tr:hover td{
 
             <div class="section-title">
 
-                <div class="section-icon">⚡</div>
+                <div class="section-icon">
+                    ⚡
+                </div>
 
                 <div>
-                    <h3>آخر النشاطات</h3>
-                    <p>آخر اللاعبين المسجلين</p>
+
+                    <h3>
+                        آخر النشاطات
+                    </h3>
+
+                    <p>
+                        آخر اللاعبين المسجلين
+                    </p>
+
                 </div>
 
             </div>
 
         </div>
 
-        <div class="activity" id="activityList"></div>
+        <div
+            class="activity"
+            id="activityList">
+        </div>
 
     </section>
 
 
     <div class="footer">
-        © 2026 Professional Academy — All Rights Reserved 🏆
+
+        © 2026 Professional Academy
+        — All Rights Reserved 🏆
+
     </div>
 
 </main>
@@ -1533,13 +2390,17 @@ tr:hover td{
 
 <!-- ================= EDIT MODAL ================= -->
 
-<div class="modal" id="editModal">
+<div
+    class="modal"
+    id="editModal">
 
     <div class="modal-box">
 
         <div class="modal-head">
 
-            <h3>✏️ تعديل بيانات اللاعب</h3>
+            <h3>
+                ✏️ تعديل بيانات اللاعب
+            </h3>
 
             <button
                 class="close"
@@ -1559,7 +2420,9 @@ tr:hover td{
 
             <div class="field">
 
-                <label>اسم اللاعب</label>
+                <label>
+                    اسم اللاعب
+                </label>
 
                 <input id="editName">
 
@@ -1568,21 +2431,32 @@ tr:hover td{
 
             <div class="field">
 
-                <label>رقم الهاتف</label>
+                <label>
+                    رقم الهاتف
+                </label>
 
-                <input id="editPhone">
+                <input
+                    id="editPhone"
+                    maxlength="15">
 
             </div>
 
 
             <div class="field">
 
-                <label>حالة الاشتراك</label>
+                <label>
+                    حالة الاشتراك
+                </label>
 
                 <select id="editStatus">
 
-                    <option value="active">نشط</option>
-                    <option value="paused">متوقف</option>
+                    <option value="active">
+                        نشط
+                    </option>
+
+                    <option value="paused">
+                        متوقف
+                    </option>
 
                 </select>
 
@@ -1596,13 +2470,17 @@ tr:hover td{
             <button
                 class="btn btn-primary"
                 onclick="saveEdit()">
+
                 💾 حفظ التعديل
+
             </button>
 
             <button
                 class="btn btn-secondary"
                 onclick="closeModal()">
+
                 إلغاء
+
             </button>
 
         </div>
@@ -1612,31 +2490,88 @@ tr:hover td{
 </div>
 
 
+<!-- ================= NOTIFICATIONS ================= -->
+
+<div
+    class="notifications"
+    id="notifications">
+</div>
+
+
 <script>
+
+/* =====================================================
+   PROFESSIONAL ACADEMY V4
+===================================================== */
+
 
 /* ================= DATA ================= */
 
-const KEY = "professionalAcademyPlayers";
+const KEY =
+    "professionalAcademyPlayers";
 
 let players =
-    JSON.parse(localStorage.getItem(KEY) || "[]");
+    JSON.parse(
+        localStorage.getItem(KEY) || "[]"
+    );
 
 let selectedMonth = "all";
+let selectedYear = "all";
 
 
-/* ================= HELPERS ================= */
+/* ================= MONTHS ================= */
+
+const monthNames = {
+    "01":"يناير",
+    "02":"فبراير",
+    "03":"مارس",
+    "04":"أبريل",
+    "05":"مايو",
+    "06":"يونيو",
+    "07":"يوليو",
+    "08":"أغسطس",
+    "09":"سبتمبر",
+    "10":"أكتوبر",
+    "11":"نوفمبر",
+    "12":"ديسمبر"
+};
+
+
+/* ================= SPORT NAME ================= */
 
 function sportName(sport){
 
-    if(sport === "hand") return "كرة اليد";
+    if(sport === "hand")
+        return "كرة اليد";
 
-    if(sport === "basket") return "كرة السلة";
+    if(sport === "basket")
+        return "كرة السلة";
 
-    if(sport === "volley") return "كرة الطائرة";
+    if(sport === "volley")
+        return "كرة الطائرة";
 
     return sport;
 }
 
+
+/* ================= SPORT ICON ================= */
+
+function sportIcon(sport){
+
+    if(sport === "hand")
+        return "🤾";
+
+    if(sport === "basket")
+        return "🏀";
+
+    if(sport === "volley")
+        return "🏐";
+
+    return "🏆";
+}
+
+
+/* ================= ESCAPE ================= */
 
 function esc(value){
 
@@ -1649,6 +2584,8 @@ function esc(value){
 }
 
 
+/* ================= SAVE ================= */
+
 function save(){
 
     localStorage.setItem(
@@ -1659,200 +2596,713 @@ function save(){
 }
 
 
-/* ================= MONTH FILTER ================= */
+/* ================= NOTIFICATION ================= */
+
+function notify(
+    message,
+    type="success"
+){
+
+    const container =
+        document.getElementById(
+            "notifications"
+        );
+
+    const item =
+        document.createElement("div");
+
+    item.className =
+        "notification " + type;
+
+    const icon =
+        type === "success"
+        ? "✅"
+        : type === "error"
+        ? "❌"
+        : "ℹ️";
+
+    item.innerHTML = `
+
+        <div class="notification-icon">
+            ${icon}
+        </div>
+
+        <div class="notification-text">
+            ${esc(message)}
+        </div>
+
+    `;
+
+    container.appendChild(item);
+
+    setTimeout(() => {
+
+        item.style.opacity = "0";
+        item.style.transform =
+            "translateY(10px)";
+
+        setTimeout(
+            () => item.remove(),
+            250
+        );
+
+    },3000);
+
+}
+
+
+/* ================= FILTER ================= */
 
 function getFilteredPlayers(){
 
-    if(selectedMonth === "all"){
-        return players;
-    }
-
     return players.filter(player => {
 
-        if(!player.date) return false;
+        if(
+            selectedMonth !== "all" &&
+            (!player.date ||
+             player.date.split("-")[1] !== selectedMonth)
+        ){
 
-        const month =
-            String(player.date).split("-")[1];
+            return false;
 
-        return month === selectedMonth;
+        }
+
+
+        if(
+            selectedYear !== "all" &&
+            (!player.date ||
+             player.date.split("-")[0] !== selectedYear)
+        ){
+
+            return false;
+
+        }
+
+
+        return true;
 
     });
 
 }
 
 
-function changeMonthFilter(){
+/* ================= CHANGE FILTERS ================= */
+
+function changeFilters(){
 
     selectedMonth =
-        document.getElementById("monthFilter").value;
+        document.getElementById(
+            "monthFilter"
+        ).value;
 
-    const names = {
-        "01":"يناير",
-        "02":"فبراير",
-        "03":"مارس",
-        "04":"أبريل",
-        "05":"مايو",
-        "06":"يونيو",
-        "07":"يوليو",
-        "08":"أغسطس",
-        "09":"سبتمبر",
-        "10":"أكتوبر",
-        "11":"نوفمبر",
-        "12":"ديسمبر"
-    };
+    selectedYear =
+        document.getElementById(
+            "yearFilter"
+        ).value;
 
-    document.getElementById("filterText").textContent =
-        selectedMonth === "all"
-        ? "كل اللاعبين"
-        : "لاعبي شهر " + names[selectedMonth];
+
+    let text = "كل اللاعبين";
+
+
+    if(
+        selectedMonth !== "all" &&
+        selectedYear !== "all"
+    ){
+
+        text =
+            `لاعبي ${monthNames[selectedMonth]} ${selectedYear}`;
+
+    }
+
+    else if(
+        selectedMonth !== "all"
+    ){
+
+        text =
+            `لاعبي شهر ${monthNames[selectedMonth]}`;
+
+    }
+
+    else if(
+        selectedYear !== "all"
+    ){
+
+        text =
+            `لاعبي سنة ${selectedYear}`;
+
+    }
+
+
+    document.getElementById(
+        "filterText"
+    ).textContent = text;
+
 
     render();
 
 }
 
 
-/* ================= RENDER SPORT ================= */
+/* ================= YEARS ================= */
 
-function renderSport(
-    sport,
-    bodyId,
-    searchId,
-    cardId
-){
+function loadYears(){
 
-    const body =
-        document.getElementById(bodyId);
-
-    const search =
-        document.getElementById(searchId)
-        .value
-        .trim()
-        .toLowerCase();
-
-    let data =
-        getFilteredPlayers()
-        .filter(p => p.sport === sport);
-
-    if(search){
-
-        data = data.filter(p =>
-            String(p.name)
-                .toLowerCase()
-                .includes(search)
-            ||
-            String(p.phone)
-                .toLowerCase()
-                .includes(search)
+    const select =
+        document.getElementById(
+            "yearFilter"
         );
+
+    const currentYear =
+        new Date().getFullYear();
+
+
+    const years =
+        [...new Set(
+
+            players
+
+                .map(p =>
+                    p.date
+                    ? p.date.split("-")[0]
+                    : null
+                )
+
+                .filter(Boolean)
+
+        )]
+        .sort((a,b) => b-a);
+
+
+    select.innerHTML =
+        `<option value="all">
+            كل السنوات
+        </option>`;
+
+
+    years.forEach(year => {
+
+        select.innerHTML += `
+
+            <option value="${year}">
+                ${year}
+            </option>
+
+        `;
+
+    });
+
+
+    if(
+        !years.includes(
+            String(currentYear)
+        )
+    ){
+
+        select.innerHTML += `
+
+            <option value="${currentYear}">
+                ${currentYear}
+            </option>
+
+        `;
 
     }
 
-    document.getElementById(cardId).textContent =
-        data.length;
+}
+
+
+/* ================= SEARCH ================= */
+
+function getSearchFiltered(data){
+
+    const input =
+        document.getElementById(
+            "globalSearch"
+        );
+
+    const search =
+        input.value
+            .trim()
+            .toLowerCase();
+
+
+    if(!search)
+        return data;
+
+
+    return data.filter(player =>
+
+        String(player.name || "")
+            .toLowerCase()
+            .includes(search)
+
+        ||
+
+        String(player.phone || "")
+            .toLowerCase()
+            .includes(search)
+
+        ||
+
+        sportName(player.sport)
+            .toLowerCase()
+            .includes(search)
+
+    );
+
+}
+
+
+/* ================= RENDER PLAYER CARDS ================= */
+
+function renderPlayers(){
+
+    const container =
+        document.getElementById(
+            "playersCards"
+        );
+
+
+    let data =
+        getSearchFiltered(
+            getFilteredPlayers()
+        );
+
 
     if(!data.length){
 
-        body.innerHTML = `
-            <tr>
-                <td colspan="5">
-                    <div class="empty">
-                        لا يوجد لاعبين لعرضهم
-                    </div>
-                </td>
-            </tr>
+        container.innerHTML = `
+
+            <div
+                class="empty"
+                style="grid-column:1/-1">
+
+                📭 لا يوجد لاعبين مطابقين للبحث
+
+            </div>
+
         `;
 
         return;
+
     }
 
 
-    body.innerHTML = data.map(player => {
+    container.innerHTML =
+        data.map(player => {
 
-        const originalIndex =
-            players.indexOf(player);
+            const index =
+                players.indexOf(player);
 
-        const initials =
-            esc(
-                String(player.name || "لاعب")
-                .trim()
-                .charAt(0)
-            );
 
-        return `
+            const initials =
+                esc(
+                    String(
+                        player.name || "ل"
+                    )
+                    .trim()
+                    .charAt(0)
+                );
 
-        <tr>
 
-            <td>
+            return `
 
-                <div class="player">
+                <div class="player-card">
 
-                    <div class="avatar">
-                        ${initials}
+                    <div class="player-card-top">
+
+                        <div class="player-profile">
+
+                            <div class="player-avatar">
+                                ${initials}
+                            </div>
+
+                            <div>
+
+                                <div class="player-name">
+                                    ${esc(player.name)}
+                                </div>
+
+                                <div class="player-sport">
+                                    ${sportIcon(player.sport)}
+                                    ${sportName(player.sport)}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <span
+                            class="badge ${
+                                player.status === "active"
+                                ? "badge-active"
+                                : "badge-paused"
+                            }">
+
+                            ${
+                                player.status === "active"
+                                ? "● نشط"
+                                : "● متوقف"
+                            }
+
+                        </span>
+
                     </div>
 
-                    ${esc(player.name)}
+
+                    <div class="player-details">
+
+                        <div class="detail">
+
+                            <span>
+                                رقم الهاتف
+                            </span>
+
+                            <strong>
+                                ${esc(player.phone || "-")}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <span>
+                                تاريخ التسجيل
+                            </span>
+
+                            <strong>
+                                ${esc(player.date || "-")}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-actions">
+
+                        <button
+                            onclick="editPlayer(${index})">
+
+                            ✏️ تعديل
+
+                        </button>
+
+
+                        <button
+                            class="delete-btn"
+                            onclick="deletePlayer(${index})">
+
+                            🗑️ حذف
+
+                        </button>
+
+                    </div>
 
                 </div>
 
-            </td>
+            `;
 
-            <td>
-                ${esc(player.phone || "-")}
-            </td>
+        })
+        .join("");
 
-            <td>
-                ${esc(player.date || "-")}
-            </td>
+}
 
-            <td>
 
-                <span class="badge ${
-                    player.status === "active"
-                    ? "badge-active"
-                    : "badge-paused"
-                }">
+/* ================= DASHBOARD STATS ================= */
 
-                    ${
-                        player.status === "active"
-                        ? "● نشط"
-                        : "● متوقف"
-                    }
+function renderStats(){
 
-                </span>
+    const data =
+        getFilteredPlayers();
 
-            </td>
 
-            <td>
+    const total =
+        data.length;
 
-                <div class="actions">
 
-                    <button
-                        class="action"
-                        title="تعديل"
-                        onclick="editPlayer(${originalIndex})">
+    const active =
+        data.filter(
+            p => p.status === "active"
+        ).length;
 
-                        ✏️
 
-                    </button>
+    const paused =
+        data.filter(
+            p => p.status === "paused"
+        ).length;
 
-                    <button
-                        class="action delete"
-                        title="حذف"
-                        onclick="deletePlayer(${originalIndex})">
 
-                        🗑️
+    const currentMonth =
+        String(
+            new Date().getMonth()+1
+        ).padStart(2,"0");
 
-                    </button>
+
+    const currentYear =
+        String(
+            new Date().getFullYear()
+        );
+
+
+    const thisMonth =
+        players.filter(p =>
+
+            p.date &&
+            p.date.split("-")[1] === currentMonth &&
+            p.date.split("-")[0] === currentYear
+
+        ).length;
+
+
+    document.getElementById(
+        "total"
+    ).textContent = total;
+
+
+    document.getElementById(
+        "activeTotal"
+    ).textContent = active;
+
+
+    document.getElementById(
+        "pausedTotal"
+    ).textContent = paused;
+
+
+    document.getElementById(
+        "monthTotal"
+    ).textContent = thisMonth;
+
+
+    const hand =
+        data.filter(
+            p => p.sport === "hand"
+        ).length;
+
+
+    const basket =
+        data.filter(
+            p => p.sport === "basket"
+        ).length;
+
+
+    const volley =
+        data.filter(
+            p => p.sport === "volley"
+        ).length;
+
+
+    const percent =
+        value =>
+            total
+            ? Math.round(
+                value / total * 100
+            )
+            : 0;
+
+
+    const activePercent =
+        percent(active);
+
+
+    const handPercent =
+        percent(hand);
+
+
+    const basketPercent =
+        percent(basket);
+
+
+    const volleyPercent =
+        percent(volley);
+
+
+    document.getElementById(
+        "activePercent"
+    ).textContent =
+        activePercent + "%";
+
+
+    document.getElementById(
+        "handPercent"
+    ).textContent =
+        handPercent + "%";
+
+
+    document.getElementById(
+        "basketPercent"
+    ).textContent =
+        basketPercent + "%";
+
+
+    document.getElementById(
+        "volleyPercent"
+    ).textContent =
+        volleyPercent + "%";
+
+
+    document.getElementById(
+        "activeProgress"
+    ).style.width =
+        activePercent + "%";
+
+
+    document.getElementById(
+        "handProgress"
+    ).style.width =
+        handPercent + "%";
+
+
+    document.getElementById(
+        "basketProgress"
+    ).style.width =
+        basketPercent + "%";
+
+
+    document.getElementById(
+        "volleyProgress"
+    ).style.width =
+        volleyPercent + "%";
+
+
+    document.getElementById(
+        "handDistribution"
+    ).textContent =
+        handPercent + "%";
+
+
+    document.getElementById(
+        "basketDistribution"
+    ).textContent =
+        basketPercent + "%";
+
+
+    document.getElementById(
+        "volleyDistribution"
+    ).textContent =
+        volleyPercent + "%";
+
+
+    document.getElementById(
+        "handBar"
+    ).style.width =
+        handPercent + "%";
+
+
+    document.getElementById(
+        "basketBar"
+    ).style.width =
+        basketPercent + "%";
+
+
+    document.getElementById(
+        "volleyBar"
+    ).style.width =
+        volleyPercent + "%";
+
+
+    document.getElementById(
+        "subscriptionPercent"
+    ).textContent =
+        activePercent + "%";
+
+
+    document.getElementById(
+        "playersSubtitle"
+    ).textContent =
+        `يتم عرض ${data.length} لاعب`;
+}
+
+
+/* ================= RENDER ACTIVITY ================= */
+
+function renderActivity(){
+
+    const list =
+        document.getElementById(
+            "activityList"
+        );
+
+
+    const data =
+        getFilteredPlayers();
+
+
+    const recent =
+        [...data]
+
+        .sort(
+            (a,b) =>
+                new Date(b.date || 0)
+                -
+                new Date(a.date || 0)
+        )
+
+        .slice(0,8);
+
+
+    if(!recent.length){
+
+        list.innerHTML = `
+
+            <div class="activity-item">
+
+                <div class="activity-icon">
+                    📭
+                </div>
+
+                <div class="activity-text">
+
+                    <strong>
+                        لا توجد نشاطات بعد
+                    </strong>
+
+                    <span>
+                        ابدأ بتسجيل أول لاعب
+                    </span>
 
                 </div>
 
-            </td>
-
-        </tr>
+            </div>
 
         `;
 
-    }).join("");
+        return;
+
+    }
+
+
+    list.innerHTML =
+        recent
+        .map(player => `
+
+            <div class="activity-item">
+
+                <div class="activity-icon">
+                    ${sportIcon(player.sport)}
+                </div>
+
+                <div class="activity-text">
+
+                    <strong>
+                        تم تسجيل ${esc(player.name)}
+                    </strong>
+
+                    <span>
+                        ${sportName(player.sport)}
+                        •
+                        ${esc(player.date || "-")}
+                    </span>
+
+                </div>
+
+            </div>
+
+        `)
+        .join("");
 
 }
 
@@ -1861,45 +3311,11 @@ function renderSport(
 
 function render(){
 
-    const filtered =
-        getFilteredPlayers();
+    renderStats();
 
-    document.getElementById("total").textContent =
-        filtered.length;
+    renderPlayers();
 
-    document.getElementById("handTotal").textContent =
-        filtered.filter(p => p.sport === "hand").length;
-
-    document.getElementById("basketTotal").textContent =
-        filtered.filter(p => p.sport === "basket").length;
-
-    document.getElementById("volleyTotal").textContent =
-        filtered.filter(p => p.sport === "volley").length;
-
-
-    renderSport(
-        "hand",
-        "bodyHand",
-        "searchHand",
-        "handCard"
-    );
-
-    renderSport(
-        "basket",
-        "bodyBasket",
-        "searchBasket",
-        "basketCard"
-    );
-
-    renderSport(
-        "volley",
-        "bodyVolley",
-        "searchVolley",
-        "volleyCard"
-    );
-
-
-    renderActivity(filtered);
+    renderActivity();
 
 }
 
@@ -1909,47 +3325,82 @@ function render(){
 function addPlayer(){
 
     const name =
-        document.getElementById("playerName")
+        document.getElementById(
+            "playerName"
+        )
         .value
         .trim();
+
 
     const sport =
-        document.getElementById("playerSport")
-        .value;
+        document.getElementById(
+            "playerSport"
+        ).value;
+
 
     const phone =
-        document.getElementById("playerPhone")
+        document.getElementById(
+            "playerPhone"
+        )
         .value
         .trim();
 
+
     const status =
-        document.getElementById("playerStatus")
-        .value;
+        document.getElementById(
+            "playerStatus"
+        ).value;
+
 
     const date =
-        document.getElementById("playerDate")
-        .value;
+        document.getElementById(
+            "playerDate"
+        ).value;
 
 
     if(!name){
 
-        alert("اكتب اسم اللاعب أولاً");
+        notify(
+            "اكتب اسم اللاعب أولاً",
+            "error"
+        );
 
         return;
+
     }
 
 
     if(!date){
 
-        alert("اختار تاريخ التسجيل");
+        notify(
+            "اختار تاريخ التسجيل",
+            "error"
+        );
 
         return;
+
+    }
+
+
+    if(
+        phone &&
+        !/^01[0-9]{9}$/.test(phone)
+    ){
+
+        notify(
+            "رقم الهاتف لازم يكون 11 رقم ويبدأ بـ 01",
+            "error"
+        );
+
+        return;
+
     }
 
 
     players.push({
 
-        id:Date.now(),
+        id:
+            Date.now(),
 
         name,
 
@@ -1966,18 +3417,32 @@ function addPlayer(){
 
     save();
 
-    document.getElementById("playerName").value = "";
+    loadYears();
 
-    document.getElementById("playerPhone").value = "";
 
-    document.getElementById("playerDate").valueAsDate =
+    document.getElementById(
+        "playerName"
+    ).value = "";
+
+
+    document.getElementById(
+        "playerPhone"
+    ).value = "";
+
+
+    document.getElementById(
+        "playerDate"
+    ).valueAsDate =
         new Date();
 
 
     render();
 
 
-    alert("✅ تم تسجيل اللاعب بنجاح");
+    notify(
+        `تم تسجيل ${name} بنجاح 🎉`,
+        "success"
+    );
 
 }
 
@@ -1989,22 +3454,38 @@ function deletePlayer(index){
     const player =
         players[index];
 
-    if(!player) return;
+
+    if(!player)
+        return;
 
 
-    const confirmDelete =
+    const ok =
         confirm(
             `هل تريد حذف اللاعب "${player.name}"؟`
         );
 
-    if(!confirmDelete) return;
+
+    if(!ok)
+        return;
 
 
-    players.splice(index,1);
+    players.splice(
+        index,
+        1
+    );
+
 
     save();
 
+    loadYears();
+
     render();
+
+
+    notify(
+        "تم حذف اللاعب بنجاح",
+        "success"
+    );
 
 }
 
@@ -2016,24 +3497,40 @@ function editPlayer(index){
     const player =
         players[index];
 
-    if(!player) return;
+
+    if(!player)
+        return;
 
 
-    document.getElementById("editIndex").value =
+    document.getElementById(
+        "editIndex"
+    ).value =
         index;
 
-    document.getElementById("editName").value =
+
+    document.getElementById(
+        "editName"
+    ).value =
         player.name || "";
 
-    document.getElementById("editPhone").value =
+
+    document.getElementById(
+        "editPhone"
+    ).value =
         player.phone || "";
 
-    document.getElementById("editStatus").value =
+
+    document.getElementById(
+        "editStatus"
+    ).value =
         player.status || "active";
 
 
-    document.getElementById("editModal")
-        .classList.add("show");
+    document.getElementById(
+        "editModal"
+    )
+    .classList
+    .add("show");
 
 }
 
@@ -2042,20 +3539,75 @@ function saveEdit(){
 
     const index =
         Number(
-            document.getElementById("editIndex").value
+            document.getElementById(
+                "editIndex"
+            ).value
         );
 
-    if(!players[index]) return;
+
+    if(!players[index])
+        return;
+
+
+    const name =
+        document.getElementById(
+            "editName"
+        )
+        .value
+        .trim();
+
+
+    const phone =
+        document.getElementById(
+            "editPhone"
+        )
+        .value
+        .trim();
+
+
+    const status =
+        document.getElementById(
+            "editStatus"
+        ).value;
+
+
+    if(!name){
+
+        notify(
+            "اسم اللاعب مطلوب",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        phone &&
+        !/^01[0-9]{9}$/.test(phone)
+    ){
+
+        notify(
+            "رقم الهاتف غير صحيح",
+            "error"
+        );
+
+        return;
+
+    }
 
 
     players[index].name =
-        document.getElementById("editName").value.trim();
+        name;
+
 
     players[index].phone =
-        document.getElementById("editPhone").value.trim();
+        phone;
+
 
     players[index].status =
-        document.getElementById("editStatus").value;
+        status;
 
 
     save();
@@ -2064,110 +3616,64 @@ function saveEdit(){
 
     render();
 
+
+    notify(
+        "تم تعديل بيانات اللاعب",
+        "success"
+    );
+
 }
 
 
 function closeModal(){
 
-    document.getElementById("editModal")
-        .classList.remove("show");
+    document
+        .getElementById("editModal")
+        .classList
+        .remove("show");
 
 }
 
 
-/* ================= ACTIVITY ================= */
-
-function renderActivity(data){
-
-    const list =
-        document.getElementById("activityList");
-
-    const recent =
-        [...data]
-        .sort(
-            (a,b) =>
-                new Date(b.date || 0) -
-                new Date(a.date || 0)
-        )
-        .slice(0,8);
-
-
-    if(!recent.length){
-
-        list.innerHTML = `
-            <div class="activity-item">
-                <div class="activity-icon">📭</div>
-                <div class="activity-text">
-                    <strong>لا توجد نشاطات بعد</strong>
-                    <span>ابدأ بتسجيل أول لاعب</span>
-                </div>
-            </div>
-        `;
-
-        return;
-    }
-
-
-    list.innerHTML =
-        recent.map(player => `
-
-        <div class="activity-item">
-
-            <div class="activity-icon">
-                ${
-                    player.sport === "hand"
-                    ? "🤾"
-                    : player.sport === "basket"
-                    ? "🏀"
-                    : "🏐"
-                }
-            </div>
-
-            <div class="activity-text">
-
-                <strong>
-                    تم تسجيل ${esc(player.name)}
-                </strong>
-
-                <span>
-                    ${sportName(player.sport)}
-                    • ${esc(player.date || "-")}
-                </span>
-
-            </div>
-
-        </div>
-
-        `).join("");
-
-}
-
-
-/* ================= CLEAR ================= */
+/* ================= CLEAR ALL ================= */
 
 function clearAll(){
 
     if(!players.length){
 
-        alert("لا توجد بيانات لحذفها");
+        notify(
+            "لا توجد بيانات لحذفها",
+            "info"
+        );
 
         return;
+
     }
 
 
     const ok =
         confirm(
-            "⚠️ هل أنت متأكد من حذف جميع اللاعبين؟"
+            "⚠️ سيتم حذف جميع اللاعبين نهائياً من هذا المتصفح. هل أنت متأكد؟"
         );
 
-    if(!ok) return;
+
+    if(!ok)
+        return;
 
 
     players = [];
 
     save();
 
+    loadYears();
+
     render();
+
+
+    notify(
+        "تم حذف جميع البيانات",
+        "success"
+    );
 
 }
 
@@ -2178,35 +3684,67 @@ function exportData(){
 
     if(!players.length){
 
-        alert("لا توجد بيانات لتصديرها");
+        notify(
+            "لا توجد بيانات لتصديرها",
+            "info"
+        );
 
         return;
+
     }
 
 
     const data =
-        JSON.stringify(players,null,2);
+        JSON.stringify(
+            players,
+            null,
+            2
+        );
+
 
     const blob =
         new Blob(
             [data],
-            {type:"application/json"}
+            {
+                type:
+                    "application/json"
+            }
         );
 
+
     const url =
-        URL.createObjectURL(blob);
+        URL.createObjectURL(
+            blob
+        );
+
 
     const a =
-        document.createElement("a");
+        document.createElement(
+            "a"
+        );
+
 
     a.href = url;
+
 
     a.download =
         "professional-academy-players.json";
 
+
+    document.body.appendChild(a);
+
     a.click();
 
+    a.remove();
+
+
     URL.revokeObjectURL(url);
+
+
+    notify(
+        "تم تصدير بيانات الأكاديمية 📥",
+        "success"
+    );
 
 }
 
@@ -2217,7 +3755,8 @@ function toggleSide(){
 
     document
         .getElementById("sidebar")
-        .classList.toggle("open");
+        .classList
+        .toggle("open");
 
 }
 
@@ -2226,28 +3765,78 @@ function closeSide(){
 
     document
         .getElementById("sidebar")
-        .classList.remove("open");
+        .classList
+        .remove("open");
 
 }
+
+
+/* ================= SCROLL ================= */
+
+function scrollToSection(id){
+
+    const element =
+        document.getElementById(id);
+
+
+    if(element){
+
+        element.scrollIntoView({
+            behavior:"smooth"
+        });
+
+    }
+
+}
+
+
+/* ================= MODAL CLICK ================= */
+
+document
+    .getElementById("editModal")
+    .addEventListener(
+        "click",
+        function(e){
+
+            if(e.target === this){
+
+                closeModal();
+
+            }
+
+        }
+    );
+
+
+/* ================= ESC CLOSE ================= */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key === "Escape"){
+
+            closeModal();
+
+            closeSide();
+
+        }
+
+    }
+);
 
 
 /* ================= INIT ================= */
 
 document
-    .getElementById("playerDate")
-    .valueAsDate = new Date();
+    .getElementById(
+        "playerDate"
+    )
+    .valueAsDate =
+        new Date();
 
 
-document
-    .getElementById("editModal")
-    .addEventListener("click",function(e){
-
-        if(e.target === this){
-            closeModal();
-        }
-
-    });
-
+loadYears();
 
 render();
 
