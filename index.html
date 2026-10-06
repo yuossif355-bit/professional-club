@@ -62,7 +62,8 @@ button{cursor:pointer}
 .nav a.active{background:linear-gradient(90deg,#ffbd13,#ff9b00);color:#06111e;box-shadow:0 10px 25px rgba(255,174,0,.2)}
 .nav .ico{width:27px;text-align:center;font-size:20px}
 .side-sports{margin-top:10px;border-top:1px solid var(--line);padding-top:10px}
-.sport-mini{display:flex;align-items:center;gap:10px;padding:10px 12px;color:#c5d6e6}
+.sport-mini{display:flex;align-items:center;gap:10px;padding:10px 12px;color:#c5d6e6;text-decoration:none;font-weight:700;font-size:13px}
+.sport-mini:hover{color:#fff}
 .dot{width:12px;height:12px;border-radius:50%;box-shadow:0 0 14px currentColor}
 .dot.hand{color:var(--yellow);background:var(--yellow)}
 .dot.basket{color:var(--blue);background:var(--blue)}
@@ -114,7 +115,7 @@ button{cursor:pointer}
 .btn.ghost{background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.13)}
 .hero-ball{position:absolute;right:7%;bottom:-55px;font-size:190px;opacity:.1;filter:blur(.2px);transform:rotate(-18deg)}
 
-.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:24px 0 13px}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:15px;margin:24px 0 13px}
 .section-head h3{margin:0;font-size:20px}.section-head p{margin:2px 0 0;color:var(--muted);font-size:12px}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
 .stat{
@@ -156,14 +157,19 @@ td{padding:9px 10px;border-top:1px solid rgba(255,255,255,.05);color:#dbe8f4}
   margin-top:22px;border:1px solid var(--line);border-radius:23px;padding:20px;
   background:linear-gradient(145deg,#092744,#06172a)
 }
-.form-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr auto;gap:10px;align-items:end}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:12px;align-items:end}
+.form-grid .submit-wrap{grid-column: 1 / -1; margin-top: 5px;}
+@media(min-width: 1024px){
+  .form-grid{grid-template-columns:1.2fr 1fr 1fr 1fr 1fr auto}
+  .form-grid .submit-wrap{grid-column: auto; margin-top: 0;}
+}
 .field label{display:block;color:#91aac1;font-size:10px;margin:0 0 6px 3px;font-weight:700}
 .field input,.field select{
   width:100%;padding:11px 12px;border-radius:11px;border:1px solid var(--line);outline:0;
   background:#041526;color:#fff
 }
 .field input:focus,.field select:focus{border-color:var(--yellow)}
-.submit{height:44px;padding:0 19px;border:0;border-radius:11px;background:linear-gradient(135deg,var(--yellow),var(--yellow2));font-weight:900;color:#07111c}
+.submit{height:44px;width:100%;padding:0 19px;border:0;border-radius:11px;background:linear-gradient(135deg,var(--yellow),var(--yellow2));font-weight:900;color:#07111c}
 
 .activity{
   margin-top:22px;display:grid;grid-template-columns:1.4fr .6fr;gap:15px
@@ -184,8 +190,6 @@ td{padding:9px 10px;border-top:1px solid rgba(255,255,255,.05);color:#dbe8f4}
 @media(max-width:1150px){
   .sports-grid{grid-template-columns:1fr}
   .sport-card .table-wrap{max-height:300px}
-  .form-grid{grid-template-columns:repeat(2,1fr)}
-  .submit{width:100%}
 }
 @media(max-width:900px){
   .app{grid-template-columns:1fr}
@@ -201,7 +205,6 @@ td{padding:9px 10px;border-top:1px solid rgba(255,255,255,.05);color:#dbe8f4}
 }
 @media(max-width:600px){
   .stats{grid-template-columns:1fr 1fr}
-  .form-grid{grid-template-columns:1fr}
   .hero h1{font-size:32px}
   .user div:not(.avatar){display:none}
   .sport-top{min-height:140px}
@@ -225,16 +228,16 @@ td{padding:9px 10px;border-top:1px solid rgba(255,255,255,.05);color:#dbe8f4}
 
     <div class="nav-title">الرياضات</div>
     <div class="side-sports">
-      <a class="sport-mini" href="#handball"><span class="dot hand"></span> كرة اليد</a>
-      <a class="sport-mini" href="#basketball"><span class="dot basket"></span> كرة السلة</a>
-      <a class="sport-mini" href="#volleyball"><span class="dot volley"></span> كرة الطائرة</a>
+      <a class="sport-mini" href="#handball" onclick="closeSide()"><span class="dot hand"></span> كرة اليد</a>
+      <a class="sport-mini" href="#basketball" onclick="closeSide()"><span class="dot basket"></span> كرة السلة</a>
+      <a class="sport-mini" href="#volleyball" onclick="closeSide()"><span class="dot volley"></span> كرة الطائرة</a>
     </div>
 
     <div class="nav-title">الأدوات</div>
     <nav class="nav">
-      <a href="#players"><span class="ico">⌕</span>بحث عن لاعب</a>
-      <a href="#" onclick="exportData();return false"><span class="ico">⬇</span>حفظ البيانات</a>
-      <a href="#" onclick="clearAll();return false"><span class="ico">♜</span>حذف البيانات</a>
+      <a href="#players" onclick="closeSide()"><span class="ico">⌕</span>بحث عن لاعب</a>
+      <a href="#" onclick="exportData();closeSide();return false"><span class="ico">⬇</span>حفظ البيانات</a>
+      <a href="#" onclick="clearAll();closeSide();return false"><span class="ico">♜</span>حذف البيانات</a>
     </nav>
 
     <div class="quote"><b>معًا نصنع الأبطال</b><span>كل لاعب.. حكاية نجاح</span></div>
@@ -256,8 +259,8 @@ td{padding:9px 10px;border-top:1px solid rgba(255,255,255,.05);color:#dbe8f4}
         <h1><span>PROFESSIONAL</span><br><em>ACADEMY</em></h1>
         <p>أكاديمية رياضية احترافية لصناعة الأبطال وإدارة لاعبي كرة اليد والسلة والطائرة في مكان واحد.</p>
         <div class="hero-actions">
-          <button class="btn primary" onclick="document.getElementById('register').scrollIntoView()">+ تسجيل لاعب جديد</button>
-          <button class="btn ghost" onclick="document.getElementById('players').scrollIntoView()">عرض اللاعبين</button>
+          <button class="btn primary" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'})">+ تسجيل لاعب جديد</button>
+          <button class="btn ghost" onclick="document.getElementById('players').scrollIntoView({behavior:'smooth'})">عرض اللاعبين</button>
         </div>
       </div>
       <div class="hero-ball">🏀</div>
@@ -321,91 +324,7 @@ td{padding:9px 10px;border-top:1px solid rgba(255,255,255,.05);color:#dbe8f4}
           <div class="field"><label>رقم الهاتف</label><input id="playerPhone" required placeholder="01xxxxxxxxx"></div>
           <div class="field"><label>حالة الاشتراك</label><select id="playerStatus"><option value="مدفوع">تم الدفع ✅</option><option value="غير مدفوع">مستحق الدفع ⏳</option></select></div>
           <div class="field"><label>التاريخ</label><input id="playerDate" type="date" required></div>
-          <button class="submit">إضافة اللاعب +</button>
+          <div class="submit-wrap"><button type="submit" class="submit">إضافة اللاعب +</button></div>
         </div>
       </form>
     </section>
-
-    <section class="activity">
-      <div class="box">
-        <div class="section-head" style="margin-top:0"><div><h3>آخر اللاعبين</h3><p>آخر عمليات التسجيل</p></div></div>
-        <div id="activityList"><div class="empty">لا توجد بيانات حتى الآن</div></div>
-      </div>
-      <div class="box note"><strong>كل لاعب.. حكاية نجاح</strong><p>نحن لا ندرب لاعبين فقط، بل نصنع أبطال المستقبل.</p><div>⭐ ⭐ ⭐</div></div>
-    </section>
-  </main>
-</div>
-
-<div class="modal" id="editModal">
-  <div class="modal-box">
-    <div class="modal-head"><h3>تعديل بيانات اللاعب</h3><button class="close" onclick="closeModal()">×</button></div>
-    <input type="hidden" id="editIndex">
-    <div class="field" style="margin-top:15px"><label>اسم اللاعب</label><input id="editName"></div>
-    <div class="field" style="margin-top:12px"><label>رقم الهاتف</label><input id="editPhone"></div>
-    <div class="field" style="margin-top:12px"><label>حالة الاشتراك</label><select id="editStatus"><option>مدفوع</option><option>غير مدفوع</option></select></div>
-    <button class="submit" style="width:100%;margin-top:16px" onclick="saveEdit()">حفظ التعديل</button>
-  </div>
-</div>
-
-<script>
-const KEY='professionalAcademyPlayers';
-let players=JSON.parse(localStorage.getItem(KEY)||'[]');
-
-function sportName(k){return k==='hand'?'كرة اليد':k==='basket'?'كرة السلة':'كرة الطائرة'}
-function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
-function save(){localStorage.setItem(KEY,JSON.stringify(players))}
-function renderSport(key){
-  const body=document.getElementById(key==='hand'?'bodyHand':key==='basket'?'bodyBasket':'bodyVolley');
-  const input=document.getElementById(key==='hand'?'searchHand':key==='basket'?'searchBasket':'searchVolley');
-  const q=(input?.value||'').trim().toLowerCase();
-  const list=players.map((p,i)=>({...p,index:i})).filter(p=>p.sport===key && (!q || p.name.toLowerCase().includes(q)||p.phone.includes(q)));
-  body.innerHTML=list.length?list.map((p,n)=>`
-    <tr>
-      <td>${n+1}</td><td class="player-name">${esc(p.name)}</td><td>${esc(p.phone)}</td>
-      <td>${p.status==='مدفوع'?'🟢 مدفوع':'🟠 مستحق'}</td>
-      <td><div class="actions"><button class="action edit" onclick="editPlayer(${p.index})">✎</button><button class="action del" onclick="deletePlayer(${p.index})">×</button></div></td>
-    </tr>`).join(''):'<tr><td colspan="5" class="empty">لا يوجد لاعبين في هذه القائمة</td></tr>';
-}
-function render(){
-  const h=players.filter(p=>p.sport==='hand').length,b=players.filter(p=>p.sport==='basket').length,v=players.filter(p=>p.sport==='volley').length;
-  document.getElementById('total').textContent=players.length;
-  document.getElementById('handTotal').textContent=h;document.getElementById('basketTotal').textContent=b;document.getElementById('volleyTotal').textContent=v;
-  document.getElementById('handCard').textContent=h;document.getElementById('basketCard').textContent=b;document.getElementById('volleyCard').textContent=v;
-  ['hand','basket','volley'].forEach(renderSport);
-  const last=[...players].slice(-5).reverse();
-  document.getElementById('activityList').innerHTML=last.length?last.map(p=>`
-    <div class="activity-row"><div class="activity-icon">${p.sport==='hand'?'🤾':p.sport==='basket'?'🏀':'🏐'}</div><div><b>تم تسجيل اللاعب ${esc(p.name)}</b><small>${sportName(p.sport)} • ${esc(p.status)} • ${esc(p.date)}</small></div></div>`).join(''):'<div class="empty">لا توجد بيانات حتى الآن</div>';
-}
-function addPlayer(e){
-  e.preventDefault();
-  const p={name:playerName.value.trim(),sport:playerSport.value,phone:playerPhone.value.trim(),status:playerStatus.value,date:playerDate.value};
-  players.push(p);save();render();e.target.reset();
-  alert('تم تسجيل اللاعب بنجاح ✅');
-  document.getElementById(p.sport==='hand'?'handball':p.sport==='basket'?'basketball':'volleyball').scrollIntoView({behavior:'smooth',block:'center'});
-}
-function deletePlayer(i){
-  if(confirm('هل تريد حذف هذا اللاعب؟')){players.splice(i,1);save();render()}
-}
-function editPlayer(i){
-  const p=players[i];document.getElementById('editIndex').value=i;document.getElementById('editName').value=p.name;document.getElementById('editPhone').value=p.phone;document.getElementById('editStatus').value=p.status;document.getElementById('editModal').classList.add('show')
-}
-function saveEdit(){
-  const i=+document.getElementById('editIndex').value;
-  players[i].name=document.getElementById('editName').value.trim();players[i].phone=document.getElementById('editPhone').value.trim();players[i].status=document.getElementById('editStatus').value;
-  save();render();closeModal()
-}
-function closeModal(){document.getElementById('editModal').classList.remove('show')}
-function clearAll(){
-  if(confirm('سيتم حذف جميع اللاعبين من الجهاز. هل أنت متأكد؟')){players=[];save();render()}
-}
-function exportData(){
-  const blob=new Blob([JSON.stringify(players,null,2)],{type:'application/json'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='professional-academy-players.json';a.click();URL.revokeObjectURL(a.href)
-}
-function toggleSide(){document.getElementById('sidebar').classList.toggle('open')}
-function closeSide(){if(innerWidth<=900)document.getElementById('sidebar').classList.remove('open')}
-document.getElementById('playerDate').valueAsDate=new Date();
-render();
-</script>
-</body>
-</html>
