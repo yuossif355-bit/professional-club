@@ -1,19 +1,157 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Professional Academy | Sports Management</title>
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<!-- ================= SEO ================= -->
+
+<title>Professional Academy | الأكاديمية الرياضية</title>
+
+<meta
+    name="description"
+    content="Professional Academy - الأكاديمية الرياضية لإدارة لاعبي كرة اليد وكرة السلة والكرة الطائرة، التسجيل والاشتراكات والإحصائيات من مكان واحد."
+>
+
+<meta
+    name="keywords"
+    content="Professional Academy, أكاديمية بروفيشنال, الأكاديمية الرياضية, كرة اليد, كرة السلة, كرة الطائرة, أكاديمية كرة قدم, إدارة اللاعبين, اشتراكات اللاعبين"
+>
+
+<meta
+    name="author"
+    content="Professional Academy"
+>
+
+<meta
+    name="robots"
+    content="index, follow"
+>
+
+<meta
+    name="googlebot"
+    content="index, follow"
+>
+
+<meta
+    name="theme-color"
+    content="#020914"
+>
+
+<meta
+    name="application-name"
+    content="Professional Academy"
+>
+
+<meta
+    name="apple-mobile-web-app-title"
+    content="Professional Academy"
+>
+
+<!-- ================= OPEN GRAPH ================= -->
+
+<meta
+    property="og:type"
+    content="website"
+>
+
+<meta
+    property="og:title"
+    content="Professional Academy | الأكاديمية الرياضية"
+>
+
+<meta
+    property="og:description"
+    content="نظام احترافي لإدارة لاعبي الأكاديمية والاشتراكات والإحصائيات والرياضات."
+>
+
+<meta
+    property="og:site_name"
+    content="Professional Academy"
+>
+
+<meta
+    property="og:locale"
+    content="ar_EG"
+>
+
+<!-- ================= TWITTER ================= -->
+
+<meta
+    name="twitter:card"
+    content="summary"
+>
+
+<meta
+    name="twitter:title"
+    content="Professional Academy | الأكاديمية الرياضية"
+>
+
+<meta
+    name="twitter:description"
+    content="نظام احترافي لإدارة لاعبي الأكاديمية والاشتراكات والإحصائيات."
+>
+
+<!-- ================= FAVICON ================= -->
+
+<link
+    rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🏆%3C/text%3E%3C/svg%3E"
+>
+
+<!-- ================= GOOGLE FONTS ================= -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap"
+    rel="stylesheet"
+>
+
+<!-- ================= STRUCTURED DATA ================= -->
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Professional Academy",
+    "alternateName": "أكاديمية بروفيشنال",
+    "description": "Professional Academy - الأكاديمية الرياضية لإدارة اللاعبين والاشتراكات والإحصائيات.",
+    "inLanguage": "ar"
+}
+</script>
 
 <style>
+
+/* =====================================================
+   PROFESSIONAL ACADEMY
+   PREMIUM RESPONSIVE DESIGN
+===================================================== */
+
 :root{
+
     --bg:#020914;
     --bg2:#061426;
+
     --panel:#091d33;
     --panel2:#0d2743;
     --panel3:#102f50;
@@ -34,8 +172,12 @@
     --red:#ff5366;
     --purple:#a879ff;
 
-    --shadow:0 25px 70px rgba(0,0,0,.45);
+    --shadow:
+        0 25px 70px rgba(0,0,0,.45);
 }
+
+
+/* ================= RESET ================= */
 
 *{
     box-sizing:border-box;
@@ -45,25 +187,50 @@
 
 html{
     scroll-behavior:smooth;
+    scroll-padding-top:20px;
 }
 
 body{
+
     font-family:"Cairo",sans-serif;
+
     background:
-        radial-gradient(circle at 85% 0%,rgba(0,119,255,.13),transparent 25%),
-        radial-gradient(circle at 5% 80%,rgba(255,194,26,.06),transparent 24%),
+        radial-gradient(
+            circle at 85% 0%,
+            rgba(0,119,255,.13),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 5% 80%,
+            rgba(255,194,26,.06),
+            transparent 24%
+        ),
         var(--bg);
+
     color:var(--text);
+
     min-height:100vh;
+
+    overflow-x:hidden;
 }
 
-button,input,select{
+button,
+input,
+select{
     font-family:inherit;
 }
 
 button{
     cursor:pointer;
 }
+
+::selection{
+    background:rgba(255,194,26,.25);
+    color:#fff;
+}
+
+
+/* ================= SCROLLBAR ================= */
 
 ::-webkit-scrollbar{
     width:7px;
@@ -79,94 +246,171 @@ button{
     border-radius:20px;
 }
 
+
+/* ================= MOBILE OVERLAY ================= */
+
+.sidebar-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.58);
+
+    backdrop-filter:blur(3px);
+
+    z-index:2500;
+
+    display:none;
+}
+
+.sidebar-overlay.show{
+    display:block;
+}
+
+
 /* ================= SIDEBAR ================= */
 
 .sidebar{
+
     position:fixed;
+
     right:0;
     top:0;
+
     width:280px;
     height:100vh;
+
     padding:20px 17px;
+
     background:
-        linear-gradient(180deg,rgba(7,29,51,.98),rgba(2,12,23,.99));
+        linear-gradient(
+            180deg,
+            rgba(7,29,51,.98),
+            rgba(2,12,23,.99)
+        );
+
     border-left:1px solid var(--line);
+
     z-index:3000;
+
     overflow-y:auto;
-    transition:.3s;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
 }
 
+
+/* ================= LOGO ================= */
+
 .logo{
+
     display:flex;
     align-items:center;
+
     gap:12px;
+
     padding:9px;
+
     margin-bottom:25px;
 }
 
 .logo-box{
+
     width:57px;
     height:57px;
+
     border-radius:17px;
+
     display:flex;
     align-items:center;
     justify-content:center;
 
     font-family:Montserrat,sans-serif;
+
     font-weight:900;
+
     font-size:19px;
 
     color:#06101d;
 
     background:
-        linear-gradient(135deg,var(--gold),var(--gold2));
+        linear-gradient(
+            135deg,
+            var(--gold),
+            var(--gold2)
+        );
 
     box-shadow:
         0 10px 35px rgba(255,174,0,.24);
 }
 
 .logo-text strong{
+
     display:block;
+
     font-family:Montserrat,sans-serif;
+
     font-size:16px;
+
     letter-spacing:.8px;
 }
 
 .logo-text span{
+
     display:block;
+
     color:var(--muted);
+
     font-size:10px;
+
     margin-top:2px;
 }
 
+
+/* ================= NAV ================= */
+
 .nav-title{
+
     color:#56738e;
+
     font-size:10px;
+
     font-weight:900;
+
     margin:19px 10px 8px;
+
     letter-spacing:1.5px;
 }
 
 .nav a{
+
     display:flex;
     align-items:center;
+
     gap:12px;
 
     text-decoration:none;
+
     color:#9db1c4;
 
     padding:12px 13px;
+
     border-radius:13px;
+
     margin:4px 0;
 
     transition:.25s;
 
     font-size:13px;
+
     font-weight:700;
 }
 
 .nav a:hover,
 .nav a.active{
+
     color:#fff;
 
     background:
@@ -178,53 +422,85 @@ button{
 
     box-shadow:
         inset -3px 0 var(--blue);
+
+    transform:translateX(-2px);
 }
 
 .nav-icon{
+
     width:26px;
+
     text-align:center;
+
     font-size:17px;
 }
 
+
+/* ================= SIDEBAR BOTTOM ================= */
+
 .sidebar-bottom{
+
     margin-top:24px;
+
     padding:15px;
 
     border:1px solid var(--line);
+
     border-radius:17px;
 
     background:rgba(255,255,255,.025);
 }
 
 .sidebar-bottom-title{
+
     font-size:12px;
+
     font-weight:900;
 }
 
 .sidebar-bottom p{
+
     color:var(--muted);
+
     font-size:10px;
+
     line-height:1.8;
+
     margin-top:5px;
 }
+
 
 /* ================= MAIN ================= */
 
 .main{
+
     margin-right:280px;
+
     padding:24px;
+
+    width:calc(100% - 280px);
+
     max-width:1900px;
 }
 
+
+/* ================= TOPBAR ================= */
+
 .topbar{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     gap:15px;
+
     margin-bottom:20px;
 }
 
 .mobile-menu{
+
     display:none;
 
     width:44px;
@@ -233,61 +509,109 @@ button{
     border-radius:12px;
 
     border:1px solid var(--line);
+
     background:var(--panel);
+
     color:#fff;
 
     font-size:19px;
+
+    transition:.2s;
+}
+
+.mobile-menu:hover{
+
+    background:var(--panel2);
+
+    border-color:rgba(22,135,255,.3);
 }
 
 .top-title small{
+
     color:var(--gold);
+
     font-size:10px;
+
     font-weight:900;
+
     letter-spacing:1.2px;
 }
 
 .top-title h2{
+
     font-size:20px;
+
     margin-top:2px;
 }
 
 .top-actions{
+
     display:flex;
+
     align-items:center;
+
     gap:8px;
 }
 
 .status{
+
     display:flex;
+
     align-items:center;
+
     gap:8px;
 
     padding:9px 13px;
 
     border:1px solid var(--line);
+
     border-radius:12px;
 
     background:rgba(255,255,255,.03);
 
     color:#b7c7d6;
+
     font-size:11px;
 }
 
 .status-dot{
+
     width:8px;
     height:8px;
+
     border-radius:50%;
+
     background:var(--green);
-    box-shadow:0 0 12px var(--green);
+
+    box-shadow:
+        0 0 12px var(--green);
+
+    animation:
+        pulse 1.8s infinite;
 }
+
+@keyframes pulse{
+
+    0%,100%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:.45;
+    }
+}
+
 
 /* ================= HERO ================= */
 
 .hero{
+
     position:relative;
+
     overflow:hidden;
 
     min-height:345px;
+
     padding:48px;
 
     border-radius:30px;
@@ -315,6 +639,7 @@ button{
 }
 
 .hero::before{
+
     content:"";
 
     position:absolute;
@@ -323,6 +648,7 @@ button{
     height:350px;
 
     border:1px solid rgba(255,194,26,.11);
+
     border-radius:50%;
 
     left:-150px;
@@ -330,6 +656,7 @@ button{
 }
 
 .hero::after{
+
     content:"";
 
     position:absolute;
@@ -338,6 +665,7 @@ button{
     height:450px;
 
     border:1px solid rgba(22,135,255,.10);
+
     border-radius:50%;
 
     right:-210px;
@@ -345,6 +673,7 @@ button{
 }
 
 .hero-ball{
+
     position:absolute;
 
     right:10%;
@@ -376,14 +705,20 @@ button{
 }
 
 .hero-content{
+
     position:relative;
+
     z-index:2;
+
     max-width:720px;
 }
 
 .hero-badge{
+
     display:inline-flex;
+
     align-items:center;
+
     gap:8px;
 
     padding:8px 13px;
@@ -391,28 +726,33 @@ button{
     border-radius:50px;
 
     background:rgba(255,194,26,.08);
+
     border:1px solid rgba(255,194,26,.18);
 
     color:var(--gold);
 
     font-size:10px;
+
     font-weight:900;
 
     margin-bottom:18px;
 }
 
 .hero h1{
+
     font-family:Montserrat,"Cairo",sans-serif;
 
     font-size:clamp(38px,5vw,68px);
 
     line-height:.98;
+
     letter-spacing:-2.5px;
 
     margin-bottom:18px;
 }
 
 .hero h1 span{
+
     color:var(--gold);
 
     text-shadow:
@@ -420,23 +760,32 @@ button{
 }
 
 .hero p{
+
     color:#a9bed1;
 
     font-size:13px;
+
     line-height:2;
 
     max-width:670px;
 }
 
 .hero-buttons{
+
     display:flex;
+
     flex-wrap:wrap;
+
     gap:9px;
 
     margin-top:25px;
 }
 
+
+/* ================= BUTTONS ================= */
+
 .btn{
+
     border:0;
 
     border-radius:13px;
@@ -444,16 +793,24 @@ button{
     padding:12px 18px;
 
     font-weight:900;
+
     font-size:12px;
 
     transition:.25s;
 }
 
 .btn:hover{
+
     transform:translateY(-2px);
 }
 
+.btn:active{
+
+    transform:translateY(0) scale(.98);
+}
+
 .btn-primary{
+
     color:#03101e;
 
     background:
@@ -468,6 +825,7 @@ button{
 }
 
 .btn-secondary{
+
     color:#fff;
 
     background:rgba(255,255,255,.055);
@@ -475,11 +833,15 @@ button{
     border:1px solid var(--line);
 }
 
+
 /* ================= STATS ================= */
 
 .stats{
+
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(4,1fr);
 
     gap:14px;
 
@@ -487,7 +849,9 @@ button{
 }
 
 .stat{
+
     position:relative;
+
     overflow:hidden;
 
     padding:20px;
@@ -512,6 +876,7 @@ button{
 }
 
 .stat:hover{
+
     transform:translateY(-3px);
 
     border-color:
@@ -519,6 +884,7 @@ button{
 }
 
 .stat::after{
+
     content:"";
 
     position:absolute;
@@ -536,57 +902,85 @@ button{
 }
 
 .stat-top{
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 }
 
 .stat-icon{
+
     width:43px;
     height:43px;
 
     border-radius:13px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
-    background:rgba(22,135,255,.11);
+    background:
+        rgba(22,135,255,.11);
 
     font-size:20px;
 }
 
 .stat-label{
+
     color:var(--muted);
 
     font-size:11px;
+
     font-weight:800;
 }
 
 .stat-number{
+
     font-family:Montserrat,sans-serif;
 
     font-size:31px;
+
     font-weight:900;
 
     margin-top:14px;
 }
 
-.stat-number.gold{color:var(--gold);}
-.stat-number.blue{color:#5bb1ff;}
-.stat-number.green{color:var(--green);}
-.stat-number.red{color:var(--red);}
+.stat-number.gold{
+    color:var(--gold);
+}
+
+.stat-number.blue{
+    color:#5bb1ff;
+}
+
+.stat-number.green{
+    color:var(--green);
+}
+
+.stat-number.red{
+    color:var(--red);
+}
+
 
 /* ================= QUICK STATS ================= */
 
 .quick-grid{
+
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(4,1fr);
+
     gap:13px;
+
     margin-bottom:20px;
 }
 
 .quick-card{
+
     padding:17px;
 
     border-radius:17px;
@@ -595,27 +989,47 @@ button{
         rgba(255,255,255,.025);
 
     border:1px solid var(--line);
+
+    transition:.25s;
+}
+
+.quick-card:hover{
+
+    border-color:
+        rgba(255,255,255,.13);
+
+    transform:translateY(-2px);
 }
 
 .quick-top{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
 }
 
 .quick-title{
+
     color:var(--muted);
+
     font-size:10px;
+
     font-weight:800;
 }
 
 .quick-value{
+
     font-size:20px;
+
     font-weight:900;
+
     margin-top:8px;
 }
 
 .progress{
+
     height:6px;
 
     background:#06182a;
@@ -628,7 +1042,9 @@ button{
 }
 
 .progress span{
+
     display:block;
+
     height:100%;
 
     width:0%;
@@ -645,9 +1061,11 @@ button{
     transition:width .5s;
 }
 
+
 /* ================= SECTION ================= */
 
 .section{
+
     margin-top:20px;
 
     padding:21px;
@@ -664,8 +1082,11 @@ button{
 }
 
 .section-head{
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
     gap:15px;
@@ -674,26 +1095,35 @@ button{
 }
 
 .section-title{
+
     display:flex;
+
     align-items:center;
+
     gap:10px;
 }
 
 .section-title h3{
+
     font-size:16px;
 }
 
 .section-title p{
+
     color:var(--muted);
+
     font-size:10px;
+
     margin-top:2px;
 }
 
 .section-icon{
+
     width:42px;
     height:42px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -707,17 +1137,21 @@ button{
     font-size:18px;
 }
 
+
 /* ================= FILTER ================= */
 
 .filter-box{
+
     display:grid;
 
-    grid-template-columns:1fr 190px 190px;
+    grid-template-columns:
+        1fr 190px 190px;
 
     gap:10px;
 }
 
 .filter-info{
+
     padding:15px 18px;
 
     border-radius:14px;
@@ -735,11 +1169,14 @@ button{
 }
 
 .filter-info span{
+
     color:var(--gold);
+
     font-weight:900;
 }
 
 .select{
+
     width:100%;
 
     border:1px solid var(--line);
@@ -755,18 +1192,27 @@ button{
     outline:none;
 
     font-size:11px;
+
+    cursor:pointer;
 }
 
 .select:focus{
+
     border-color:var(--blue);
+
+    box-shadow:
+        0 0 0 3px rgba(22,135,255,.06);
 }
+
 
 /* ================= ANALYTICS ================= */
 
 .analytics{
+
     display:grid;
 
-    grid-template-columns:1.2fr .8fr;
+    grid-template-columns:
+        1.2fr .8fr;
 
     gap:15px;
 
@@ -774,6 +1220,7 @@ button{
 }
 
 .chart-card{
+
     padding:20px;
 
     border-radius:20px;
@@ -789,32 +1236,42 @@ button{
 }
 
 .chart-head{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
 
     margin-bottom:20px;
 }
 
 .chart-head h3{
+
     font-size:15px;
 }
 
 .chart-head span{
+
     color:var(--muted);
+
     font-size:10px;
 }
 
 .sport-progress{
+
     margin-bottom:18px;
 }
 
 .sport-progress:last-child{
+
     margin-bottom:0;
 }
 
 .sport-progress-head{
+
     display:flex;
+
     justify-content:space-between;
 
     font-size:11px;
@@ -823,11 +1280,14 @@ button{
 }
 
 .sport-progress-head span:last-child{
+
     color:var(--gold);
+
     font-weight:900;
 }
 
 .big-progress{
+
     height:10px;
 
     border-radius:30px;
@@ -838,6 +1298,7 @@ button{
 }
 
 .big-progress span{
+
     display:block;
 
     height:100%;
@@ -850,23 +1311,44 @@ button{
 }
 
 .hand-bar{
+
     background:
-        linear-gradient(90deg,#1687ff,#56b4ff);
+        linear-gradient(
+            90deg,
+            #1687ff,
+            #56b4ff
+        );
 }
 
 .basket-bar{
+
     background:
-        linear-gradient(90deg,#ff8c00,#ffc21a);
+        linear-gradient(
+            90deg,
+            #ff8c00,
+            #ffc21a
+        );
 }
 
 .volley-bar{
+
     background:
-        linear-gradient(90deg,#27e7a0,#75ffd0);
+        linear-gradient(
+            90deg,
+            #27e7a0,
+            #75ffd0
+        );
 }
 
+
+/* ================= SUBSCRIPTION ================= */
+
 .revenue-box{
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     min-height:230px;
@@ -875,14 +1357,18 @@ button{
 }
 
 .revenue-circle{
+
     width:155px;
     height:155px;
 
     border-radius:50%;
 
     display:flex;
+
     flex-direction:column;
+
     align-items:center;
+
     justify-content:center;
 
     background:
@@ -900,6 +1386,7 @@ button{
 }
 
 .revenue-circle strong{
+
     font-family:Montserrat,sans-serif;
 
     color:var(--gold);
@@ -908,17 +1395,22 @@ button{
 }
 
 .revenue-circle span{
+
     color:var(--muted);
+
     font-size:10px;
 }
+
 
 /* ================= SEARCH ================= */
 
 .global-search{
+
     position:relative;
 }
 
 .global-search input{
+
     width:100%;
 
     border:1px solid var(--line);
@@ -934,9 +1426,17 @@ button{
     padding:13px 43px 13px 13px;
 
     font-size:12px;
+
+    transition:.2s;
+}
+
+.global-search input::placeholder{
+
+    color:#59738b;
 }
 
 .global-search input:focus{
+
     border-color:var(--blue);
 
     box-shadow:
@@ -944,6 +1444,7 @@ button{
 }
 
 .global-search span{
+
     position:absolute;
 
     right:14px;
@@ -952,9 +1453,11 @@ button{
     font-size:17px;
 }
 
+
 /* ================= PLAYER CARDS ================= */
 
 .players-cards{
+
     display:grid;
 
     grid-template-columns:
@@ -966,6 +1469,7 @@ button{
 }
 
 .player-card{
+
     position:relative;
 
     overflow:hidden;
@@ -987,6 +1491,7 @@ button{
 }
 
 .player-card:hover{
+
     transform:translateY(-3px);
 
     border-color:
@@ -997,26 +1502,38 @@ button{
 }
 
 .player-card-top{
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
     gap:10px;
 }
 
 .player-profile{
+
     display:flex;
+
     align-items:center;
+
     gap:10px;
+
+    min-width:0;
 }
 
 .player-avatar{
+
     width:43px;
     height:43px;
+
+    flex-shrink:0;
 
     border-radius:14px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -1033,17 +1550,70 @@ button{
 }
 
 .player-name{
+
     font-size:13px;
+
     font-weight:900;
+
+    max-width:150px;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
 }
 
 .player-sport{
+
     color:var(--muted);
+
     font-size:9px;
+
     margin-top:2px;
 }
 
+.badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    white-space:nowrap;
+
+    padding:5px 8px;
+
+    border-radius:30px;
+
+    font-size:8px;
+
+    font-weight:900;
+}
+
+.badge-active{
+
+    color:var(--green);
+
+    background:
+        rgba(39,231,160,.08);
+
+    border:1px solid rgba(39,231,160,.16);
+}
+
+.badge-paused{
+
+    color:var(--red);
+
+    background:
+        rgba(255,83,102,.08);
+
+    border:1px solid rgba(255,83,102,.16);
+}
+
 .player-details{
+
     display:grid;
 
     grid-template-columns:1fr 1fr;
@@ -1054,6 +1624,7 @@ button{
 }
 
 .detail{
+
     padding:9px;
 
     border-radius:10px;
@@ -1061,9 +1632,12 @@ button{
     background:rgba(255,255,255,.025);
 
     border:1px solid rgba(255,255,255,.045);
+
+    min-width:0;
 }
 
 .detail span{
+
     display:block;
 
     color:#5f7b94;
@@ -1072,6 +1646,7 @@ button{
 }
 
 .detail strong{
+
     display:block;
 
     color:#dce7f0;
@@ -1079,9 +1654,16 @@ button{
     font-size:10px;
 
     margin-top:2px;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
 }
 
 .card-actions{
+
     display:flex;
 
     gap:7px;
@@ -1090,6 +1672,7 @@ button{
 }
 
 .card-actions button{
+
     flex:1;
 
     border:1px solid var(--line);
@@ -1105,21 +1688,55 @@ button{
     font-size:10px;
 
     font-weight:800;
+
+    transition:.2s;
 }
 
 .card-actions button:hover{
-    background:rgba(22,135,255,.13);
+
+    background:
+        rgba(22,135,255,.13);
 }
 
 .card-actions .delete-btn:hover{
+
     color:var(--red);
 
-    background:rgba(255,83,102,.09);
+    background:
+        rgba(255,83,102,.09);
 }
+
+
+/* ================= EMPTY ================= */
+
+.empty{
+
+    min-height:130px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:25px;
+
+    border:1px dashed rgba(255,255,255,.09);
+
+    border-radius:16px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    text-align:center;
+}
+
 
 /* ================= REGISTER ================= */
 
 .form-grid{
+
     display:grid;
 
     grid-template-columns:
@@ -1129,6 +1746,7 @@ button{
 }
 
 .field label{
+
     display:block;
 
     color:#8299ad;
@@ -1142,6 +1760,7 @@ button{
 
 .field input,
 .field select{
+
     width:100%;
 
     padding:11px;
@@ -1157,10 +1776,18 @@ button{
     background:#06182a;
 
     font-size:11px;
+
+    transition:.2s;
+}
+
+.field input::placeholder{
+
+    color:#55718a;
 }
 
 .field input:focus,
 .field select:focus{
+
     border-color:var(--blue);
 
     box-shadow:
@@ -1168,25 +1795,32 @@ button{
 }
 
 .form-submit{
+
     display:flex;
+
     align-items:end;
 }
 
 .form-submit button{
+
     width:100%;
 }
+
 
 /* ================= ACTIVITY ================= */
 
 .activity{
+
     display:grid;
 
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
     gap:9px;
 }
 
 .activity-item{
+
     display:flex;
 
     align-items:center;
@@ -1200,15 +1834,27 @@ button{
     border-radius:13px;
 
     background:rgba(255,255,255,.025);
+
+    transition:.2s;
+}
+
+.activity-item:hover{
+
+    border-color:
+        rgba(255,255,255,.13);
+
+    transform:translateY(-1px);
 }
 
 .activity-icon{
+
     width:37px;
     height:37px;
 
     flex-shrink:0;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -1219,20 +1865,25 @@ button{
 }
 
 .activity-text{
+
     min-width:0;
 }
 
 .activity-text strong{
+
     display:block;
 
     font-size:11px;
 
     white-space:nowrap;
+
     overflow:hidden;
+
     text-overflow:ellipsis;
 }
 
 .activity-text span{
+
     display:block;
 
     color:var(--muted);
@@ -1242,9 +1893,11 @@ button{
     margin-top:2px;
 }
 
+
 /* ================= NOTIFICATION ================= */
 
 .notifications{
+
     position:fixed;
 
     left:20px;
@@ -1253,14 +1906,18 @@ button{
     z-index:5000;
 
     display:flex;
+
     flex-direction:column;
 
     gap:9px;
 
     width:min(360px,calc(100% - 40px));
+
+    pointer-events:none;
 }
 
 .notification{
+
     display:flex;
 
     align-items:center;
@@ -1281,30 +1938,41 @@ button{
 
     animation:
         notificationIn .3s ease;
+
+    transition:.25s;
+
+    pointer-events:auto;
 }
 
 .notification.success{
+
     border-right:3px solid var(--green);
 }
 
 .notification.error{
+
     border-right:3px solid var(--red);
 }
 
 .notification.info{
+
     border-right:3px solid var(--blue);
 }
 
 .notification-icon{
+
     font-size:18px;
 }
 
 .notification-text{
+
     font-size:11px;
+
     font-weight:700;
 }
 
 @keyframes notificationIn{
+
     from{
         opacity:0;
         transform:translateY(15px);
@@ -1316,9 +1984,11 @@ button{
     }
 }
 
+
 /* ================= MODAL ================= */
 
 .modal{
+
     position:fixed;
 
     inset:0;
@@ -1339,11 +2009,18 @@ button{
 }
 
 .modal.show{
+
     display:flex;
 }
 
 .modal-box{
+
     width:min(520px,100%);
+
+    max-height:
+        calc(100vh - 40px);
+
+    overflow-y:auto;
 
     padding:24px;
 
@@ -1366,6 +2043,7 @@ button{
 }
 
 @keyframes modalIn{
+
     from{
         opacity:0;
         transform:scale(.96);
@@ -1378,19 +2056,23 @@ button{
 }
 
 .modal-head{
+
     display:flex;
 
     justify-content:space-between;
+
     align-items:center;
 
     margin-bottom:19px;
 }
 
 .modal-head h3{
+
     font-size:17px;
 }
 
 .close{
+
     width:34px;
     height:34px;
 
@@ -1403,15 +2085,27 @@ button{
     border-radius:10px;
 
     font-size:18px;
+
+    transition:.2s;
+}
+
+.close:hover{
+
+    background:
+        rgba(255,83,102,.12);
+
+    color:var(--red);
 }
 
 .modal-fields{
+
     display:grid;
 
     gap:12px;
 }
 
 .modal-actions{
+
     display:flex;
 
     gap:9px;
@@ -1420,215 +2114,823 @@ button{
 }
 
 .modal-actions button{
+
     flex:1;
 }
+
 
 /* ================= FOOTER ================= */
 
 .footer{
+
     text-align:center;
 
     color:#506a80;
 
     font-size:9px;
 
+    line-height:2;
+
     padding:30px 0 10px;
 }
 
-/* ================= RESPONSIVE ================= */
+.footer strong{
+
+    color:#7691a8;
+
+    font-size:11px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+
+/* ================= 1250 ================= */
 
 @media(max-width:1250px){
 
     .stats{
-        grid-template-columns:repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
     .quick-grid{
-        grid-template-columns:repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
     .form-grid{
-        grid-template-columns:repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
     .analytics{
+
         grid-template-columns:1fr;
     }
 }
+
+
+/* ================= 1100 ================= */
+
+@media(max-width:1100px){
+
+    .main{
+
+        padding:20px;
+    }
+
+    .hero{
+
+        padding:40px;
+    }
+
+    .filter-box{
+
+        grid-template-columns:
+            1fr 160px 160px;
+    }
+}
+
+
+/* ================= TABLET / MOBILE ================= */
 
 @media(max-width:900px){
 
     .sidebar{
-        transform:translateX(100%);
+
+        transform:
+            translateX(100%);
+
+        box-shadow:
+            -20px 0 70px rgba(0,0,0,.35);
     }
 
     .sidebar.open{
-        transform:translateX(0);
+
+        transform:
+            translateX(0);
     }
 
     .main{
+
         margin-right:0;
+
+        width:100%;
+
         padding:15px;
     }
 
     .mobile-menu{
+
         display:block;
     }
 
     .topbar{
+
         justify-content:flex-start;
     }
 
     .top-actions{
+
         margin-right:auto;
     }
 
     .status{
+
         display:none;
     }
 
     .hero{
+
         padding:32px 23px;
+
+        min-height:330px;
     }
 
     .hero-ball{
+
         opacity:.25;
     }
 
     .filter-box{
+
         grid-template-columns:1fr;
     }
 }
+
+
+/* ================= MOBILE ================= */
 
 @media(max-width:650px){
 
-    .stats{
-        grid-template-columns:1fr 1fr;
-        gap:8px;
+    .main{
+
+        padding:10px;
     }
 
-    .stat{
-        padding:14px;
-        min-height:105px;
+    .topbar{
+
+        margin-bottom:12px;
+
+        gap:10px;
     }
 
-    .stat-number{
-        font-size:24px;
+    .top-title small{
+
+        font-size:8px;
     }
 
-    .quick-grid{
-        grid-template-columns:1fr 1fr;
+    .top-title h2{
+
+        font-size:17px;
     }
 
-    .form-grid{
-        grid-template-columns:1fr;
+    .mobile-menu{
+
+        width:42px;
+        height:42px;
     }
 
-    .activity{
-        grid-template-columns:1fr;
+
+    /* HERO */
+
+    .hero{
+
+        padding:27px 19px;
+
+        border-radius:22px;
+
+        min-height:365px;
     }
 
-    .section{
-        padding:15px;
+    .hero-badge{
+
+        font-size:8px;
+
+        padding:7px 10px;
     }
 
     .hero h1{
-        font-size:36px;
+
+        font-size:
+            clamp(31px,11vw,42px);
+
+        letter-spacing:-1.5px;
+
+        line-height:1.02;
     }
 
     .hero p{
+
+        font-size:10px;
+
+        line-height:2;
+
+        max-width:100%;
+    }
+
+    .hero-buttons{
+
+        flex-direction:column;
+
+        margin-top:20px;
+    }
+
+    .hero-buttons .btn{
+
+        width:100%;
+
+        padding:13px;
+    }
+
+
+    /* STATS */
+
+    .stats{
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:8px;
+
+        margin:10px 0;
+    }
+
+    .stat{
+
+        padding:14px;
+
+        min-height:105px;
+
+        border-radius:15px;
+    }
+
+    .stat-number{
+
+        font-size:23px;
+
+        margin-top:11px;
+    }
+
+    .stat-label{
+
+        font-size:9px;
+    }
+
+    .stat-icon{
+
+        width:35px;
+        height:35px;
+
+        border-radius:10px;
+
+        font-size:16px;
+    }
+
+
+    /* QUICK */
+
+    .quick-grid{
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:8px;
+
+        margin-bottom:10px;
+    }
+
+    .quick-card{
+
+        padding:13px;
+
+        border-radius:14px;
+    }
+
+    .quick-title{
+
+        font-size:8px;
+    }
+
+    .quick-value{
+
+        font-size:17px;
+    }
+
+
+    /* SECTION */
+
+    .section{
+
+        padding:13px;
+
+        border-radius:17px;
+
+        margin-top:10px;
+    }
+
+    .section-head{
+
+        margin-bottom:13px;
+    }
+
+    .section-title{
+
+        gap:8px;
+    }
+
+    .section-title h3{
+
+        font-size:13px;
+    }
+
+    .section-title p{
+
+        font-size:8px;
+    }
+
+    .section-icon{
+
+        width:36px;
+        height:36px;
+
+        border-radius:10px;
+
+        font-size:15px;
+    }
+
+
+    /* FILTER */
+
+    .filter-box{
+
+        grid-template-columns:1fr;
+
+        gap:8px;
+    }
+
+    .filter-info{
+
+        padding:12px;
+
+        font-size:10px;
+    }
+
+    .select{
+
+        padding:11px;
+
+        font-size:10px;
+    }
+
+
+    /* ANALYTICS */
+
+    .analytics{
+
+        gap:10px;
+
+        margin-top:10px;
+    }
+
+    .chart-card{
+
+        padding:15px;
+
+        border-radius:17px;
+    }
+
+    .chart-head h3{
+
+        font-size:12px;
+    }
+
+    .chart-head span{
+
+        font-size:8px;
+    }
+
+    .sport-progress-head{
+
+        font-size:9px;
+    }
+
+    .revenue-box{
+
+        min-height:190px;
+    }
+
+    .revenue-circle{
+
+        width:135px;
+        height:135px;
+    }
+
+    .revenue-circle strong{
+
+        font-size:24px;
+    }
+
+
+    /* FORM */
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+
+        gap:9px;
+    }
+
+    .field label{
+
+        font-size:9px;
+    }
+
+    .field input,
+    .field select{
+
+        padding:12px;
+
         font-size:11px;
     }
 
+    .form-submit{
+
+        margin-top:3px;
+    }
+
+
+    /* PLAYERS */
+
     .players-cards{
+
+        grid-template-columns:1fr;
+
+        gap:9px;
+    }
+
+    .player-card{
+
+        padding:14px;
+
+        border-radius:15px;
+    }
+
+    .player-name{
+
+        max-width:130px;
+
+        font-size:12px;
+    }
+
+    .player-sport{
+
+        font-size:8px;
+    }
+
+    .player-details{
+
+        margin-top:12px;
+    }
+
+
+    /* ACTIVITY */
+
+    .activity{
+
+        grid-template-columns:1fr;
+
+        gap:7px;
+    }
+
+    .activity-item{
+
+        padding:10px;
+    }
+
+
+    /* MODAL */
+
+    .modal{
+
+        padding:10px;
+    }
+
+    .modal-box{
+
+        padding:18px;
+
+        border-radius:18px;
+
+        max-height:
+            calc(100vh - 20px);
+    }
+
+    .modal-head h3{
+
+        font-size:14px;
+    }
+
+    .modal-actions{
+
+        flex-direction:column;
+    }
+
+    .modal-actions button{
+
+        width:100%;
+    }
+
+
+    /* NOTIFICATIONS */
+
+    .notifications{
+
+        left:10px;
+
+        bottom:
+            calc(10px + env(safe-area-inset-bottom));
+
+        width:
+            calc(100% - 20px);
+    }
+
+
+    /* FOOTER */
+
+    .footer{
+
+        padding:25px 5px 10px;
+
+        font-size:8px;
+    }
+}
+
+
+/* ================= VERY SMALL PHONES ================= */
+
+@media(max-width:380px){
+
+    .hero h1{
+
+        font-size:30px;
+    }
+
+    .stat{
+
+        padding:11px;
+    }
+
+    .stat-number{
+
+        font-size:20px;
+    }
+
+    .stat-label{
+
+        font-size:8px;
+    }
+
+    .quick-card{
+
+        padding:11px;
+    }
+
+    .quick-value{
+
+        font-size:15px;
+    }
+
+    .player-details{
+
         grid-template-columns:1fr;
     }
 }
+
+
+/* ================= REDUCED MOTION ================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+
+        scroll-behavior:auto !important;
+
+        animation-duration:.01ms !important;
+
+        animation-iteration-count:1 !important;
+
+        transition-duration:.01ms !important;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
+
+<!-- ================= MOBILE OVERLAY ================= -->
+
+<div
+    class="sidebar-overlay"
+    id="sidebarOverlay"
+    onclick="closeSide()">
+</div>
+
+
 <!-- ================= SIDEBAR ================= -->
 
-<aside class="sidebar" id="sidebar">
+<aside
+    class="sidebar"
+    id="sidebar">
 
     <div class="logo">
-        <div class="logo-box">PA</div>
+
+        <div class="logo-box">
+            PA
+        </div>
 
         <div class="logo-text">
-            <strong>PROFESSIONAL</strong>
-            <span>SPORTS ACADEMY</span>
+
+            <strong>
+                PROFESSIONAL
+            </strong>
+
+            <span>
+                SPORTS ACADEMY
+            </span>
+
         </div>
+
     </div>
 
-    <div class="nav-title">MAIN MENU</div>
+
+    <div class="nav-title">
+        MAIN MENU
+    </div>
+
 
     <nav class="nav">
 
-        <a href="#home" class="active">
-            <span class="nav-icon">🏠</span>
+        <a
+            href="#home"
+            class="active"
+            onclick="closeSide()">
+
+            <span class="nav-icon">
+                🏠
+            </span>
+
             الرئيسية
+
         </a>
 
-        <a href="#register">
-            <span class="nav-icon">➕</span>
+
+        <a
+            href="#register"
+            onclick="closeSide()">
+
+            <span class="nav-icon">
+                ➕
+            </span>
+
             تسجيل لاعب جديد
+
         </a>
 
-        <a href="#players">
-            <span class="nav-icon">👥</span>
+
+        <a
+            href="#players"
+            onclick="closeSide()">
+
+            <span class="nav-icon">
+                👥
+            </span>
+
             إدارة اللاعبين
+
         </a>
 
-        <a href="#analytics">
-            <span class="nav-icon">📊</span>
+
+        <a
+            href="#analytics"
+            onclick="closeSide()">
+
+            <span class="nav-icon">
+                📊
+            </span>
+
             الإحصائيات
+
         </a>
 
     </nav>
 
-    <div class="nav-title">SPORTS</div>
+
+    <div class="nav-title">
+        SPORTS
+    </div>
+
 
     <nav class="nav">
 
-        <a href="#hand">
-            <span class="nav-icon">🤾</span>
+        <a
+            href="#analytics"
+            onclick="closeSide()">
+
+            <span class="nav-icon">
+                🤾
+            </span>
+
             كرة اليد
+
         </a>
 
-        <a href="#basket">
-            <span class="nav-icon">🏀</span>
+
+        <a
+            href="#analytics"
+            onclick="closeSide()">
+
+            <span class="nav-icon">
+                🏀
+            </span>
+
             كرة السلة
+
         </a>
 
-        <a href="#volley">
-            <span class="nav-icon">🏐</span>
+
+        <a
+            href="#analytics"
+            onclick="closeSide()">
+
+            <span class="nav-icon">
+                🏐
+            </span>
+
             كرة الطائرة
+
         </a>
 
     </nav>
 
-    <div class="nav-title">TOOLS</div>
+
+    <div class="nav-title">
+        TOOLS
+    </div>
+
 
     <nav class="nav">
 
-        <a href="#players">
-            <span class="nav-icon">🔎</span>
+        <a
+            href="#players"
+            onclick="closeSide()">
+
+            <span class="nav-icon">
+                🔎
+            </span>
+
             البحث عن لاعب
+
         </a>
 
-        <a href="#" onclick="exportData();return false;">
-            <span class="nav-icon">📥</span>
+
+        <a
+            href="#"
+            onclick="exportData();return false;">
+
+            <span class="nav-icon">
+                📥
+            </span>
+
             تصدير البيانات
+
         </a>
 
-        <a href="#" onclick="clearAll();return false;">
-            <span class="nav-icon">🗑️</span>
+
+        <a
+            href="#"
+            onclick="clearAll();return false;">
+
+            <span class="nav-icon">
+                🗑️
+            </span>
+
             حذف البيانات
+
         </a>
 
     </nav>
+
 
     <div class="sidebar-bottom">
 
@@ -1638,7 +2940,7 @@ button{
 
         <p>
             نظام احترافي لإدارة لاعبي الأكاديمية
-            ومتابعة الرياضات والاشتراكات.
+            ومتابعة الرياضات والاشتراكات والإحصائيات.
         </p>
 
     </div>
@@ -1650,13 +2952,20 @@ button{
 
 <main class="main">
 
+
+    <!-- TOPBAR -->
+
     <div class="topbar">
 
         <button
             class="mobile-menu"
-            onclick="toggleSide()">
+            onclick="toggleSide()"
+            aria-label="فتح القائمة">
+
             ☰
+
         </button>
+
 
         <div class="top-title">
 
@@ -1669,6 +2978,7 @@ button{
             </h2>
 
         </div>
+
 
         <div class="top-actions">
 
@@ -1687,26 +2997,41 @@ button{
 
     <!-- ================= HERO ================= -->
 
-    <section class="hero" id="home">
+    <section
+        class="hero"
+        id="home">
 
         <div class="hero-ball"></div>
+
 
         <div class="hero-content">
 
             <div class="hero-badge">
+
                 🏆 ACADEMY MANAGEMENT SYSTEM
+
             </div>
 
+
             <h1>
+
                 PROFESSIONAL
-                <span>ACADEMY</span>
+
+                <span>
+                    ACADEMY
+                </span>
+
             </h1>
 
+
             <p>
+
                 نظام إدارة رياضي احترافي لإدارة لاعبي الأكاديمية
                 في كرة اليد وكرة السلة والكرة الطائرة،
                 ومتابعة التسجيلات والاشتراكات والإحصائيات من مكان واحد.
+
             </p>
+
 
             <div class="hero-buttons">
 
@@ -1717,6 +3042,7 @@ button{
                     ➕ تسجيل لاعب جديد
 
                 </button>
+
 
                 <button
                     class="btn btn-secondary"
@@ -1737,6 +3063,7 @@ button{
 
     <section class="stats">
 
+
         <div class="stat">
 
             <div class="stat-top">
@@ -1754,7 +3081,9 @@ button{
             <div
                 class="stat-number gold"
                 id="total">
+
                 0
+
             </div>
 
         </div>
@@ -1777,7 +3106,9 @@ button{
             <div
                 class="stat-number green"
                 id="activeTotal">
+
                 0
+
             </div>
 
         </div>
@@ -1800,7 +3131,9 @@ button{
             <div
                 class="stat-number red"
                 id="pausedTotal">
+
                 0
+
             </div>
 
         </div>
@@ -1823,7 +3156,9 @@ button{
             <div
                 class="stat-number blue"
                 id="monthTotal">
+
                 0
+
             </div>
 
         </div>
@@ -1835,6 +3170,7 @@ button{
 
     <section class="quick-grid">
 
+
         <div class="quick-card">
 
             <div class="quick-top">
@@ -1843,18 +3179,24 @@ button{
                     نشاط اللاعبين
                 </div>
 
-                <span>🟢</span>
+                <span>
+                    🟢
+                </span>
 
             </div>
 
             <div
                 class="quick-value"
                 id="activePercent">
+
                 0%
+
             </div>
 
             <div class="progress">
+
                 <span id="activeProgress"></span>
+
             </div>
 
         </div>
@@ -1868,18 +3210,24 @@ button{
                     كرة اليد
                 </div>
 
-                <span>🤾</span>
+                <span>
+                    🤾
+                </span>
 
             </div>
 
             <div
                 class="quick-value"
                 id="handPercent">
+
                 0%
+
             </div>
 
             <div class="progress">
+
                 <span id="handProgress"></span>
+
             </div>
 
         </div>
@@ -1893,18 +3241,24 @@ button{
                     كرة السلة
                 </div>
 
-                <span>🏀</span>
+                <span>
+                    🏀
+                </span>
 
             </div>
 
             <div
                 class="quick-value"
                 id="basketPercent">
+
                 0%
+
             </div>
 
             <div class="progress">
+
                 <span id="basketProgress"></span>
+
             </div>
 
         </div>
@@ -1918,18 +3272,24 @@ button{
                     كرة الطائرة
                 </div>
 
-                <span>🏐</span>
+                <span>
+                    🏐
+                </span>
 
             </div>
 
             <div
                 class="quick-value"
                 id="volleyPercent">
+
                 0%
+
             </div>
 
             <div class="progress">
+
                 <span id="volleyProgress"></span>
+
             </div>
 
         </div>
@@ -1968,6 +3328,7 @@ button{
 
         <div class="filter-box">
 
+
             <div class="filter-info">
 
                 👁️ يتم عرض:
@@ -2000,18 +3361,53 @@ button{
                     كل الشهور
                 </option>
 
-                <option value="01">يناير</option>
-                <option value="02">فبراير</option>
-                <option value="03">مارس</option>
-                <option value="04">أبريل</option>
-                <option value="05">مايو</option>
-                <option value="06">يونيو</option>
-                <option value="07">يوليو</option>
-                <option value="08">أغسطس</option>
-                <option value="09">سبتمبر</option>
-                <option value="10">أكتوبر</option>
-                <option value="11">نوفمبر</option>
-                <option value="12">ديسمبر</option>
+                <option value="01">
+                    يناير
+                </option>
+
+                <option value="02">
+                    فبراير
+                </option>
+
+                <option value="03">
+                    مارس
+                </option>
+
+                <option value="04">
+                    أبريل
+                </option>
+
+                <option value="05">
+                    مايو
+                </option>
+
+                <option value="06">
+                    يونيو
+                </option>
+
+                <option value="07">
+                    يوليو
+                </option>
+
+                <option value="08">
+                    أغسطس
+                </option>
+
+                <option value="09">
+                    سبتمبر
+                </option>
+
+                <option value="10">
+                    أكتوبر
+                </option>
+
+                <option value="11">
+                    نوفمبر
+                </option>
+
+                <option value="12">
+                    ديسمبر
+                </option>
 
             </select>
 
@@ -2025,6 +3421,7 @@ button{
     <section
         class="analytics"
         id="analytics">
+
 
         <div class="chart-card">
 
@@ -2056,10 +3453,12 @@ button{
                 </div>
 
                 <div class="big-progress">
+
                     <span
                         class="hand-bar"
                         id="handBar">
                     </span>
+
                 </div>
 
             </div>
@@ -2080,10 +3479,12 @@ button{
                 </div>
 
                 <div class="big-progress">
+
                     <span
                         class="basket-bar"
                         id="basketBar">
                     </span>
+
                 </div>
 
             </div>
@@ -2104,10 +3505,12 @@ button{
                 </div>
 
                 <div class="big-progress">
+
                     <span
                         class="volley-bar"
                         id="volleyBar">
                     </span>
+
                 </div>
 
             </div>
@@ -2129,12 +3532,16 @@ button{
 
             </div>
 
+
             <div class="revenue-box">
 
                 <div class="revenue-circle">
 
-                    <strong id="subscriptionPercent">
+                    <strong
+                        id="subscriptionPercent">
+
                         0%
+
                     </strong>
 
                     <span>
@@ -2155,6 +3562,7 @@ button{
     <section
         class="section"
         id="register">
+
 
         <div class="section-head">
 
@@ -2183,6 +3591,7 @@ button{
 
         <div class="form-grid">
 
+
             <div class="field">
 
                 <label>
@@ -2192,6 +3601,7 @@ button{
                 <input
                     id="playerName"
                     type="text"
+                    autocomplete="name"
                     placeholder="اكتب اسم اللاعب">
 
             </div>
@@ -2230,8 +3640,10 @@ button{
 
                 <input
                     id="playerPhone"
-                    type="text"
-                    maxlength="15"
+                    type="tel"
+                    inputmode="numeric"
+                    maxlength="11"
+                    autocomplete="tel"
                     placeholder="01xxxxxxxxx">
 
             </div>
@@ -2294,6 +3706,7 @@ button{
         class="section"
         id="players">
 
+
         <div class="section-head">
 
             <div class="section-title">
@@ -2327,7 +3740,8 @@ button{
 
             <input
                 id="globalSearch"
-                type="text"
+                type="search"
+                autocomplete="off"
                 placeholder="ابحث عن اسم اللاعب أو رقم الهاتف..."
                 oninput="render()">
 
@@ -2345,6 +3759,7 @@ button{
     <!-- ================= ACTIVITY ================= -->
 
     <section class="section">
+
 
         <div class="section-head">
 
@@ -2370,6 +3785,7 @@ button{
 
         </div>
 
+
         <div
             class="activity"
             id="activityList">
@@ -2378,12 +3794,25 @@ button{
     </section>
 
 
-    <div class="footer">
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <strong>
+            Professional Academy
+        </strong>
+
+        <br>
+
+        الأكاديمية الرياضية لإدارة لاعبي
+        كرة اليد وكرة السلة والكرة الطائرة
+
+        <br>
 
         © 2026 Professional Academy
         — All Rights Reserved 🏆
 
-    </div>
+    </footer>
 
 </main>
 
@@ -2396,6 +3825,7 @@ button{
 
     <div class="modal-box">
 
+
         <div class="modal-head">
 
             <h3>
@@ -2404,8 +3834,11 @@ button{
 
             <button
                 class="close"
-                onclick="closeModal()">
+                onclick="closeModal()"
+                aria-label="إغلاق">
+
                 ×
+
             </button>
 
         </div>
@@ -2418,13 +3851,16 @@ button{
 
         <div class="modal-fields">
 
+
             <div class="field">
 
                 <label>
                     اسم اللاعب
                 </label>
 
-                <input id="editName">
+                <input
+                    id="editName"
+                    autocomplete="name">
 
             </div>
 
@@ -2437,7 +3873,9 @@ button{
 
                 <input
                     id="editPhone"
-                    maxlength="15">
+                    type="tel"
+                    inputmode="numeric"
+                    maxlength="11">
 
             </div>
 
@@ -2475,6 +3913,7 @@ button{
 
             </button>
 
+
             <button
                 class="btn btn-secondary"
                 onclick="closeModal()">
@@ -2501,7 +3940,7 @@ button{
 <script>
 
 /* =====================================================
-   PROFESSIONAL ACADEMY V4
+   PROFESSIONAL ACADEMY V5
 ===================================================== */
 
 
@@ -2510,18 +3949,34 @@ button{
 const KEY =
     "professionalAcademyPlayers";
 
-let players =
-    JSON.parse(
-        localStorage.getItem(KEY) || "[]"
-    );
+let players = [];
+
+try{
+
+    players =
+        JSON.parse(
+            localStorage.getItem(KEY) || "[]"
+        );
+
+    if(!Array.isArray(players)){
+        players = [];
+    }
+
+}catch(error){
+
+    players = [];
+
+}
 
 let selectedMonth = "all";
+
 let selectedYear = "all";
 
 
 /* ================= MONTHS ================= */
 
 const monthNames = {
+
     "01":"يناير",
     "02":"فبراير",
     "03":"مارس",
@@ -2534,6 +3989,7 @@ const monthNames = {
     "10":"أكتوبر",
     "11":"نوفمبر",
     "12":"ديسمبر"
+
 };
 
 
@@ -2550,7 +4006,8 @@ function sportName(sport){
     if(sport === "volley")
         return "كرة الطائرة";
 
-    return sport;
+    return sport || "غير محدد";
+
 }
 
 
@@ -2568,6 +4025,7 @@ function sportIcon(sport){
         return "🏐";
 
     return "🏆";
+
 }
 
 
@@ -2576,11 +4034,17 @@ function sportIcon(sport){
 function esc(value){
 
     return String(value ?? "")
+
         .replaceAll("&","&amp;")
+
         .replaceAll("<","&lt;")
+
         .replaceAll(">","&gt;")
+
         .replaceAll('"',"&quot;")
+
         .replaceAll("'","&#039;");
+
 }
 
 
@@ -2588,10 +4052,21 @@ function esc(value){
 
 function save(){
 
-    localStorage.setItem(
-        KEY,
-        JSON.stringify(players)
-    );
+    try{
+
+        localStorage.setItem(
+            KEY,
+            JSON.stringify(players)
+        );
+
+    }catch(error){
+
+        notify(
+            "تعذر حفظ البيانات في المتصفح",
+            "error"
+        );
+
+    }
 
 }
 
@@ -2635,9 +4110,11 @@ function notify(
 
     container.appendChild(item);
 
+
     setTimeout(() => {
 
         item.style.opacity = "0";
+
         item.style.transform =
             "translateY(10px)";
 
@@ -2657,10 +4134,13 @@ function getFilteredPlayers(){
 
     return players.filter(player => {
 
+
         if(
             selectedMonth !== "all" &&
-            (!player.date ||
-             player.date.split("-")[1] !== selectedMonth)
+            (
+                !player.date ||
+                player.date.split("-")[1] !== selectedMonth
+            )
         ){
 
             return false;
@@ -2670,8 +4150,10 @@ function getFilteredPlayers(){
 
         if(
             selectedYear !== "all" &&
-            (!player.date ||
-             player.date.split("-")[0] !== selectedYear)
+            (
+                !player.date ||
+                player.date.split("-")[0] !== selectedYear
+            )
         ){
 
             return false;
@@ -2695,13 +4177,15 @@ function changeFilters(){
             "monthFilter"
         ).value;
 
+
     selectedYear =
         document.getElementById(
             "yearFilter"
         ).value;
 
 
-    let text = "كل اللاعبين";
+    let text =
+        "كل اللاعبين";
 
 
     if(
@@ -2752,39 +4236,49 @@ function loadYears(){
             "yearFilter"
         );
 
+
     const currentYear =
         new Date().getFullYear();
 
 
     const years =
-        [...new Set(
+        [
+            ...new Set(
 
-            players
+                players
 
-                .map(p =>
-                    p.date
-                    ? p.date.split("-")[0]
-                    : null
-                )
+                    .map(
+                        p =>
+                            p.date
+                            ? p.date.split("-")[0]
+                            : null
+                    )
 
-                .filter(Boolean)
+                    .filter(Boolean)
 
-        )]
-        .sort((a,b) => b-a);
+            )
+        ]
+
+        .sort(
+            (a,b) => Number(b) - Number(a)
+        );
 
 
-    select.innerHTML =
-        `<option value="all">
+    select.innerHTML = `
+
+        <option value="all">
             كل السنوات
-        </option>`;
+        </option>
+
+    `;
 
 
     years.forEach(year => {
 
         select.innerHTML += `
 
-            <option value="${year}">
-                ${year}
+            <option value="${esc(year)}">
+                ${esc(year)}
             </option>
 
         `;
@@ -2808,6 +4302,10 @@ function loadYears(){
 
     }
 
+
+    select.value =
+        selectedYear;
+
 }
 
 
@@ -2819,6 +4317,7 @@ function getSearchFiltered(data){
         document.getElementById(
             "globalSearch"
         );
+
 
     const search =
         input.value
@@ -2832,21 +4331,27 @@ function getSearchFiltered(data){
 
     return data.filter(player =>
 
-        String(player.name || "")
-            .toLowerCase()
-            .includes(search)
+        String(
+            player.name || ""
+        )
+        .toLowerCase()
+        .includes(search)
 
         ||
 
-        String(player.phone || "")
-            .toLowerCase()
-            .includes(search)
+        String(
+            player.phone || ""
+        )
+        .toLowerCase()
+        .includes(search)
 
         ||
 
-        sportName(player.sport)
-            .toLowerCase()
-            .includes(search)
+        sportName(
+            player.sport
+        )
+        .toLowerCase()
+        .includes(search)
 
     );
 
@@ -2863,7 +4368,7 @@ function renderPlayers(){
         );
 
 
-    let data =
+    const data =
         getSearchFiltered(
             getFilteredPlayers()
         );
@@ -2889,7 +4394,10 @@ function renderPlayers(){
 
 
     container.innerHTML =
-        data.map(player => {
+
+        data
+
+        .map(player => {
 
             const index =
                 players.indexOf(player);
@@ -2897,11 +4405,13 @@ function renderPlayers(){
 
             const initials =
                 esc(
+
                     String(
                         player.name || "ل"
                     )
                     .trim()
                     .charAt(0)
+
                 );
 
 
@@ -2924,8 +4434,15 @@ function renderPlayers(){
                                 </div>
 
                                 <div class="player-sport">
+
                                     ${sportIcon(player.sport)}
-                                    ${sportName(player.sport)}
+
+                                    ${esc(
+                                        sportName(
+                                            player.sport
+                                        )
+                                    )}
+
                                 </div>
 
                             </div>
@@ -2953,6 +4470,7 @@ function renderPlayers(){
 
                     <div class="player-details">
 
+
                         <div class="detail">
 
                             <span>
@@ -2960,7 +4478,9 @@ function renderPlayers(){
                             </span>
 
                             <strong>
-                                ${esc(player.phone || "-")}
+                                ${esc(
+                                    player.phone || "-"
+                                )}
                             </strong>
 
                         </div>
@@ -2973,15 +4493,19 @@ function renderPlayers(){
                             </span>
 
                             <strong>
-                                ${esc(player.date || "-")}
+                                ${esc(
+                                    player.date || "-"
+                                )}
                             </strong>
 
                         </div>
+
 
                     </div>
 
 
                     <div class="card-actions">
+
 
                         <button
                             onclick="editPlayer(${index})">
@@ -2999,6 +4523,7 @@ function renderPlayers(){
 
                         </button>
 
+
                     </div>
 
                 </div>
@@ -3006,6 +4531,7 @@ function renderPlayers(){
             `;
 
         })
+
         .join("");
 
 }
@@ -3037,8 +4563,9 @@ function renderStats(){
 
     const currentMonth =
         String(
-            new Date().getMonth()+1
-        ).padStart(2,"0");
+            new Date().getMonth() + 1
+        )
+        .padStart(2,"0");
 
 
     const currentYear =
@@ -3051,30 +4578,38 @@ function renderStats(){
         players.filter(p =>
 
             p.date &&
-            p.date.split("-")[1] === currentMonth &&
-            p.date.split("-")[0] === currentYear
+
+            p.date.split("-")[1] ===
+                currentMonth &&
+
+            p.date.split("-")[0] ===
+                currentYear
 
         ).length;
 
 
     document.getElementById(
         "total"
-    ).textContent = total;
+    ).textContent =
+        total;
 
 
     document.getElementById(
         "activeTotal"
-    ).textContent = active;
+    ).textContent =
+        active;
 
 
     document.getElementById(
         "pausedTotal"
-    ).textContent = paused;
+    ).textContent =
+        paused;
 
 
     document.getElementById(
         "monthTotal"
-    ).textContent = thisMonth;
+    ).textContent =
+        thisMonth;
 
 
     const hand =
@@ -3097,10 +4632,13 @@ function renderStats(){
 
     const percent =
         value =>
+
             total
+
             ? Math.round(
                 value / total * 100
             )
+
             : 0;
 
 
@@ -3213,7 +4751,9 @@ function renderStats(){
     document.getElementById(
         "playersSubtitle"
     ).textContent =
+
         `يتم عرض ${data.length} لاعب`;
+
 }
 
 
@@ -3276,25 +4816,44 @@ function renderActivity(){
 
 
     list.innerHTML =
+
         recent
+
         .map(player => `
 
             <div class="activity-item">
 
                 <div class="activity-icon">
-                    ${sportIcon(player.sport)}
+
+                    ${sportIcon(
+                        player.sport
+                    )}
+
                 </div>
 
                 <div class="activity-text">
 
                     <strong>
-                        تم تسجيل ${esc(player.name)}
+
+                        تم تسجيل
+                        ${esc(player.name)}
+
                     </strong>
 
                     <span>
-                        ${sportName(player.sport)}
+
+                        ${esc(
+                            sportName(
+                                player.sport
+                            )
+                        )}
+
                         •
-                        ${esc(player.date || "-")}
+
+                        ${esc(
+                            player.date || "-"
+                        )}
+
                     </span>
 
                 </div>
@@ -3302,6 +4861,7 @@ function renderActivity(){
             </div>
 
         `)
+
         .join("");
 
 }
@@ -3532,6 +5092,10 @@ function editPlayer(index){
     .classList
     .add("show");
 
+
+    document.body.style.overflow =
+        "hidden";
+
 }
 
 
@@ -3632,6 +5196,10 @@ function closeModal(){
         .classList
         .remove("show");
 
+
+    document.body.style.overflow =
+        "";
+
 }
 
 
@@ -3662,6 +5230,7 @@ function clearAll(){
 
 
     players = [];
+
 
     save();
 
@@ -3724,7 +5293,8 @@ function exportData(){
         );
 
 
-    a.href = url;
+    a.href =
+        url;
 
 
     a.download =
@@ -3749,14 +5319,38 @@ function exportData(){
 }
 
 
-/* ================= MOBILE ================= */
+/* ================= MOBILE SIDEBAR ================= */
 
 function toggleSide(){
 
-    document
-        .getElementById("sidebar")
+    const sidebar =
+        document.getElementById(
+            "sidebar"
+        );
+
+    const overlay =
+        document.getElementById(
+            "sidebarOverlay"
+        );
+
+
+    sidebar
         .classList
         .toggle("open");
+
+
+    overlay
+        .classList
+        .toggle(
+            "show",
+            sidebar.classList.contains("open")
+        );
+
+
+    document.body.style.overflow =
+        sidebar.classList.contains("open")
+        ? "hidden"
+        : "";
 
 }
 
@@ -3767,6 +5361,16 @@ function closeSide(){
         .getElementById("sidebar")
         .classList
         .remove("open");
+
+
+    document
+        .getElementById("sidebarOverlay")
+        .classList
+        .remove("show");
+
+
+    document.body.style.overflow =
+        "";
 
 }
 
@@ -3782,12 +5386,44 @@ function scrollToSection(id){
     if(element){
 
         element.scrollIntoView({
-            behavior:"smooth"
+
+            behavior:"smooth",
+
+            block:"start"
+
         });
 
     }
 
 }
+
+
+/* ================= ACTIVE NAV ================= */
+
+document
+    .querySelectorAll(".nav a[href^='#']")
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            function(){
+
+                document
+                    .querySelectorAll(".nav a")
+                    .forEach(
+                        item =>
+                            item.classList
+                            .remove("active")
+                    );
+
+
+                this.classList
+                    .add("active");
+
+            }
+        );
+
+    });
 
 
 /* ================= MODAL CLICK ================= */
@@ -3824,6 +5460,58 @@ document.addEventListener(
 
     }
 );
+
+
+/* ================= ENTER TO ADD ================= */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(
+            e.key === "Enter" &&
+            document.activeElement &&
+            document.activeElement.id === "playerName"
+        ){
+
+            addPlayer();
+
+        }
+
+    }
+);
+
+
+/* ================= PHONE INPUT ================= */
+
+document
+    .getElementById("playerPhone")
+    .addEventListener(
+        "input",
+        function(){
+
+            this.value =
+                this.value
+                .replace(/\D/g,"")
+                .slice(0,11);
+
+        }
+    );
+
+
+document
+    .getElementById("editPhone")
+    .addEventListener(
+        "input",
+        function(){
+
+            this.value =
+                this.value
+                .replace(/\D/g,"")
+                .slice(0,11);
+
+        }
+    );
 
 
 /* ================= INIT ================= */
