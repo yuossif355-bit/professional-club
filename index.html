@@ -1,124 +1,170 @@
-from pathlib import Path
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional Academy | Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#04101f;
+  --bg2:#071a2e;
+  --panel:#08213a;
+  --panel2:#0b2a49;
+  --line:rgba(139,190,255,.16);
+  --text:#f7fbff;
+  --muted:#8da6bf;
+  --yellow:#ffc21a;
+  --yellow2:#ff9d00;
+  --blue:#1687ff;
+  --blue2:#005be8;
+  --green:#2ee7a1;
+  --red:#ff4d5e;
+  --shadow:0 20px 55px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--text);font-family:Cairo,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 20% 10%,rgba(0,120,255,.16),transparent 28%),
+    radial-gradient(circle at 85% 35%,rgba(255,184,0,.09),transparent 24%),
+    linear-gradient(135deg,#020a14,#06182b 55%,#03101e);
+  min-height:100vh;
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.app{display:grid;grid-template-columns:270px 1fr;min-height:100vh}
+.sidebar{
+  position:sticky;top:0;height:100vh;padding:24px 18px;
+  background:linear-gradient(180deg,#03101f,#061c32 70%,#04101d);
+  border-left:1px solid var(--line);z-index:20;
+}
+.brand{display:flex;align-items:center;gap:12px;padding:8px 8px 25px}
+.brand-mark{
+  width:62px;height:62px;border-radius:20px;display:grid;place-items:center;
+  background:linear-gradient(145deg,var(--yellow),#ff8d00);
+  color:#06111e;font-weight:900;font-family:Montserrat;font-size:24px;
+  box-shadow:0 10px 30px rgba(255,183,0,.24);
+  transform:skew(-4deg);
+}
+.brand strong{display:block;font-family:Montserrat;font-size:19px;letter-spacing:.2px}
+.brand span{display:block;color:var(--yellow);font-size:11px;font-weight:800;margin-top:2px}
 
-src = Path("/mnt/data/نص واحد ملصق (5).txt").read_text(encoding="utf-8")
+/* تنسيق شريط الفلترة والأقسام */
+.main-content { padding: 30px; }
+.filter-box {
+  background: var(--panel);
+  padding: 15px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.filter-box select {
+  background: var(--panel2);
+  color: var(--text);
+  border: 1px solid var(--line);
+  padding: 8px 16px;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+}
+.data-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+</style>
+</head>
+<body>
 
-# إضافة اختيار الشهر
-html_anchor = '    <section class="registration" id="register">'
-month_html = '''    <section class="month-filter">
-      <div class="month-filter-head">
-        <div>
-          <h3>فلترة حسب الشهر 📅</h3>
-          <p>اختر الشهر لعرض اللاعبين المسجلين في هذا الشهر فقط</p>
-        </div>
-        <select id="monthFilter" onchange="render()">
-          <option value="all">كل الشهور</option>
-          <option value="1">يناير</option>
-          <option value="2">فبراير</option>
-          <option value="3">مارس</option>
-          <option value="4">أبريل</option>
-          <option value="5">مايو</option>
-          <option value="6">يونيو</option>
-          <option value="7">يوليو</option>
-          <option value="8">أغسطس</option>
-          <option value="9">سبتمبر</option>
-          <option value="10">أكتوبر</option>
-          <option value="11">نوفمبر</option>
-          <option value="12">ديسمبر</option>
-        </select>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">PA</div>
+      <div>
+        <strong>ACADEMY</strong>
+        <span>DASHBOARD</span>
       </div>
-    </section>
+    </div>
+  </aside>
 
-'''
-if html_anchor not in src:
-    raise RuntimeError("لم أجد قسم التسجيل")
-src = src.replace(html_anchor, month_html + html_anchor, 1)
+  <main class="main-content">
+    <!-- قائمة اختيار الشهر -->
+    <div class="filter-box">
+      <label for="monthFilter">اختر الشهر عرض البيانات:</label>
+      <select id="monthFilter" onchange="filterData()">
+        <option value="all">جميع الشهور</option>
+        <option value="1">شهر 1 (يناير)</option>
+        <option value="2">شهر 2 (فبراير)</option>
+        <option value="3">شهر 3 (مارس)</option>
+        <option value="4">شهر 4 (أبريل)</option>
+        <option value="5">شهر 5 (مايو)</option>
+        <option value="6">شهر 6 (يونيو)</option>
+        <option value="7">شهر 7 (يوليو)</option>
+        <option value="8">شهر 8 (أغسطس)</option>
+        <option value="9">شهر 9 (سبتمبر)</option>
+        <option value="10">شهر 10 (أكتوبر)</option>
+        <option value="11">شهر 11 (نوفمبر)</option>
+        <option value="12">شهر 12 (ديسمبر)</option>
+      </select>
+    </div>
 
-# تصميم فلتر الشهر
-css_anchor = '</style>'
-month_css = '''  .month-filter{
-    margin-top:22px;border:1px solid var(--line);border-radius:20px;padding:18px;
-    background:linear-gradient(145deg,#092744,#06172a)
-  }
-  .month-filter-head{
-    display:flex;align-items:center;justify-content:space-between;gap:15px
-  }
-  .month-filter h3{margin:0;font-size:18px}
-  .month-filter p{margin:3px 0 0;color:var(--muted);font-size:11px}
-  .month-filter select{
-    min-width:190px;padding:11px 14px;border-radius:11px;border:1px solid var(--line);
-    outline:0;background:#041526;color:#fff;font-weight:700;cursor:pointer
-  }
-  .month-filter select:focus{border-color:var(--yellow)}
-  @media(max-width:600px){
-    .month-filter-head{flex-direction:column;align-items:stretch}
-    .month-filter select{width:100%}
-  }
-'''
-src = src.replace(css_anchor, month_css + css_anchor, 1)
+    <!-- قائمة البيانات المسجلة -->
+    <div id="dataList">
+      <!-- يتم تحديد الشهر باستخدام data-month -->
+      <div class="data-card" data-month="1">
+        <h3>تسجيل طالب جديد</h3>
+        <p>التاريخ: 15 يناير</p>
+      </div>
 
-# فلترة قوائم الرياضات بالشهر
-start = src.index("function renderSport(key){")
-end = src.index("\n}\nfunction render(){", start) + 2
+      <div class="data-card" data-month="1">
+        <h3>دفعة رسم دورة تدريبية</h3>
+        <p>التاريخ: 20 يناير</p>
+      </div>
 
-new_render_sport = '''function renderSport(key){
-  const body=document.getElementById(key==='hand'?'bodyHand':key==='basket'?'bodyBasket':'bodyVolley');
-  const input=document.getElementById(key==='hand'?'searchHand':key==='basket'?'searchBasket':'searchVolley');
-  const q=(input?.value||'').trim().toLowerCase();
-  const month=document.getElementById('monthFilter')?.value||'all';
+      <div class="data-card" data-month="2">
+        <h3>اشتراك جديد</h3>
+        <p>التاريخ: 10 فبراير</p>
+      </div>
 
-  const list=players.map((p,i)=>({...p,index:i})).filter(p=>{
-    const sportMatch=p.sport===key;
-    const searchMatch=!q || p.name.toLowerCase().includes(q)||p.phone.includes(q);
-    const playerMonth=p.date ? Number(p.date.split('-')[1]) : 0;
-    const monthMatch=month==='all' || playerMonth===Number(month);
-    return sportMatch && searchMatch && monthMatch;
+      <div class="data-card" data-month="3">
+        <h3>تقرير شهر مارس</h3>
+        <p>التاريخ: 5 مارس</p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- كود السكربت لتصفية العناصر -->
+<script>
+function filterData() {
+  // الحصول على الشهر المحدد من القائمة
+  const selectedMonth = document.getElementById("monthFilter").value;
+  
+  // الحصول على كل بطاقات البيانات
+  const cards = document.querySelectorAll(".data-card");
+
+  cards.forEach(card => {
+    // قراءة رقم الشهر الخاص بكل عنصر من خاصية data-month
+    const itemMonth = card.getAttribute("data-month");
+
+    // إظهار العنصر إذا كان يساوي الشهر المحدد أو تم اختيار "جميع الشهور"
+    if (selectedMonth === "all" || itemMonth === selectedMonth) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
   });
+}
+</script>
 
-  body.innerHTML=list.length?list.map((p,n)=>`
-    <tr>
-      <td>${n+1}</td><td class="player-name">${esc(p.name)}</td><td>${esc(p.phone)}</td>
-      <td>${p.status==='مدفوع'?'🟢 مدفوع':'🟠 مستحق'}</td>
-      <td><div class="actions"><button class="action edit" onclick="editPlayer(${p.index})">✎</button><button class="action del" onclick="deletePlayer(${p.index})">×</button></div></td>
-    </tr>`).join(''):'<tr><td colspan="5" class="empty">لا يوجد لاعبين في الشهر المحدد</td></tr>';
-}'''
-
-src = src[:start] + new_render_sport + src[end:]
-
-# جعل الإحصائيات والنشاط تتبع الشهر المختار
-start = src.index("function render(){")
-end = src.index("\n}\nfunction addPlayer(e){", start) + 2
-
-new_render = '''function render(){
-  const month=document.getElementById('monthFilter')?.value||'all';
-
-  const visiblePlayers=players.filter(p=>{
-    if(month==='all') return true;
-    const playerMonth=p.date ? Number(p.date.split('-')[1]) : 0;
-    return playerMonth===Number(month);
-  });
-
-  const h=visiblePlayers.filter(p=>p.sport==='hand').length;
-  const b=visiblePlayers.filter(p=>p.sport==='basket').length;
-  const v=visiblePlayers.filter(p=>p.sport==='volley').length;
-
-  document.getElementById('total').textContent=visiblePlayers.length;
-  document.getElementById('handTotal').textContent=h;
-  document.getElementById('basketTotal').textContent=b;
-  document.getElementById('volleyTotal').textContent=v;
-  document.getElementById('handCard').textContent=h;
-  document.getElementById('basketCard').textContent=b;
-  document.getElementById('volleyCard').textContent=v;
-
-  ['hand','basket','volley'].forEach(renderSport);
-
-  const last=[...visiblePlayers].slice(-5).reverse();
-  document.getElementById('activityList').innerHTML=last.length?last.map(p=>`
-    <div class="activity-row"><div class="activity-icon">${p.sport==='hand'?'🤾':p.sport==='basket'?'🏀':'🏐'}</div><div><b>تم تسجيل اللاعب ${esc(p.name)}</b><small>${sportName(p.sport)} • ${esc(p.status)} • ${esc(p.date)}</small></div></div>`).join(''):'<div class="empty">لا توجد بيانات في الشهر المحدد</div>';
-}'''
-
-src = src[:start] + new_render + src[end:]
-
-out = Path("/mnt/data/Professional_Academy_Month_Filter.html")
-out.write_text(src, encoding="utf-8")
-
-print(f"تم إنشاء الملف بنجاح: {out}")
+</body>
+</html>
