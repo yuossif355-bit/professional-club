@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yuossif355-bit.github.io/professional-club/sitemap.xml
