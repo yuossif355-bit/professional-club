@@ -103,10 +103,10 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:26px}
   <section class="card" aria-labelledby="d">
     <h2 id="d">تفاصيل الأكاديمية</h2>
     <dl>
-      <dt>الوصف</dt><dd>أكاديمية بروفيشنال الإسماعيلية لكرة اليد، بتقدم برامج تدريبية لتأسيس مهارات الناشئين والشباب بأسلوب احترافي.</dd>
-      <dt>العنوان</dt><dd>محافظة الإسماعيلية - فندق توليب الفرسان</dd>
-      <dt>المواعيد</dt><dd>السبت والاتنين والأربعاء</dd>
-      <dt>المجموعات</dt><dd>الأولاد: الساعة 6 &nbsp;·&nbsp; البنات: الساعة 8</dd>
+      <dt>الوصف</dt><dd id="cDesc">أكاديمية بروفيشنال الإسماعيلية لكرة اليد، بتقدم برامج تدريبية لتأسيس مهارات الناشئين والشباب بأسلوب احترافي.</dd>
+      <dt>العنوان</dt><dd id="cAddr">محافظة الإسماعيلية - فندق توليب الفرسان</dd>
+      <dt>المواعيد</dt><dd id="cDays">السبت والاتنين والأربعاء</dd>
+      <dt>المجموعات</dt><dd id="cGroups">الأولاد: الساعة 6 &nbsp;·&nbsp; البنات: الساعة 8</dd>
       <dt>الرياضة</dt><dd>كرة اليد</dd>
     </dl>
     <p class="note">انضم لينا واحجز مكانك، التدريب للشباب والبنات.</p>
@@ -114,10 +114,10 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:26px}
 
   <section class="card" aria-labelledby="c">
     <h2 id="c">التواصل والاستقبال</h2>
-    <p style="margin-bottom:10px;direction:ltr;text-align:start;font-size:1.3rem;font-weight:900;letter-spacing:.04em" dir="ltr">01285705106</p>
+    <p id="cPhone" style="margin-bottom:10px;direction:ltr;text-align:start;font-size:1.3rem;font-weight:900;letter-spacing:.04em" dir="ltr">01285705106</p>
     <div class="share">
-      <a href="tel:+201285705106">اتصل بينا</a>
-      <a href="https://wa.me/201285705106" target="_blank" rel="noopener">واتساب</a>
+      <a id="cCall" href="tel:+201285705106">اتصل بينا</a>
+      <a id="cWa" href="https://wa.me/201285705106" target="_blank" rel="noopener">واتساب</a>
       <a href="https://www.facebook.com/share/1DG5ZbSksD/?mibextid=wwXIfr" target="_blank" rel="noopener">فيسبوك</a>
     </div>
   </section>
@@ -134,7 +134,7 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:26px}
   <section class="card" aria-labelledby="b">
     <h2 id="b">احجز مكانك</h2>
     <p class="note" style="margin:0 0 10px">اختار من أنواع الاشتراكات</p>
-    <div class="plan"><span>شهري</span><b>250 ج.م</b></div>
+    <div class="plan"><span>شهري</span><b id="cPrice">250 ج.م</b></div>
     <form id="form" novalidate>
       <div class="f"><label for="who">اسم اللاعب</label><input id="who" autocomplete="name" maxlength="40"><span class="err" id="whoErr"></span></div>
       <div class="f"><label for="grp">المجموعة</label>
@@ -153,6 +153,8 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:26px}
 (function(){
   /* رقم واتساب الأكاديمية لاستقبال الحجوزات (بكود مصر 20 وبدون +). عدّله هنا بس. */
   var WHATSAPP = "201285705106";
+  /* القيم دي بتتحدّث من ملف content.json (اللي بتعدّله من غرفة المدرب). */
+  window.PA = {whatsapp: WHATSAPP, price: 250};
   var $=function(s){return document.querySelector(s)};
   $("#y").textContent=new Date().getFullYear();
   var url=location.href.split("#")[0], t=encodeURIComponent("أكاديمية بروفيشنال الإسماعيلية لكرة اليد");
@@ -168,8 +170,8 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:26px}
     $("#whoErr").textContent=who?"":"اكتب اسم اللاعب."; if(!who)ok=false;
     if(!/^01[0125]\d{8}$/.test(ph)){$("#phErr").textContent="اكتب رقم موبايل مصري صحيح، زي 01012345678.";ok=false}else $("#phErr").textContent="";
     if(!ok)return;
-    var msg="طلب حجز في أكاديمية بروفيشنال الإسماعيلية لكرة اليد\nاسم اللاعب: "+who+"\nالمجموعة: "+$("#grp").value+"\nالاشتراك: شهري - 250 ج.م\nرقم التواصل: "+ph;
-    location.href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg);
+    var msg="طلب حجز في أكاديمية بروفيشنال الإسماعيلية لكرة اليد\nاسم اللاعب: "+who+"\nالمجموعة: "+$("#grp").value+"\nالاشتراك: شهري - "+window.PA.price+" ج.م\nرقم التواصل: "+ph;
+    location.href="https://wa.me/"+window.PA.whatsapp+"?text="+encodeURIComponent(msg);
   });
 })();
 </script>
@@ -179,8 +181,9 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:26px}
 (function(){
   var slider=document.getElementById("slider"),track=document.getElementById("track"),
       n=track.children.length,i=0,count=document.getElementById("count"),
-      dots=document.getElementById("dots"),btns=[];
-  function warm(j){track.children[(j+n)%n].querySelector("img").loading="eager"}
+      dots=document.getElementById("dots"),btns=[],
+      prevB=document.getElementById("prev"),nextB=document.getElementById("next");
+  function warm(j){var f=track.children[(j+n)%n];if(f)f.querySelector("img").loading="eager"}
   function go(j){
     i=(j+n)%n;
     track.style.transform="translateX("+(i*100)+"%)";
@@ -188,12 +191,20 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:26px}
     btns.forEach(function(b,k){b.setAttribute("aria-current",k===i?"true":"false")});
     warm(i-1);warm(i);warm(i+1);
   }
-  for(var k=0;k<n;k++){(function(k){
-    var b=document.createElement("button");b.type="button";b.setAttribute("aria-label","الصورة "+(k+1));
-    b.addEventListener("click",function(){go(k)});dots.appendChild(b);btns.push(b);
-  })(k)}
-  document.getElementById("next").addEventListener("click",function(){go(i+1)});
-  document.getElementById("prev").addEventListener("click",function(){go(i-1)});
+  /* بيتنادى أول مرة، وبعدين تاني لما الصور تتحدّث من content.json */
+  function rebuild(){
+    n=track.children.length;btns=[];
+    while(dots.firstChild)dots.removeChild(dots.firstChild);
+    for(var k=0;k<n;k++){(function(k){
+      var b=document.createElement("button");b.type="button";b.setAttribute("aria-label","الصورة "+(k+1));
+      b.addEventListener("click",function(){go(k)});dots.appendChild(b);btns.push(b);
+    })(k)}
+    prevB.style.display=nextB.style.display=n<2?"none":"";
+    dots.style.display=n<2?"none":"";
+    go(0);
+  }
+  nextB.addEventListener("click",function(){go(i+1)});
+  prevB.addEventListener("click",function(){go(i-1)});
   slider.addEventListener("keydown",function(e){
     if(e.key==="ArrowLeft"){e.preventDefault();go(i+1)}
     else if(e.key==="ArrowRight"){e.preventDefault();go(i-1)}
@@ -205,7 +216,57 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:26px}
     var dx=e.changedTouches[0].clientX-x0;x0=null;
     if(Math.abs(dx)>40)go(dx>0?i+1:i-1);
   });
-  go(0);
+  window.PAslider={rebuild:rebuild};
+  rebuild();
+})();
+</script>
+
+<script>
+/* بيقرا نصوص وصور الموقع من content.json (بيتعدّل من غرفة المدرب). لو الملف مجاش، بيفضل المحتوى الأصلي اللي في الصفحة. */
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  function setText(id,t){var e=$(id);if(e&&typeof t==="string"&&t)e.textContent=t}
+  function apply(c){
+    setText("cDesc",c.description);setText("cAddr",c.address);setText("cDays",c.days);
+    if(c.groups&&c.groups.length){
+      setText("cGroups",c.groups.map(function(g){return g.name+": "+g.time}).join("  ·  "));
+      var sel=$("grp");
+      if(sel){
+        while(sel.firstChild)sel.removeChild(sel.firstChild);
+        c.groups.forEach(function(g){
+          var o=document.createElement("option");
+          o.value=g.name+" ("+g.time+")";o.textContent=g.name+" - "+g.time;sel.appendChild(o);
+        });
+      }
+    }
+    var price=parseInt(c.price,10);
+    if(price>0){window.PA.price=price;setText("cPrice",price+" ج.م")}
+    var digits=String(c.phone||"").replace(/\D/g,"");
+    if(digits.length>=10){
+      var intl="20"+digits.replace(/^0/,"");
+      window.PA.whatsapp=intl;setText("cPhone",digits);
+      if($("cCall"))$("cCall").href="tel:+"+intl;
+      if($("cWa"))$("cWa").href="https://wa.me/"+intl;
+    }
+    var g=(c.gallery||[]).filter(function(x){return x&&/^img\/gallery\/[\w.-]+$/.test(x.src)});
+    var track=$("track");
+    if(g.length&&track&&window.PAslider){
+      while(track.firstChild)track.removeChild(track.firstChild);
+      g.forEach(function(x,k){
+        var f=document.createElement("figure");f.className="slide";
+        var im=document.createElement("img");
+        im.src=x.src;im.alt=x.alt||"";
+        if(x.w&&x.h){im.width=x.w;im.height=x.h}
+        if(k>0)im.loading="lazy";
+        f.appendChild(im);track.appendChild(f);
+      });
+      window.PAslider.rebuild();
+    }
+  }
+  if(window.fetch)fetch("content.json",{cache:"no-cache"})
+    .then(function(r){return r.ok?r.json():null})
+    .then(function(c){if(c)apply(c)})
+    .catch(function(){});
 })();
 </script>
 

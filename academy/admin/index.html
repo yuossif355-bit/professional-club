@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0b0b0b">
+<title>غرفة المدرب | Professional Academy</title>
+<link rel="icon" type="image/png" sizes="48x48" href="../img/icon-48.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0b0b;--panel:#161616;--panel-2:#1e1e1e;--line:#2c2c2c;--text:#f5f2ee;--muted:#a7a29b;--or:#ff7a00;--or-2:#ffb066;--bad:#ff7b72;--ok:#25d366}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:"Cairo",system-ui,sans-serif;line-height:1.7;padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--or);outline-offset:2px}
+.wrap{max-width:720px;margin:0 auto;padding-inline:16px}
+.top{text-align:center;padding:22px 16px 18px;background:radial-gradient(ellipse at 50% 0%,rgba(255,122,0,.28),transparent 65%);border-bottom:3px solid var(--or)}
+.top img{width:84px;height:84px;border-radius:50%;box-shadow:0 0 28px rgba(255,122,0,.45)}
+h1{font-size:1.5rem;font-weight:900;margin-top:8px;line-height:1.3}
+.tag{color:var(--or-2);font-weight:700;font-size:.95rem}
+.card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px;margin-top:16px}
+.card h2{font-size:1.1rem;margin-bottom:6px;color:var(--or)}
+.f{display:flex;flex-direction:column;gap:5px;margin-top:12px}
+.f label{font-weight:700;font-size:.92rem}
+.f input,.f textarea{background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:11px 12px;width:100%;min-width:0}
+.f input:focus,.f textarea:focus{outline:none;border-color:var(--or)}
+textarea{resize:vertical;min-height:96px}
+.err{color:var(--bad);font-size:.85rem;min-height:1.1em}
+.btn{background:var(--or);color:#111;border:0;border-radius:14px;padding:12px 16px;font-weight:900;font-size:1rem}
+.btn.sec{background:var(--panel-2);color:var(--text);border:1px solid var(--line);font-weight:700}
+.btn:disabled{opacity:.5;cursor:default}
+.row{display:flex;gap:8px;align-items:center;margin-top:10px}
+.row input{flex:1;min-width:0;background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:9px 10px}
+.row input:focus{outline:none;border-color:var(--or)}
+.photo{display:flex;gap:10px;align-items:center;background:var(--panel-2);border:1px solid var(--line);border-radius:14px;padding:8px;margin-top:10px}
+.photo img{width:64px;height:80px;object-fit:cover;border-radius:10px;flex:none;background:#000}
+.photo .mid{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.photo .mid input{background:var(--bg);border:2px solid var(--line);border-radius:10px;padding:7px 9px;width:100%;min-width:0;font-size:.9rem}
+.photo .mid input:focus{outline:none;border-color:var(--or)}
+.badge{align-self:flex-start;background:var(--or);color:#111;border-radius:999px;padding:0 10px;font-size:.75rem;font-weight:900}
+.acts{display:flex;flex-direction:column;gap:6px;flex:none}
+.ib{width:38px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--bg);font-size:1.05rem;line-height:1;padding:0}
+.ib:disabled{opacity:.3;cursor:default}
+.ib.del{color:var(--bad)}
+.savebar{position:fixed;inset-inline:0;bottom:0;background:rgba(11,11,11,.95);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:2px}
+.savebar .btn{width:100%;max-width:420px}
+.savebar .err{min-height:0;text-align:center}
+.note{color:var(--muted);font-size:.85rem;margin-top:8px}
+.toast{position:fixed;inset-inline:16px;bottom:calc(100px + env(safe-area-inset-bottom,0px));margin:auto;max-width:360px;background:var(--text);color:var(--bg);border-radius:12px;padding:10px 14px;text-align:center;font-weight:700;display:none;z-index:5}
+.toast.show{display:block}
+details{margin-top:12px;background:var(--panel-2);border-radius:12px;padding:10px 12px;font-size:.92rem}
+summary{font-weight:700;cursor:pointer}
+details ol{padding-inline-start:22px;margin-top:8px}
+details li{margin-top:4px}
+a{color:var(--or-2)}
+.ltr{direction:ltr;text-align:start}
+.addbtn{margin-top:10px}
+</style>
+</head>
+<body>
+<header class="top">
+  <img src="../img/logo.jpg" alt="شعار Professional Academy" width="84" height="84">
+  <h1>غرفة المدرب</h1>
+  <p class="tag">لوحة التحكم في موقع الأكاديمية</p>
+</header>
+<main class="wrap" id="app" aria-live="polite"></main>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+"use strict";
+
+var OWNER="yuossif355-bit", REPO="professional-club", BRANCH="main", BASE="academy/";
+var TOKEN_KEY="pa_admin_token", SESSION_KEY="pa_admin_ok";
+var app=document.getElementById("app");
+var state={config:null,token:null,content:null,groups:[],photos:[],deleted:[],dirty:false};
+var refs={};
+
+/* ---------- helpers ---------- */
+function store(k,v){try{if(v==null)localStorage.removeItem(k);else localStorage.setItem(k,v)}catch(e){}}
+function load(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function sset(k,v){try{if(v==null)sessionStorage.removeItem(k);else sessionStorage.setItem(k,v)}catch(e){}}
+function sget(k){try{return sessionStorage.getItem(k)}catch(e){return null}}
+function wait(ms){return new Promise(function(r){setTimeout(r,ms)})}
+function clear(n){while(n.firstChild)n.removeChild(n.firstChild)}
+
+function el(tag,attrs){
+  var e=document.createElement(tag);
+  if(attrs)for(var k in attrs){
+    var v=attrs[k];
+    if(v===false||v==null)continue;
+    if(k==="class")e.className=v;
+    else if(k==="text")e.textContent=v;
+    else if(k.slice(0,2)==="on")e.addEventListener(k.slice(2),v);
+    else e.setAttribute(k,v===true?"":v);
+  }
+  for(var i=2;i<arguments.length;i++){
+    var c=arguments[i];
+    if(c==null||c===false)continue;
+    e.appendChild(typeof c==="string"?document.createTextNode(c):c);
+  }
+  return e;
+}
+function field(id,label,input,err){
+  return el("div",{class:"f"},el("label",{for:id,text:label}),input,err||null);
+}
+function textInput(id,val,extra){
+  var a={id:id,type:"text",autocomplete:"off"};
+  if(extra)for(var k in extra)a[k]=extra[k];
+  var e=el("input",a);
+  e.value=val==null?"":String(val);
+  return e;
+}
+var toastT;
+function toast(m){
+  var t=document.getElementById("toast");
+  t.textContent=m;t.classList.add("show");
+  clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove("show")},3600);
+}
+function arDigits(s){return String(s).replace(/[٠-٩]/g,function(d){return d.charCodeAt(0)-1632})}
+function markDirty(){state.dirty=true}
+
+/* ---------- crypto (password hash) ---------- */
+function bytesToHex(b){return Array.prototype.map.call(b,function(x){return("0"+x.toString(16)).slice(-2)}).join("")}
+function hexToBytes(h){var a=new Uint8Array(h.length/2);for(var i=0;i<a.length;i++)a[i]=parseInt(h.substr(i*2,2),16);return a}
+function newSalt(){return bytesToHex(crypto.getRandomValues(new Uint8Array(16)))}
+async function hashPw(pw,saltHex){
+  var key=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveBits"]);
+  var bits=await crypto.subtle.deriveBits({name:"PBKDF2",hash:"SHA-256",salt:hexToBytes(saltHex),iterations:200000},key,256);
+  return bytesToHex(new Uint8Array(bits));
+}
+
+/* ---------- base64 ---------- */
+function bytesToB64(bytes){
+  var s="",chunk=0x8000;
+  for(var i=0;i<bytes.length;i+=chunk)s+=String.fromCharCode.apply(null,bytes.subarray(i,i+chunk));
+  return btoa(s);
+}
+function textToB64(t){return bytesToB64(new TextEncoder().encode(t))}
+function b64ToText(b){
+  var bin=atob(b.replace(/\s/g,"")),a=new Uint8Array(bin.length);
+  for(var i=0;i<a.length;i++)a[i]=bin.charCodeAt(i);
+  return new TextDecoder().decode(a);
+}
+
+/* ---------- GitHub API ---------- */
+async function gh(path,opts){
+  opts=opts||{};
+  var headers={"Accept":"application/vnd.github+json","Authorization":"Bearer "+state.token,"X-GitHub-Api-Version":"2022-11-28"};
+  if(opts.body)headers["Content-Type"]="application/json";
+  var r=await fetch("https://api.github.com/repos/"+OWNER+"/"+REPO+path,{method:opts.method||"GET",headers:headers,body:opts.body});
+  if(!r.ok){
+    var msg="";try{msg=(await r.json()).message}catch(e){}
+    var err=new Error(msg||("HTTP "+r.status));err.status=r.status;throw err;
+  }
+  return r.status===204?null:r.json();
+}
+async function commit(message,files){
+  var ref=await gh("/git/ref/heads/"+BRANCH), head=ref.object.sha;
+  var c=await gh("/git/commits/"+head);
+  var tree=[];
+  for(var i=0;i<files.length;i++){
+    var f=files[i];
+    if(f.remove){tree.push({path:f.path,mode:"100644",type:"blob",sha:null});continue}
+    var blob=await gh("/git/blobs",{method:"POST",body:JSON.stringify({content:f.base64,encoding:"base64"})});
+    tree.push({path:f.path,mode:"100644",type:"blob",sha:blob.sha});
+  }
+  var nt=await gh("/git/trees",{method:"POST",body:JSON.stringify({base_tree:c.tree.sha,tree:tree})});
+  var nc=await gh("/git/commits",{method:"POST",body:JSON.stringify({message:message,tree:nt.sha,parents:[head]})});
+  await gh("/git/refs/heads/"+BRANCH,{method:"PATCH",body:JSON.stringify({sha:nc.sha})});
+}
+function explain(e){
+  var s=e&&e.status;
+  if(s===401)return "المفتاح غلط أو انتهت صلاحيته.";
+  if(s===403||s===404)return "المفتاح ملوش صلاحية على موقع الأكاديمية. لازم يكون Contents: Read and write على ريبو professional-club.";
+  if(s===409||s===422)return "حصل تعارض مع تعديل تاني. افتح الصفحة من جديد وجرب تاني.";
+  if(e instanceof TypeError||!navigator.onLine)return "مفيش اتصال بالإنترنت، جرب تاني.";
+  return "حصل خطأ: "+((e&&e.message)||"غير معروف");
+}
+
+/* ---------- token help ---------- */
+function tokenHelp(){
+  return el("details",null,
+    el("summary",{text:"إزاي أجيب مفتاح GitHub؟ (مرة واحدة)"}),
+    el("ol",null,
+      el("li",null,"افتح ",el("a",{href:"https://github.com/settings/personal-access-tokens/new",target:"_blank",rel:"noopener",text:"صفحة إنشاء المفتاح"})," وسجّل دخول بحسابك."),
+      el("li",{text:"اكتب أي اسم (مثلًا: غرفة المدرب) واختار المدة اللي تحبها."}),
+      el("li",{text:"في Repository access اختار Only select repositories وبعدين professional-club."}),
+      el("li",{text:"في Permissions ← Repository permissions ← Contents اختار Read and write."}),
+      el("li",{text:"دوس Generate token، وانسخ المفتاح (بيبدأ بـ github_pat_) والصقه هنا."})
+    ),
+    el("p",{class:"note",text:"المفتاح بيتخزن في المتصفح ده بس، ومش بيتحط في الموقع."})
+  );
+}
+
+/* ---------- screens ---------- */
+async function loadConfig(){
+  try{
+    var r=await fetch("config.json?v="+Date.now(),{cache:"no-store"});
+    if(!r.ok)return null;
+    var j=await r.json();
+    return(j&&j.hash&&j.salt)?j:null;
+  }catch(e){return null}
+}
+
+function showGate(){
+  clear(app);removeSavebar();
+  var pw=el("input",{id:"pw",type:"password",autocomplete:"current-password"});
+  var err=el("span",{class:"err",role:"alert"});
+  var btn=el("button",{class:"btn",type:"submit",text:"دخول"});
+  var tries=0;
+  var form=el("form",{class:"card",novalidate:true,onsubmit:async function(e){
+    e.preventDefault();
+    if(!pw.value){err.textContent="اكتب الباسورد.";return}
+    btn.disabled=true;err.textContent="";
+    if(tries>0)await wait(Math.min(tries*800,6000));
+    var ok=false;
+    try{ok=(await hashPw(pw.value,state.config.salt))===state.config.hash}
+    catch(x){err.textContent="المتصفح ده مش بيدعم التحقق. جرب Chrome أو Safari حديث.";btn.disabled=false;return}
+    if(ok){sset(SESSION_KEY,"1");showPanel()}
+    else{tries++;err.textContent="الباسورد غلط.";pw.value="";pw.focus();btn.disabled=false}
+  }},
+    el("h2",{text:"ادخل الباسورد"}),
+    field("pw","الباسورد",pw,err),
+    el("div",{style:"margin-top:14px"},btn)
+  );
+  app.appendChild(form);
+  pw.focus();
+}
+
+function showSetup(){
+  clear(app);removeSavebar();
+  var token=el("input",{id:"tk",type:"password",autocomplete:"off",dir:"ltr",placeholder:"github_pat_..."});
+  var p1=el("input",{id:"p1",type:"password",autocomplete:"new-password"});
+  var p2=el("input",{id:"p2",type:"password",autocomplete:"new-password"});
+  var err=el("span",{class:"err",role:"alert"});
+  var btn=el("button",{class:"btn",type:"submit",text:"حفظ وبدء"});
+  var form=el("form",{class:"card",novalidate:true,onsubmit:async function(e){
+    e.preventDefault();
+    var t=token.value.trim();
+    if(!t){err.textContent="الصق مفتاح GitHub.";return}
+    if(p1.value.length<4){err.textContent="الباسورد لازم يكون 4 خانات على الأقل.";return}
+    if(p1.value!==p2.value){err.textContent="الباسوردين مش زي بعض.";return}
+    btn.disabled=true;err.textContent="جاري التحقق…";
+    state.token=t;
+    try{
+      await gh("");
+      var salt=newSalt(), hash=await hashPw(p1.value,salt);
+      await commit("غرفة المدرب: تعيين الباسورد",[{path:BASE+"admin/config.json",base64:textToB64(JSON.stringify({salt:salt,hash:hash})+"\n")}]);
+      store(TOKEN_KEY,t);state.config={salt:salt,hash:hash};
+      sset(SESSION_KEY,"1");
+      toast("تم تعيين الباسورد. اللوحة هتطلب الباسورد من المرة الجاية بعد دقيقة تقريبًا.");
+      showPanel();
+    }catch(x){
+      state.token=null;err.textContent=explain(x);btn.disabled=false;
+    }
+  }},
+    el("h2",{text:"أول مرة؟ جهّز غرفة المدرب"}),
+    el("p",{class:"note",text:"اختار باسورد للدخول، والصق مفتاح GitHub اللي بيسمح بتعديل الموقع."}),
+    field("p1","اختار باسورد",p1),
+    field("p2","اكتب الباسورد تاني",p2),
+    field("tk","مفتاح GitHub",token),
+    tokenHelp(),
+    err,
+    el("div",{style:"margin-top:10px"},btn)
+  );
+  app.appendChild(form);
+}
+
+function showToken(msg){
+  clear(app);removeSavebar();
+  var token=el("input",{id:"tk",type:"password",autocomplete:"off",dir:"ltr",placeholder:"github_pat_..."});
+  var err=el("span",{class:"err",role:"alert",text:msg||""});
+  var btn=el("button",{class:"btn",type:"submit",text:"تأكيد"});
+  var form=el("form",{class:"card",novalidate:true,onsubmit:async function(e){
+    e.preventDefault();
+    var t=token.value.trim();
+    if(!t){err.textContent="الصق مفتاح GitHub.";return}
+    btn.disabled=true;err.textContent="جاري التحقق…";
+    state.token=t;
+    try{await gh("");store(TOKEN_KEY,t);showPanel()}
+    catch(x){state.token=null;err.textContent=explain(x);btn.disabled=false}
+  }},
+    el("h2",{text:"مفتاح GitHub"}),
+    el("p",{class:"note",text:"محتاج المفتاح عشان تقدر تحفظ التعديلات على الموقع."}),
+    field("tk","مفتاح GitHub",token),
+    tokenHelp(),
+    err,
+    el("div",{style:"margin-top:10px"},btn)
+  );
+  app.appendChild(form);
+}
+
+async function showPanel(){
+  if(!state.token)state.token=load(TOKEN_KEY);
+  if(!state.token){showToken();return}
+  clear(app);
+  app.appendChild(el("p",{class:"note",style:"text-align:center;margin-top:24px",text:"جاري التحميل…"}));
+  try{
+    var f=await gh("/contents/"+BASE+"content.json?ref="+BRANCH);
+    state.content=JSON.parse(b64ToText(f.content));
+  }catch(e){
+    if(e.status===401||e.status===403||e.status===404){state.token=null;store(TOKEN_KEY,null);showToken(explain(e));return}
+    clear(app);
+    app.appendChild(el("div",{class:"card"},
+      el("p",{class:"err",text:explain(e)}),
+      el("div",{style:"margin-top:10px"},el("button",{class:"btn",type:"button",text:"حاول تاني",onclick:showPanel}))
+    ));
+    return;
+  }
+  state.groups=(state.content.groups||[]).map(function(g){return{name:g.name||"",time:g.time||""}});
+  state.photos=(state.content.gallery||[]).map(function(g){return{src:g.src,alt:g.alt||"",w:g.w,h:g.h}});
+  state.deleted=[];state.dirty=false;
+  renderEditor();
+}
+
+/* ---------- editor ---------- */
+function renderEditor(){
+  clear(app);removeSavebar();
+  var c=state.content;
+
+  refs.desc=el("textarea",{id:"fDesc",rows:"4"});refs.desc.value=c.description||"";
+  refs.addr=textInput("fAddr",c.address);
+  refs.days=textInput("fDays",c.days);
+  refs.price=textInput("fPrice",c.price,{inputmode:"numeric",dir:"ltr",class:"ltr"});
+  refs.phone=textInput("fPhone",c.phone,{inputmode:"tel",dir:"ltr",class:"ltr"});
+  [refs.desc,refs.addr,refs.days,refs.price,refs.phone].forEach(function(i){i.addEventListener("input",markDirty)});
+
+  refs.groupList=el("div");
+  refs.photoList=el("div");
+
+  var fileInput=el("input",{type:"file",accept:"image/*",multiple:true,style:"display:none",onchange:async function(){
+    var files=Array.prototype.slice.call(fileInput.files);fileInput.value="";
+    await addFiles(files);
+  }});
+
+  var saveErr=el("span",{class:"err",role:"alert"});
+  var saveBtn=el("button",{class:"btn",type:"button",text:"حفظ ونشر الموقع",onclick:function(){save(saveBtn,saveErr)}});
+
+  var cardInfo=el("section",{class:"card"},
+    el("h2",{text:"بيانات الأكاديمية"}),
+    field("fDesc","الوصف",refs.desc),
+    field("fAddr","العنوان",refs.addr),
+    field("fDays","المواعيد",refs.days),
+    el("div",{class:"f"},el("label",{text:"المجموعات (الاسم والميعاد)"}),refs.groupList,
+      el("button",{class:"btn sec addbtn",type:"button",text:"+ إضافة مجموعة",onclick:function(){state.groups.push({name:"",time:""});markDirty();renderGroups()}})),
+    field("fPrice","الاشتراك الشهري (ج.م)",refs.price),
+    field("fPhone","رقم الموبايل / واتساب",refs.phone)
+  );
+
+  var cardPhotos=el("section",{class:"card"},
+    el("h2",{text:"الصور"}),
+    el("p",{class:"note",text:"الصورة الأولى هي أول صورة بتظهر في الموقع. استخدم الأسهم للترتيب."}),
+    refs.photoList,
+    fileInput,
+    el("button",{class:"btn sec addbtn",type:"button",text:"+ إضافة صور",onclick:function(){fileInput.click()}})
+  );
+
+  var np1=el("input",{id:"np1",type:"password",autocomplete:"new-password"});
+  var np2=el("input",{id:"np2",type:"password",autocomplete:"new-password"});
+  var pwErr=el("span",{class:"err",role:"alert"});
+  var pwBtn=el("button",{class:"btn sec",type:"button",text:"تغيير الباسورد",onclick:function(){changePw(np1,np2,pwErr,pwBtn)}});
+  var cardSec=el("section",{class:"card"},
+    el("h2",{text:"الأمان"}),
+    field("np1","باسورد جديد",np1),
+    field("np2","اكتب الباسورد الجديد تاني",np2,pwErr),
+    el("div",{style:"margin-top:10px"},pwBtn),
+    el("div",{class:"row",style:"margin-top:16px"},
+      el("button",{class:"btn sec",type:"button",text:"خروج",onclick:function(){sset(SESSION_KEY,null);showGate()}}),
+      el("button",{class:"btn sec",type:"button",text:"نسيان المفتاح من الجهاز ده",onclick:function(){
+        if(!confirm("هتحتاج تلصق المفتاح تاني. متأكد؟"))return;
+        store(TOKEN_KEY,null);state.token=null;sset(SESSION_KEY,null);showGate();
+      }})
+    )
+  );
+
+  app.appendChild(cardInfo);
+  app.appendChild(cardPhotos);
+  app.appendChild(cardSec);
+  document.body.appendChild(el("div",{class:"savebar",id:"savebar"},saveErr,saveBtn));
+  renderGroups();
+  renderPhotos();
+}
+
+function renderGroups(){
+  clear(refs.groupList);
+  state.groups.forEach(function(g,idx){
+    var n=el("input",{type:"text",placeholder:"المجموعة (مثلًا: الأولاد)","aria-label":"اسم المجموعة "+(idx+1)});n.value=g.name;
+    var t=el("input",{type:"text",placeholder:"الميعاد (مثلًا: الساعة 6)","aria-label":"ميعاد المجموعة "+(idx+1)});t.value=g.time;
+    n.addEventListener("input",function(){g.name=n.value;markDirty()});
+    t.addEventListener("input",function(){g.time=t.value;markDirty()});
+    var del=el("button",{type:"button",class:"ib del","aria-label":"مسح المجموعة",text:"✕",onclick:function(){
+      state.groups.splice(idx,1);markDirty();renderGroups();
+    }});
+    refs.groupList.appendChild(el("div",{class:"row"},n,t,del));
+  });
+}
+
+function renderPhotos(){
+  clear(refs.photoList);
+  state.photos.forEach(function(p,idx){
+    var alt=el("input",{type:"text",placeholder:"وصف الصورة (اختياري)","aria-label":"وصف الصورة "+(idx+1)});alt.value=p.alt||"";
+    alt.addEventListener("input",function(){p.alt=alt.value;markDirty()});
+    var up=el("button",{type:"button",class:"ib","aria-label":"حرّك لفوق",text:"↑",disabled:idx===0,onclick:function(){move(idx,-1)}});
+    var down=el("button",{type:"button",class:"ib","aria-label":"حرّك لتحت",text:"↓",disabled:idx===state.photos.length-1,onclick:function(){move(idx,1)}});
+    var del=el("button",{type:"button",class:"ib del","aria-label":"امسح الصورة",text:"✕",onclick:function(){removePhoto(idx)}});
+    refs.photoList.appendChild(el("div",{class:"photo"},
+      el("img",{src:p.url||("../"+p.src),alt:"",loading:"lazy"}),
+      el("div",{class:"mid"},idx===0?el("span",{class:"badge",text:"الصورة الأولى"}):null,alt),
+      el("div",{class:"acts"},up,down,del)
+    ));
+  });
+  if(!state.photos.length)refs.photoList.appendChild(el("p",{class:"note",text:"مفيش صور. ضيف صورة على الأقل."}));
+}
+function move(idx,d){
+  var j=idx+d;if(j<0||j>=state.photos.length)return;
+  var t=state.photos[idx];state.photos[idx]=state.photos[j];state.photos[j]=t;
+  markDirty();renderPhotos();
+}
+function removePhoto(idx){
+  if(!confirm("تمسح الصورة دي من الموقع؟"))return;
+  var p=state.photos.splice(idx,1)[0];
+  if(p.url)URL.revokeObjectURL(p.url);
+  if(!p.blob)state.deleted.push(p.src);
+  markDirty();renderPhotos();
+}
+
+async function resizeToJpeg(file){
+  var bmp=await createImageBitmap(file,{imageOrientation:"from-image"});
+  var s=Math.min(1,1600/Math.max(bmp.width,bmp.height));
+  var w=Math.round(bmp.width*s),h=Math.round(bmp.height*s);
+  var cv=document.createElement("canvas");cv.width=w;cv.height=h;
+  var ctx=cv.getContext("2d");ctx.fillStyle="#000";ctx.fillRect(0,0,w,h);ctx.drawImage(bmp,0,0,w,h);
+  if(bmp.close)bmp.close();
+  return new Promise(function(res,rej){
+    cv.toBlob(function(b){b?res({blob:b,w:w,h:h}):rej(new Error("toBlob"))},"image/jpeg",0.82);
+  });
+}
+async function addFiles(files){
+  var failed=0;
+  for(var i=0;i<files.length;i++){
+    try{
+      var r=await resizeToJpeg(files[i]);
+      var name="p-"+Date.now().toString(36)+Math.random().toString(36).slice(2,6)+".jpg";
+      state.photos.push({src:"img/gallery/"+name,alt:"صورة من الأكاديمية",w:r.w,h:r.h,blob:r.blob,url:URL.createObjectURL(r.blob)});
+    }catch(e){failed++}
+  }
+  if(failed)toast("مقدرتش أقرا "+failed+" صورة. جرّب صيغة JPG أو PNG.");
+  markDirty();renderPhotos();
+}
+
+function collect(errEl){
+  var phone=arDigits(refs.phone.value).replace(/[\s-]/g,"");
+  var price=parseInt(arDigits(refs.price.value).replace(/\D/g,""),10);
+  var groups=state.groups.map(function(g){return{name:g.name.trim(),time:g.time.trim()}}).filter(function(g){return g.name});
+  var problem="";
+  if(!refs.desc.value.trim())problem="اكتب الوصف.";
+  else if(!refs.addr.value.trim())problem="اكتب العنوان.";
+  else if(!refs.days.value.trim())problem="اكتب المواعيد.";
+  else if(!groups.length)problem="ضيف مجموعة واحدة على الأقل.";
+  else if(!(price>0))problem="اكتب سعر الاشتراك بالأرقام.";
+  else if(!/^01[0125]\d{8}$/.test(phone))problem="اكتب رقم موبايل مصري صحيح، زي 01012345678.";
+  else if(!state.photos.length)problem="ضيف صورة واحدة على الأقل.";
+  if(problem){errEl.textContent=problem;return null}
+  errEl.textContent="";
+  return {
+    description:refs.desc.value.trim(),
+    address:refs.addr.value.trim(),
+    days:refs.days.value.trim(),
+    groups:groups,
+    price:price,
+    phone:phone,
+    gallery:state.photos.map(function(p){
+      var o={src:p.src,alt:(p.alt||"").trim()};
+      if(p.w&&p.h){o.w=p.w;o.h=p.h}
+      return o;
+    })
+  };
+}
+
+async function save(btn,errEl){
+  var content=collect(errEl);
+  if(!content)return;
+  btn.disabled=true;errEl.textContent="جاري الحفظ والنشر…";
+  try{
+    var files=[{path:BASE+"content.json",base64:textToB64(JSON.stringify(content,null,2)+"\n")}];
+    for(var i=0;i<state.photos.length;i++){
+      var p=state.photos[i];
+      if(p.blob)files.push({path:BASE+p.src,base64:bytesToB64(new Uint8Array(await p.blob.arrayBuffer()))});
+    }
+    state.deleted.forEach(function(s){files.push({path:BASE+s,remove:true})});
+    await commit("غرفة المدرب: تعديل محتوى الموقع",files);
+    state.dirty=false;
+    removeSavebar();
+    toast("اتحفظ ✓ الموقع هيتحدّث خلال دقيقة أو اتنين.");
+    await showPanel();
+  }catch(e){
+    errEl.textContent=explain(e);btn.disabled=false;
+  }
+}
+
+async function changePw(a,b,errEl,btn){
+  if(a.value.length<4){errEl.textContent="الباسورد لازم يكون 4 خانات على الأقل.";return}
+  if(a.value!==b.value){errEl.textContent="الباسوردين مش زي بعض.";return}
+  btn.disabled=true;errEl.textContent="جاري الحفظ…";
+  try{
+    var salt=newSalt(),hash=await hashPw(a.value,salt);
+    await commit("غرفة المدرب: تغيير الباسورد",[{path:BASE+"admin/config.json",base64:textToB64(JSON.stringify({salt:salt,hash:hash})+"\n")}]);
+    state.config={salt:salt,hash:hash};
+    a.value=b.value="";errEl.textContent="";
+    toast("تم. الباسورد الجديد هيشتغل بعد دقيقة تقريبًا.");
+  }catch(e){errEl.textContent=explain(e)}
+  btn.disabled=false;
+}
+
+function removeSavebar(){var s=document.getElementById("savebar");if(s)s.remove()}
+
+window.addEventListener("beforeunload",function(e){
+  if(state.dirty){e.preventDefault();e.returnValue=""}
+});
+
+/* ---------- start ---------- */
+(async function(){
+  state.config=await loadConfig();
+  state.token=load(TOKEN_KEY);
+  if(!state.config){showSetup();return}
+  if(sget(SESSION_KEY)==="1"){showPanel();return}
+  showGate();
+})();
+
+})();
+</script>
+</body>
+</html>
