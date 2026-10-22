@@ -68,6 +68,16 @@ dd{min-width:0;overflow-wrap:anywhere}
 .err{color:#ff7b72;font-size:.82rem;min-height:1.1em}
 .book{width:100%;margin-top:16px;background:var(--or);color:#111;border:0;border-radius:14px;padding:14px;font-weight:900;font-size:1.1rem}
 .note{color:var(--muted);font-size:.85rem;margin-top:8px}
+.paylink{display:block;text-align:center;text-decoration:none;margin-top:12px;background:var(--panel-2);border:2px solid var(--or);border-radius:14px;padding:12px;font-weight:900;color:var(--or-2)}
+.paybox{background:var(--panel-2);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.paybox .lbl{color:var(--muted);font-size:.85rem;font-weight:700}
+.payrow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:4px}
+.payno{direction:ltr;font-size:1.4rem;font-weight:900;letter-spacing:.04em;color:var(--or-2);font-variant-numeric:tabular-nums}
+.copybtn{flex:0 0 auto;background:var(--or);color:#111;border:0;border-radius:12px;padding:8px 18px;font-weight:900}
+.steps{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:8px}
+.steps li{display:flex;align-items:center;gap:10px;font-size:.95rem}
+.steps li span{flex:0 0 24px;height:24px;border-radius:50%;background:var(--line);display:grid;place-items:center;font-size:.8rem;font-weight:900}
+.wabtn{display:block;text-align:center;text-decoration:none;margin-top:16px;background:var(--ok);color:#06240f;border-radius:14px;padding:13px;font-weight:900;font-size:1.05rem}
 .toast{position:fixed;inset-inline:16px;bottom:calc(20px + env(safe-area-inset-bottom,0px));margin:auto;max-width:340px;background:var(--text);color:var(--bg);border-radius:12px;padding:10px 14px;text-align:center;font-weight:700;display:none}
 .toast.show{display:block}
 footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:26px}
@@ -143,6 +153,27 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:26px}
       <button class="book" type="submit">احجز عن طريق واتساب</button>
       <p class="note">هيتفتح واتساب والرسالة جاهزة. الحجز بيتأكد لما الأكاديمية ترد عليك.</p>
     </form>
+    <a class="paylink" href="#pay">طريقة الدفع عن طريق إنستا باي ↓</a>
+  </section>
+
+  <section class="card" id="pay" aria-labelledby="p">
+    <h2 id="p">الدفع عن طريق إنستا باي</h2>
+    <p class="note" style="margin:0 0 12px">حوّل قيمة الاشتراك الشهري <b id="payPrice" style="color:var(--text)">250 ج.م</b> وابعتلنا صورة الإيصال.</p>
+    <div class="paybox">
+      <span class="lbl">رقم الدفع</span>
+      <div class="payrow">
+        <span class="payno" id="payNo" dir="ltr">01285705106</span>
+        <button type="button" class="copybtn" id="copyPay">نسخ</button>
+      </div>
+      <div style="margin-top:12px"><span class="lbl">اسم صاحب الحساب</span><p dir="ltr" style="text-align:start;font-weight:700;margin-top:2px">C/ Saad Heussien</p></div>
+    </div>
+    <ol class="steps">
+      <li><span>1</span>افتح تطبيق إنستا باي واختار إرسال</li>
+      <li><span>2</span>حوّل المبلغ على الرقم اللي فوق</li>
+      <li><span>3</span>ابعت صورة الإيصال واسم اللاعب على واتساب</li>
+    </ol>
+    <a class="wabtn" id="payWa" href="https://wa.me/201285705106" target="_blank" rel="noopener">ابعت الإيصال على واتساب</a>
+    <p class="note" style="text-align:center">الحجز بيتأكد بعد وصول التحويل.</p>
   </section>
 
   <footer>© <span id="y"></span> Professional Academy. كل الحقوق محفوظة.</footer>
@@ -163,6 +194,10 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:26px}
   function toast(m){var e=$("#toast");e.textContent=m;e.classList.add("show");clearTimeout(toast._t);toast._t=setTimeout(function(){e.classList.remove("show")},2200)}
   $("#copy").addEventListener("click",function(){
     if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(url).then(function(){toast("تم نسخ الرابط بنجاح!")},function(){toast(url)});else toast(url);
+  });
+  $("#copyPay").addEventListener("click",function(){
+    var n=$("#payNo").textContent.trim();
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(n).then(function(){toast("تم نسخ رقم الدفع")},function(){toast(n)});else toast(n);
   });
   $("#form").addEventListener("submit",function(e){
     e.preventDefault();
@@ -240,7 +275,7 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:26px}
       }
     }
     var price=parseInt(c.price,10);
-    if(price>0){window.PA.price=price;setText("cPrice",price+" ج.م")}
+    if(price>0){window.PA.price=price;setText("cPrice",price+" ج.م");setText("payPrice",price+" ج.م")}
     var digits=String(c.phone||"").replace(/\D/g,"");
     if(digits.length>=10){
       var intl="20"+digits.replace(/^0/,"");
