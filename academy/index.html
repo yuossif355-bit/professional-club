@@ -295,5 +295,22 @@ if("serviceWorker" in navigator)window.addEventListener("load",function(){naviga
   }catch(e){}
 })();
 </script>
+
+<script>
+/* عداد التثبيت: بيعد كل جهاز مرة واحدة، لما يتثبّت التطبيق أو يتفتح لأول مرة من أيقونة الشاشة الرئيسية (بيشتغل على أندرويد وآيفون). */
+(function(){
+  var KEY="pa_install_counted";
+  function done(){try{return localStorage.getItem(KEY)==="1"}catch(e){return false}}
+  function countInstall(){
+    if(done()||/[?&]nocount\b/.test(location.search)||!window.fetch)return;
+    fetch("https://abacus.jasoncameron.dev/hit/professional-academy-ismailia/installs")
+      .then(function(r){if(r.ok){try{localStorage.setItem(KEY,"1")}catch(e){}}})
+      .catch(function(){});
+  }
+  window.addEventListener("appinstalled",countInstall);
+  var standalone=(window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches)||window.navigator.standalone===true;
+  if(standalone)countInstall();
+})();
+</script>
 </body>
 </html>

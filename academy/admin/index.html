@@ -59,6 +59,10 @@ details li{margin-top:4px}
 a{color:var(--or-2)}
 .ltr{direction:ltr;text-align:start}
 .addbtn{margin-top:10px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.stat{background:var(--panel-2);border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center}
+.stat b{display:block;font-size:1.9rem;font-weight:900;color:var(--or-2);font-variant-numeric:tabular-nums;line-height:1.3}
+.stat span{color:var(--muted);font-size:.85rem;font-weight:700}
 </style>
 </head>
 <body>
@@ -378,12 +382,42 @@ function renderEditor(){
     )
   );
 
+  var visitsNo=el("b",{text:"…"}), installsNo=el("b",{text:"…"});
+  var cardStats=el("section",{class:"card"},
+    el("h2",{text:"الإحصائيات"}),
+    el("div",{class:"stats"},
+      el("div",{class:"stat"},visitsNo,el("span",{text:"زيارات الموقع"})),
+      el("div",{class:"stat"},installsNo,el("span",{text:"ثبّتوا التطبيق"}))
+    ),
+    el("p",{class:"note",text:"كل جهاز بيتحسب مرة واحدة. افتح الموقع بإضافة ?nocount في آخر الرابط عشان زياراتك متتحسبش."})
+  );
+
+  app.appendChild(cardStats);
   app.appendChild(cardInfo);
   app.appendChild(cardPhotos);
   app.appendChild(cardSec);
   document.body.appendChild(el("div",{class:"savebar",id:"savebar"},saveErr,saveBtn));
   renderGroups();
   renderPhotos();
+  loadStats(visitsNo,installsNo);
+}
+
+/* ---------- stats (عدّاد abacus، نفس الاسم اللي الموقع بيسجّل عليه) ---------- */
+var COUNTER="https://abacus.jasoncameron.dev/get/professional-academy-ismailia/";
+async function readCounter(key){
+  try{
+    var r=await fetch(COUNTER+key,{cache:"no-store"});
+    if(r.status===404)return 0;
+    if(!r.ok)return null;
+    var j=await r.json();
+    var n=Number(j&&j.value);
+    return isFinite(n)?n:null;
+  }catch(e){return null}
+}
+async function loadStats(visitsEl,installsEl){
+  var res=await Promise.all([readCounter("visits"),readCounter("installs")]);
+  visitsEl.textContent=res[0]==null?"—":res[0].toLocaleString("en-US");
+  installsEl.textContent=res[1]==null?"—":res[1].toLocaleString("en-US");
 }
 
 function renderGroups(){
