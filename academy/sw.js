@@ -16,7 +16,7 @@ self.addEventListener("activate", function (e) {
 
 self.addEventListener("fetch", function (e) {
   var req = e.request, url = new URL(req.url);
-  if (req.method !== "GET" || url.origin !== location.origin || url.pathname.indexOf("/admin/") !== -1) return;
+  if (req.method !== "GET" || url.origin !== location.origin) return;
   e.respondWith(
     fetch(req).then(function (res) {
       if (res && res.ok) {
