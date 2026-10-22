@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0b0b0b">
+<title>إحصائيات الأكاديمية | Professional Academy</title>
+<link rel="icon" type="image/png" sizes="48x48" href="../img/icon-48.png">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="إحصائيات">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0b0b;--panel:#161616;--panel-2:#1e1e1e;--line:#2c2c2c;--text:#f5f2ee;--muted:#a7a29b;--or:#ff7a00;--or-2:#ffb066;--bad:#ff7b72}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:"Cairo",system-ui,sans-serif;line-height:1.7;padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--or);outline-offset:2px}
+.wrap{max-width:720px;margin:0 auto;padding-inline:16px}
+.top{text-align:center;padding:22px 16px 18px;background:radial-gradient(ellipse at 50% 0%,rgba(255,122,0,.28),transparent 65%);border-bottom:3px solid var(--or)}
+.top img{width:84px;height:84px;border-radius:50%;box-shadow:0 0 28px rgba(255,122,0,.45)}
+h1{font-size:1.5rem;font-weight:900;margin-top:8px;line-height:1.3}
+.tag{color:var(--or-2);font-weight:700;font-size:.95rem}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px;margin-top:16px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{background:var(--panel-2);border:1px solid var(--line);border-radius:16px;padding:16px 10px;text-align:center}
+.stat b{display:block;font-size:2.4rem;font-weight:900;color:var(--or-2);font-variant-numeric:tabular-nums;line-height:1.3}
+.stat span{color:var(--muted);font-size:.9rem;font-weight:700}
+.btn{width:100%;margin-top:14px;background:var(--or);color:#111;border:0;border-radius:14px;padding:12px;font-weight:900;font-size:1rem}
+.btn:disabled{opacity:.5;cursor:default}
+.note{color:var(--muted);font-size:.85rem;margin-top:10px;text-align:center}
+.err{color:var(--bad);font-size:.9rem;margin-top:10px;text-align:center;min-height:1.2em}
+</style>
+</head>
+<body>
+<header class="top">
+  <img src="../img/logo.jpg" alt="شعار Professional Academy" width="84" height="84">
+  <h1>إحصائيات الأكاديمية</h1>
+  <p class="tag">كام واحد زار الموقع وثبّت التطبيق</p>
+</header>
+
+<main class="wrap">
+  <section class="card" aria-labelledby="h">
+    <h2 id="h" class="sr" style="position:absolute;left:-9999px">الأرقام</h2>
+    <div class="stats" aria-live="polite">
+      <div class="stat"><b id="visits">…</b><span>زيارات الموقع</span></div>
+      <div class="stat"><b id="installs">…</b><span>ثبّتوا التطبيق</span></div>
+    </div>
+    <p class="err" id="err" role="alert"></p>
+    <button type="button" class="btn" id="refresh">تحديث الأرقام</button>
+    <p class="note" id="when">جاري التحميل…</p>
+  </section>
+  <p class="note">كل جهاز بيتحسب مرة واحدة. الأرقام بتتحدّث لوحدها كل دقيقة.<br>افتح الموقع بإضافة <span dir="ltr">?nocount</span> في آخر الرابط عشان زياراتك متتحسبش.</p>
+</main>
+
+<script>
+(function(){
+  var BASE="https://abacus.jasoncameron.dev/get/professional-academy-ismailia/";
+  var $=function(id){return document.getElementById(id)};
+  function fmt(n){return n==null?"—":Number(n).toLocaleString("en-US")}
+  function read(key){
+    return fetch(BASE+key,{cache:"no-store"}).then(function(r){
+      if(r.status===404)return 0;
+      if(!r.ok)return null;
+      return r.json().then(function(j){var n=Number(j&&j.value);return isFinite(n)?n:null});
+    }).catch(function(){return null});
+  }
+  var busy=false;
+  function load(){
+    if(busy)return;busy=true;
+    var b=$("refresh");b.disabled=true;
+    Promise.all([read("visits"),read("installs")]).then(function(r){
+      $("visits").textContent=fmt(r[0]);$("installs").textContent=fmt(r[1]);
+      var bad=r[0]==null&&r[1]==null;
+      $("err").textContent=bad?"مقدرتش أجيب الأرقام. اتأكد من النت وجرب تاني.":"";
+      if(!bad)$("when").textContent="آخر تحديث: "+new Date().toLocaleTimeString("ar-EG",{hour:"numeric",minute:"2-digit"});
+    }).then(function(){busy=false;b.disabled=false});
+  }
+  $("refresh").addEventListener("click",load);
+  load();
+  setInterval(function(){if(!document.hidden)load()},60000);
+  if("serviceWorker" in navigator)window.addEventListener("load",function(){navigator.serviceWorker.register("../sw.js").catch(function(){})});
+})();
+</script>
+</body>
+</html>
