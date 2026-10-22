@@ -14,55 +14,130 @@
 <meta name="apple-mobile-web-app-title" content="إحصائيات">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0b0b0b;--panel:#161616;--panel-2:#1e1e1e;--line:#2c2c2c;--text:#f5f2ee;--muted:#a7a29b;--or:#ff7a00;--or-2:#ffb066;--bad:#ff7b72}
+:root{
+  --ink:#0b0b0b;--floor:#17110b;--floor-2:#1f1710;--line:#2c2c2c;
+  --text:#f5f2ee;--muted:#a7a29b;--or:#ff7a00;--or-2:#ffb066;--ok:#4be28a;--bad:#ff7b72;
+  --ease:cubic-bezier(.16,.84,.2,1)
+}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:"Cairo",system-ui,sans-serif;line-height:1.7;padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
+html{background:var(--ink)}
+body{min-height:100vh;color:var(--text);font-family:"Cairo",system-ui,sans-serif;line-height:1.6;
+  background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(255,122,0,.22),transparent 70%),var(--ink);
+  padding:0 0 calc(32px + env(safe-area-inset-bottom,0px))}
 button{font:inherit;color:inherit;cursor:pointer}
-:focus-visible{outline:3px solid var(--or);outline-offset:2px}
-.wrap{max-width:720px;margin:0 auto;padding-inline:16px}
-.top{text-align:center;padding:22px 16px 18px;background:radial-gradient(ellipse at 50% 0%,rgba(255,122,0,.28),transparent 65%);border-bottom:3px solid var(--or)}
-.top img{width:84px;height:84px;border-radius:50%;box-shadow:0 0 28px rgba(255,122,0,.45)}
-h1{font-size:1.5rem;font-weight:900;margin-top:8px;line-height:1.3}
-.tag{color:var(--or-2);font-weight:700;font-size:.95rem}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px;margin-top:16px}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.stat{background:var(--panel-2);border:1px solid var(--line);border-radius:16px;padding:16px 10px;text-align:center}
-.stat b{display:block;font-size:2.4rem;font-weight:900;color:var(--or-2);font-variant-numeric:tabular-nums;line-height:1.3}
-.stat span{color:var(--muted);font-size:.9rem;font-weight:700}
-.btn{width:100%;margin-top:14px;background:var(--or);color:#111;border:0;border-radius:14px;padding:12px;font-weight:900;font-size:1rem}
-.btn:disabled{opacity:.5;cursor:default}
-.note{color:var(--muted);font-size:.85rem;margin-top:10px;text-align:center}
-.err{color:var(--bad);font-size:.9rem;margin-top:10px;text-align:center;min-height:1.2em}
+:focus-visible{outline:3px solid var(--or);outline-offset:3px}
+.wrap{max-width:620px;margin:0 auto;padding-inline:16px}
+
+.head{display:flex;align-items:center;gap:14px;padding:22px 0 8px}
+.head img{width:56px;height:56px;border-radius:50%;box-shadow:0 0 0 2px var(--or),0 0 26px rgba(255,122,0,.5)}
+.head h1{font-size:1.35rem;font-weight:900;line-height:1.25}
+.head p{color:var(--or-2);font-size:.88rem;font-weight:700}
+
+/* لوحة النتيجة: ملعب كرة يد من فوق + أرقام بتلف زي عدّاد الكيلومترات */
+.board{position:relative;margin-top:16px;border-radius:22px;overflow:hidden;
+  background:linear-gradient(180deg,var(--floor-2),var(--floor));border:1px solid #3a2a18;
+  box-shadow:0 18px 50px rgba(0,0,0,.55),inset 0 0 0 6px rgba(255,122,0,.06)}
+.court{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.court *{fill:none;stroke:var(--or);stroke-width:1.6;vector-effect:non-scaling-stroke}
+.court .soft{opacity:.38}.court .faint{opacity:.22;stroke-dasharray:7 7}
+.court .goal{opacity:.5;stroke-width:3}
+.rows{position:relative;display:grid}
+.row{padding:22px 22px 20px;display:grid;gap:2px}
+.row+.row{border-top:1px dashed rgba(255,122,0,.35)}
+.label{font-weight:700;color:var(--or-2);font-size:1.02rem}
+.num{direction:ltr;display:flex;align-items:flex-end;justify-content:flex-end;
+  font-size:clamp(4.2rem,22vw,7.2rem);font-weight:900;line-height:1;color:var(--text);
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em;filter:drop-shadow(0 0 22px rgba(255,122,0,.4))}
+.dg{display:inline-block;height:1.04em;overflow:hidden;line-height:1.04}
+.col{display:flex;flex-direction:column;transform:translateY(calc(var(--d,0)*-10%));
+  transition:transform 1.5s var(--ease);transition-delay:var(--delay,0s)}
+.col span{display:block;height:1.04em;text-align:center}
+.sep{display:inline-block;height:1.04em;line-height:1.04;color:var(--or);padding-inline:.02em}
+.dash{color:var(--muted)}
+.sub{min-height:1.5em;font-size:.95rem;color:var(--muted);font-weight:700}
+.sub.up{color:var(--ok)}
+
+.rate{position:relative;display:flex;align-items:center;gap:14px;padding:16px 22px 18px;
+  background:rgba(0,0,0,.35);border-top:1px solid rgba(255,122,0,.35)}
+.ring{flex:none;width:64px;height:64px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:7}
+.ring .bg{stroke:rgba(255,255,255,.1)}
+.ring .fg{stroke:var(--or);stroke-linecap:round;stroke-dasharray:176;stroke-dashoffset:176;transition:stroke-dashoffset 1.6s var(--ease) .4s}
+.rate b{font-size:1.5rem;font-weight:900;color:var(--or-2);font-variant-numeric:tabular-nums}
+.rate p{font-size:.92rem;color:var(--muted);font-weight:700;line-height:1.5}
+
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;color:var(--muted);font-size:.85rem;font-weight:700}
+.btn{background:var(--or);color:#111;border:0;border-radius:12px;padding:8px 18px;font-weight:900;transition:transform .12s}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.55;cursor:default}
+.err{color:var(--bad);font-weight:700;text-align:center;margin-top:12px;min-height:1.4em}
+.note bdi,.note span{unicode-bidi:isolate;display:inline-block}
+.note{color:var(--muted);font-size:.82rem;text-align:center;margin-top:16px;line-height:1.8}
+
+@media (prefers-reduced-motion:reduce){.col,.ring .fg{transition:none}}
 </style>
 </head>
 <body>
-<header class="top">
-  <img src="../img/logo.jpg" alt="شعار Professional Academy" width="84" height="84">
-  <h1>إحصائيات الأكاديمية</h1>
-  <p class="tag">كام واحد زار الموقع وثبّت التطبيق</p>
-</header>
-
-<main class="wrap">
-  <section class="card" aria-labelledby="h">
-    <h2 id="h" class="sr" style="position:absolute;left:-9999px">الأرقام</h2>
-    <div class="stats" aria-live="polite">
-      <div class="stat"><b id="visits">…</b><span>زيارات الموقع</span></div>
-      <div class="stat"><b id="installs">…</b><span>ثبّتوا التطبيق</span></div>
+<div class="wrap">
+  <header class="head">
+    <img src="../img/logo.jpg" alt="شعار Professional Academy" width="56" height="56">
+    <div>
+      <h1>إحصائيات الأكاديمية</h1>
+      <p>كام واحد زار الموقع وثبّت التطبيق</p>
     </div>
+  </header>
+
+  <main>
+    <section class="board" aria-label="الأرقام">
+      <svg class="court" viewBox="0 0 400 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <line class="goal" x1="150" y1="508" x2="250" y2="508"/>
+        <path class="soft" d="M70 508 L70 478 A130 130 0 0 1 330 478 L330 508"/>
+        <path class="faint" d="M10 508 L10 440 A190 190 0 0 1 390 440 L390 508"/>
+        <line class="soft" x1="194" y1="404" x2="206" y2="404"/>
+        <line class="faint" x1="0" y1="20" x2="400" y2="20"/>
+        <circle class="faint" cx="200" cy="20" r="44"/>
+      </svg>
+
+      <div class="rows">
+        <div class="row">
+          <span class="label">زيارات الموقع</span>
+          <div class="num" id="nVisits" role="text" aria-label="زيارات الموقع"><span class="dash">—</span></div>
+          <span class="sub" id="sVisits"></span>
+        </div>
+        <div class="row">
+          <span class="label">ثبّتوا التطبيق</span>
+          <div class="num" id="nInstalls" role="text" aria-label="ثبّتوا التطبيق"><span class="dash">—</span></div>
+          <span class="sub" id="sInstalls"></span>
+        </div>
+      </div>
+
+      <div class="rate" id="rate" hidden>
+        <svg class="ring" viewBox="0 0 64 64" aria-hidden="true"><circle class="bg" cx="32" cy="32" r="28"/><circle class="fg" id="ringFg" cx="32" cy="32" r="28"/></svg>
+        <div>
+          <b id="rateNum">0%</b>
+          <p id="rateTxt"></p>
+        </div>
+      </div>
+    </section>
+
     <p class="err" id="err" role="alert"></p>
-    <button type="button" class="btn" id="refresh">تحديث الأرقام</button>
-    <p class="note" id="when">جاري التحميل…</p>
-  </section>
-  <p class="note">كل جهاز بيتحسب مرة واحدة. الأرقام بتتحدّث لوحدها كل دقيقة.<br>افتح الموقع بإضافة <span dir="ltr">?nocount</span> في آخر الرابط عشان زياراتك متتحسبش.</p>
-</main>
+    <div class="bar">
+      <span id="when">جاري التحميل…</span>
+      <button type="button" class="btn" id="refresh">تحديث</button>
+    </div>
+    <p class="note">كل جهاز بيتحسب مرة واحدة، والأرقام بتتحدّث لوحدها كل دقيقة.<br>افتح الموقع بإضافة <bdi dir="ltr">&lrm;?nocount&lrm;</bdi> في آخر الرابط عشان زياراتك إنت متتحسبش.</p>
+  </main>
+</div>
 
 <script>
 (function(){
   var BASE="https://abacus.jasoncameron.dev/get/professional-academy-ismailia/";
+  var LS="pa_stats_last";
   var $=function(id){return document.getElementById(id)};
-  function fmt(n){return n==null?"—":Number(n).toLocaleString("en-US")}
+  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   function read(key){
     return fetch(BASE+key,{cache:"no-store"}).then(function(r){
       if(r.status===404)return 0;
@@ -70,15 +145,77 @@ h1{font-size:1.5rem;font-weight:900;margin-top:8px;line-height:1.3}
       return r.json().then(function(j){var n=Number(j&&j.value);return isFinite(n)?n:null});
     }).catch(function(){return null});
   }
+
+  /* عدّاد بيلف: كل رقم عمود 0-9 بيتحرك لمكانه */
+  function setNum(host,n){
+    var s=Number(n).toLocaleString("en-US");
+    if(host.dataset.s===s)return;
+    var rebuild=!host.dataset.s||host.dataset.s.length!==s.length;
+    host.dataset.s=s;
+    host.setAttribute("aria-label",host.getAttribute("aria-label").split(":")[0]+": "+s);
+    var cols=[];
+    if(rebuild){
+      host.textContent="";
+      var count=0,total=s.replace(/\D/g,"").length;
+      s.split("").forEach(function(ch){
+        if(/\d/.test(ch)){
+          var d=document.createElement("span");d.className="dg";d.setAttribute("aria-hidden","true");
+          var c=document.createElement("span");c.className="col";
+          for(var k=0;k<10;k++){var t=document.createElement("span");t.textContent=k;c.appendChild(t)}
+          c.style.setProperty("--d",0);
+          c.style.setProperty("--delay",(reduce?0:(total-1-count)*0.09)+"s");
+          d.appendChild(c);host.appendChild(d);cols.push({el:c,v:+ch});count++;
+        }else{
+          var p=document.createElement("span");p.className="sep";p.setAttribute("aria-hidden","true");p.textContent=ch;host.appendChild(p);
+        }
+      });
+    }else{
+      var i=0;
+      s.split("").forEach(function(ch){if(/\d/.test(ch)){var c=host.querySelectorAll(".col")[i++];cols.push({el:c,v:+ch})}});
+    }
+    requestAnimationFrame(function(){requestAnimationFrame(function(){
+      cols.forEach(function(c){c.el.style.setProperty("--d",c.v)});
+    })});
+  }
+
+  function setRate(v,i){
+    var box=$("rate");
+    if(v==null||i==null||v<=0){box.hidden=true;return}
+    var pct=Math.min(100,i/v*100);
+    box.hidden=false;
+    $("rateNum").textContent=(pct>=10?Math.round(pct):Math.round(pct*10)/10)+"%";
+    $("rateTxt").textContent="من كل زوار الموقع ثبّتوا التطبيق";
+    var fg=$("ringFg");
+    requestAnimationFrame(function(){requestAnimationFrame(function(){fg.style.strokeDashoffset=176*(1-pct/100)})});
+  }
+
+  var baseline=null,baselineRead=false,saved=false;
+  function readBaseline(){
+    if(baselineRead)return;baselineRead=true;
+    try{baseline=JSON.parse(localStorage.getItem(LS)||"null")}catch(e){baseline=null}
+  }
+  function delta(el,now,key){
+    var d=baseline&&typeof baseline[key]==="number"&&now!=null?now-baseline[key]:0;
+    el.textContent=d>0?"+"+d.toLocaleString("en-US")+" من آخر مرة فتحت فيها الصفحة":"";
+    el.className="sub"+(d>0?" up":"");
+  }
+
   var busy=false;
   function load(){
     if(busy)return;busy=true;
     var b=$("refresh");b.disabled=true;
+    readBaseline();
     Promise.all([read("visits"),read("installs")]).then(function(r){
-      $("visits").textContent=fmt(r[0]);$("installs").textContent=fmt(r[1]);
-      var bad=r[0]==null&&r[1]==null;
+      var v=r[0],i=r[1],bad=v==null&&i==null;
+      if(v!=null)setNum($("nVisits"),v);
+      if(i!=null)setNum($("nInstalls"),i);
+      delta($("sVisits"),v,"v");delta($("sInstalls"),i,"i");
+      setRate(v,i);
       $("err").textContent=bad?"مقدرتش أجيب الأرقام. اتأكد من النت وجرب تاني.":"";
-      if(!bad)$("when").textContent="آخر تحديث: "+new Date().toLocaleTimeString("ar-EG",{hour:"numeric",minute:"2-digit"});
+      if(!bad){
+        $("when").textContent="آخر تحديث: "+new Date().toLocaleTimeString("ar-EG",{hour:"numeric",minute:"2-digit"});
+        if(!saved&&v!=null&&i!=null){saved=true;try{localStorage.setItem(LS,JSON.stringify({v:v,i:i}))}catch(e){}}
+      }
     }).then(function(){busy=false;b.disabled=false});
   }
   $("refresh").addEventListener("click",load);
